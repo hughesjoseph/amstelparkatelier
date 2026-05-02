@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amstelpark Atelier</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #00FF41;
+  --cyan: #00FFFF;
+  --magenta: #FF00FF;
+  --yellow: #FFFF00;
+  --ink: #0A0A0A;
+  --cream: #F5F2EC;
+  --off: #F0EDE5;
+  --mid: #888880;
+  --r: 12px;
+  --r-btn: 100px;
+}
+html { scroll-behavior: smooth; }
+body { font-family: Helvetica, Arial, sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  display: flex; align-items: center; justify-content: flex-end;
+  padding: 14px 32px 0; height: auto;
+}
+.lang-toggle { display: flex; background: transparent; border-radius: 999px; padding: 0; gap: 6px; }
+.lang-btn {
+  font-family: Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; background: transparent;
+  border: 1.5px solid rgba(10,10,10,0.28); width: 38px; height: 38px; padding: 0; border-radius: 50%;
+  color: rgba(10,10,10,0.4); cursor: pointer; transition: background 0.15s, color 0.15s;
+}
+.lang-btn.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+/* HERO */
+.hero {
+  background: var(--green); min-height: 100vh; padding-top: 52px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding-left: 40px; padding-right: 40px;
+}
+.hero-logo { width: min(320px, 58vw); margin-bottom: 44px; }
+.hero-logo svg { width: 100%; height: auto; display: block; }
+
+.carousel {
+  width: 100%; max-width: 840px; aspect-ratio: 16/9;
+  background: rgba(10,10,10,0.12); border-radius: var(--r);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 12px; margin-bottom: 40px; position: relative; overflow: hidden;
+}
+.carousel-icon { width: 40px; height: 40px; border: 1.5px solid rgba(10,10,10,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.carousel-icon svg { width: 16px; height: 16px; stroke: rgba(10,10,10,0.3); fill: none; stroke-width: 1.5; }
+.carousel-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(10,10,10,0.3); font-weight: 700; }
+.carousel-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; }
+.carousel-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(10,10,10,0.2); }
+.carousel-dot.active { background: var(--ink); }
+
+.hero-sub { font-size: clamp(14px, 1.8vw, 18px); font-weight: 700; line-height: 1.5; color: rgba(10,10,10,0.6); max-width: 480px; margin-bottom: 32px; }
+.hero-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+
+/* BUTTONS */
+.btn {
+  display: inline-block; font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+  text-decoration: none; padding: 12px 24px;
+  border-radius: var(--r-btn); border: 2px solid transparent;
+  cursor: pointer; transition: all 0.15s; text-transform: uppercase;
+}
+.btn-dark { background: var(--ink); color: var(--green); border-color: var(--ink); }
+.btn-dark:hover { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn-outline { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn-outline:hover { background: var(--ink); color: var(--green); }
+.btn-yellow { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
+.btn-yellow:hover { background: transparent; border-color: var(--ink); }
+.btn-cyan { background: var(--cyan); color: var(--ink); border-color: var(--cyan); }
+.btn-cyan:hover { background: transparent; border-color: var(--ink); }
+.btn-magenta { background: var(--magenta); color: var(--ink); border-color: var(--magenta); }
+.btn-magenta:hover { background: transparent; border-color: var(--ink); }
+
+/* LILY / ABOUT */
+.lily {
+  background: var(--cream); padding: 80px 40px;
+}
+.lily-inner {
+  max-width: 760px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start;
+}
+.lily h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 20px; }
+.lily p { font-size: 16px; line-height: 1.75; color: rgba(10,10,10,0.65); margin-bottom: 14px; }
+.lily a { color: var(--ink); font-weight: 700; }
+.lily-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(10,10,10,0.45); margin-bottom: 12px; }
+
+/* COURSES */
+.courses { background: var(--off); padding: 80px 40px; }
+.courses-inner { max-width: 1000px; margin: 0 auto; }
+.courses h2 { font-size: clamp(28px, 4.5vw, 48px); font-weight: 700; letter-spacing: -0.04em; margin-bottom: 48px; text-align: center; }
+
+.audience-block { margin-bottom: 40px; }
+.audience-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: var(--mid); margin-bottom: 16px; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+
+/* ADULT CARDS — cyan */
+.card-adult {
+  background: var(--cyan); color: var(--ink);
+  padding: 24px 22px; border-radius: var(--r);
+  display: flex; flex-direction: column;
+}
+/* CHILD CARDS — magenta */
+.card-child {
+  background: var(--magenta); color: var(--ink);
+  padding: 24px 22px; border-radius: var(--r);
+  display: flex; flex-direction: column;
+}
+
+.card-audience-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(10,10,10,0.5); margin-bottom: 10px;
+}
+.c-name { font-size: clamp(18px, 2.2vw, 24px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 8px; }
+.c-sched { font-size: 12px; color: rgba(10,10,10,0.55); line-height: 1.65; margin-bottom: 6px; }
+.c-weeks { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(10,10,10,0.7); margin-bottom: 16px; }
+.c-price { font-size: 28px; font-weight: 700; letter-spacing: -0.04em; margin-top: auto; margin-bottom: 4px; }
+.c-cta {
+  display: inline-block; margin-top: 14px; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+  color: var(--ink); background: rgba(10,10,10,0.1); border-radius: var(--r-btn);
+  padding: 8px 16px; transition: background 0.15s;
+}
+.c-cta:hover { background: rgba(10,10,10,0.2); }
+
+/* CALLOUT */
+.callout { background: var(--yellow); padding: 80px 40px; text-align: center; }
+.callout-inner { max-width: 580px; margin: 0 auto; }
+.callout h2 { font-size: clamp(34px, 7vw, 80px); font-weight: 700; line-height: 0.9; letter-spacing: -0.05em; margin-bottom: 22px; }
+.callout p { font-size: 16px; font-weight: 700; line-height: 1.65; margin-bottom: 30px; color: rgba(10,10,10,0.7); }
+.callout-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+/* SIGNUP */
+.signup { background: var(--magenta); padding: 80px 40px; }
+.signup-inner { max-width: 500px; margin: 0 auto; }
+.signup h2 { font-size: clamp(34px, 6vw, 68px); font-weight: 700; line-height: 0.9; letter-spacing: -0.05em; margin-bottom: 12px; text-align: center; }
+.signup-sub { font-size: 14px; font-weight: 700; line-height: 1.6; color: rgba(10,10,10,0.55); margin-bottom: 40px; text-align: center; }
+.field { margin-bottom: 24px; }
+.field label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--ink); }
+.field input, .field select {
+  width: 100%; background: rgba(255,255,255,0.5); border: 1.5px solid rgba(10,10,10,0.2);
+  border-radius: 8px; padding: 11px 14px;
+  font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700;
+  color: var(--ink); outline: none; transition: border-color 0.15s;
+}
+.field input:focus, .field select:focus { border-color: var(--ink); background: rgba(255,255,255,0.8); }
+.field input::placeholder { color: rgba(10,10,10,0.22); font-weight: 400; }
+.field select { -webkit-appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230A0A0A' stroke-width='2' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.submit-btn {
+  width: 100%; background: var(--ink); color: var(--magenta);
+  border: none; padding: 16px; font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  cursor: pointer; margin-top: 8px; border-radius: var(--r-btn);
+  transition: color 0.15s, background 0.15s;
+}
+.submit-btn:hover { background: var(--ink); color: var(--green); }
+.signup-note { margin-top: 16px; font-size: 12px; color: rgba(10,10,10,0.5); line-height: 1.7; text-align: center; }
+.signup-note a { color: var(--ink); font-weight: 700; }
+.signup-confirm { display: none; font-size: 17px; font-weight: 700; color: var(--ink); text-align: center; padding: 32px 0; }
+
+/* FOOTER */
+footer { background: var(--green); color: var(--ink); padding: 48px 40px 32px; }
+.footer-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; align-items: start; margin-bottom: 40px; }
+.f-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: rgba(10,10,10,0.4); margin-bottom: 10px; }
+.footer-col p { font-size: 14px; font-weight: 700; line-height: 1.8; }
+.footer-col a { font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: none; display: block; line-height: 1.8; }
+.footer-col a:hover { text-decoration: underline; }
+.map-link { display: inline-flex !important; align-items: center; gap: 6px; font-size: 12px !important; margin-top: 6px; border-bottom: 1px solid rgba(10,10,10,0.3); padding-bottom: 1px; }
+.footer-bottom { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding-top: 24px; }
+.footer-bottom p { font-size: 11px; color: rgba(10,10,10,0.4); text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* LANG */
+.nl { display: none; }
+body.lang-nl .en { display: none; }
+body.lang-nl .nl { display: block; }
+
+/* RESPONSIVE */
+@media (max-width: 680px) {
+  nav { padding: 0 20px; }
+  .hero { padding: 72px 24px 48px; }
+  .hero-logo { width: min(240px, 70vw); }
+  .lily { padding: 60px 24px; }
+  .lily-inner { grid-template-columns: 1fr; gap: 32px; }
+  .courses, .callout, .signup { padding: 60px 24px; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+  footer { padding: 40px 24px 24px; }
+}
+</style>
+</head>
+<body id="body">
+
+<!-- NAV -->
+<nav>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btn-nl" onclick="setLang('nl')">NL</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-logo">
+    <svg viewBox="0 0 4400.9 1228.79" xmlns="http://www.w3.org/2000/svg" aria-label="Amstelpark Atelier">
+      <path d="M3257.98,923.67c-20.85,0-38.78-7.49-53.77-22.5-15.01-14.99-22.5-32.92-22.5-53.77s7.49-38.78,22.5-53.78c14.99-14.99,32.92-22.5,53.77-22.5h76.28c20.84,0,38.77,7.51,53.78,22.5,14.99,15,22.5,32.94,22.5,53.78s-7.5,38.78-22.5,53.77c-15.01,15.01-32.94,22.5-53.78,22.5h-76.28ZM3181.7,1228.79v-104.5c0-11.18,3.81-20.33,11.44-27.46,7.63-7.11,16.51-10.67,26.7-10.67s19.83,3.81,27.46,11.43l131.2,131.2h108.32l-164.76-164.76c-7.63-7.63-11.44-16.78-11.44-27.46,0-9.65,3.3-18.04,9.91-25.17,6.6-7.12,15.25-11.18,25.94-12.21,25.43-2.02,48.94-10.03,70.56-24.03,21.61-13.98,38.64-32.16,51.1-54.54,12.46-22.37,18.69-46.53,18.69-72.46,0-27.96-6.87-53.64-20.59-77.04-13.73-23.39-32.3-41.95-55.69-55.68s-48.82-20.59-76.28-20.59h-228.84v533.95h76.28ZM3040.51,1228.79v-76.28h-190.7c-20.85,0-38.79-7.5-53.77-22.5-15.01-14.99-22.5-32.92-22.5-53.78s7.49-38.77,22.5-53.78,32.92-22.5,53.77-22.5h190.7v-76.28h-190.7c-20.85,0-38.79-7.49-53.77-22.5-15.01-14.99-22.5-32.92-22.5-53.77s7.49-38.78,22.5-53.78c14.99-14.99,32.92-22.5,53.77-22.5h190.7v-76.28h-343.26v533.95h343.26ZM2621.73,694.83h-76.28v533.95h76.28v-533.95ZM2507.86,1228.79v-76.28h-190.7c-20.85,0-38.79-7.5-53.78-22.5-15-14.99-22.5-32.92-22.5-53.78v-381.39h-76.28v533.95h343.26ZM2099.69,1228.79v-76.28h-190.7c-20.86,0-38.79-7.5-53.78-22.5-15-14.99-22.5-32.92-22.5-53.78s7.5-38.77,22.5-53.78c14.99-14.99,32.92-22.5,53.78-22.5h190.7v-76.28h-190.7c-20.86,0-38.79-7.49-53.78-22.5-15-14.99-22.5-32.92-22.5-53.77s7.5-38.78,22.5-53.78,32.92-22.5,53.78-22.5h190.7v-76.28h-343.26v533.95h343.26ZM1478.54,1228.79h76.28v-381.39c0-20.84,7.49-38.78,22.5-53.78,14.99-14.99,32.92-22.5,53.77-22.5h87.73v-76.28h-404.28v76.28h87.72c20.84,0,38.77,7.51,53.78,22.5,14.99,15,22.5,32.94,22.5,53.78v381.39ZM1134.53,1057.15c-20.85,0-38.78-7.49-53.77-22.5-15-14.99-22.5-32.92-22.5-53.78s7.5-38.77,22.5-53.78c14.99-14.99,32.92-22.5,53.77-22.5s38.78,7.5,53.78,22.5c14.99,15.01,22.5,32.94,22.5,53.78s-7.51,38.79-22.5,53.78c-15,15-32.93,22.5-53.78,22.5M977.39,1228.79l27.46-80.86c2.53-7.63,7.11-13.85,13.72-18.69,6.6-4.82,13.98-7.24,22.12-7.24h187.65c8.13,0,15.5,2.42,22.12,7.24,6.6,4.84,11.17,11.06,13.72,18.69l27.46,80.86h81.62l-181.55-533.95h-114.41l-181.55,533.95h81.64Z"/>
+      <path d="M4063.74,541.59v-136.54c0-10.68,3.81-19.83,11.44-27.46,7.11-7.11,16.02-10.68,26.7-10.68s20.08,3.57,26.7,10.68l164,164h108.32l-212.82-212.82c-14.75-15.75-22.12-33.81-22.12-54.16,0-21.35,7.37-39.4,22.12-54.15l212.82-212.82h-108.32l-164,164c-7.12,7.12-16.01,10.67-26.7,10.67-9.66,0-18.57-3.55-26.7-10.67-7.63-7.63-11.44-16.78-11.44-27.46V7.63h-76.28v533.95h76.28ZM3713.02,236.47c-20.86,0-38.79-7.49-53.78-22.5-15-14.99-22.5-32.92-22.5-53.77s7.5-38.78,22.5-53.78c14.99-14.99,32.92-22.5,53.78-22.5h76.28c20.84,0,38.78,7.51,53.78,22.5,14.99,15,22.5,32.94,22.5,53.78s-7.51,38.78-22.5,53.77c-15,15.01-32.94,22.5-53.78,22.5h-76.28ZM3636.73,541.59v-104.5c0-11.18,3.82-20.33,11.44-27.46,7.63-7.11,16.52-10.67,26.7-10.67s19.83,3.81,27.46,11.43l131.2,131.2h108.31l-164.76-164.76c-7.63-7.63-11.44-16.78-11.44-27.46,0-9.65,3.3-18.04,9.91-25.17,6.6-7.12,15.26-11.18,25.94-12.21,25.43-2.02,48.94-10.03,70.56-24.03,21.61-13.98,38.64-32.16,51.11-54.54,12.45-22.37,18.68-46.53,18.68-72.46,0-27.96-6.86-53.64-20.59-77.04-13.73-23.39-32.3-41.95-55.68-55.68-23.4-13.73-48.82-20.59-76.28-20.59h-228.84v533.95h76.28ZM3285.7,369.95c-20.85,0-38.78-7.49-53.77-22.5-15.01-14.99-22.5-32.92-22.5-53.78s7.49-38.77,22.5-53.78c14.99-14.99,32.92-22.5,53.77-22.5s38.78,7.5,53.78,22.5c14.99,15.01,22.5,32.94,22.5,53.78s-7.51,38.79-22.5,53.78-32.94,22.5-53.78,22.5M3128.57,541.59l27.46-80.86c2.54-7.63,7.12-13.85,13.73-18.69,6.6-4.82,13.98-7.24,22.12-7.24h187.65c8.12,0,15.5,2.42,22.12,7.24,6.6,4.84,11.17,11.06,13.72,18.69l27.46,80.86h81.62L3342.91,7.63h-114.42l-181.54,533.95h81.62ZM2857.55,236.47c-20.86,0-38.79-7.49-53.78-22.5-15-14.99-22.5-32.92-22.5-53.77s7.49-38.78,22.5-53.78c14.99-14.99,32.92-22.5,53.78-22.5h76.28c20.85,0,38.78,7.51,53.78,22.5,14.99,15,22.5,32.94,22.5,53.78s-7.51,38.78-22.5,53.77c-15,15.01-32.93,22.5-53.78,22.5h-76.28ZM2781.28,541.59v-152.56c0-20.84,7.49-38.77,22.5-53.78s32.92-22.5,53.78-22.5h76.28c27.46,0,52.89-6.87,76.28-20.6,23.39-13.72,41.95-32.29,55.68-55.68,13.73-23.39,20.59-48.82,20.59-76.28s-6.86-52.88-20.59-76.28c-13.73-23.39-32.3-41.95-55.68-55.68-23.39-13.73-48.82-20.59-76.28-20.59h-228.84v533.95h76.28ZM2667.39,541.59v-76.28h-190.7c-20.85,0-38.78-7.5-53.77-22.5-15.01-14.99-22.5-32.92-22.5-53.78V7.63h-76.28v533.95h343.26-.01ZM2259.22,541.59v-76.28h-190.7c-20.86,0-38.79-7.5-53.78-22.5-15-14.99-22.5-32.92-22.5-53.78s7.5-38.77,22.5-53.78c14.99-14.99,32.92-22.5,53.78-22.5h190.7v-76.28h-190.7c-20.86,0-38.79-7.49-53.78-22.5-15-14.99-22.5-32.92-22.5-53.77s7.5-38.78,22.5-53.78c14.99-14.99,32.92-22.5,53.78-22.5h190.7V7.63h-343.26v533.95h343.26ZM1638.09,541.59h76.28V160.19c0-20.84,7.5-38.78,22.5-53.78,14.99-14.99,32.92-22.5,53.77-22.5h87.73V7.63h-404.28v76.28h87.72c20.84,0,38.77,7.51,53.78,22.5,14.99,15,22.5,32.94,22.5,53.78v381.39h0ZM1260.59,549.22c61.02,0,108.18-14.23,141.5-42.72,33.3-28.48,49.96-66.36,49.96-113.66,0-35.59-8.39-63.8-25.17-84.67-16.77-20.84-36.88-36.24-60.26-46.15-23.39-9.91-53.65-19.45-90.77-28.61-27.97-7.63-49.58-14.23-64.83-19.83-15.26-5.59-27.97-13.34-38.15-23.26-10.17-9.91-15.25-23.01-15.25-39.28,0-22.88,9.65-41.7,28.99-56.45,19.32-14.74,43.98-22.12,73.99-22.12s53.39,7,71.7,20.98c18.3,13.99,30.25,32.42,35.85,55.3h83.91c-4.57-27.97-15.25-53.27-32.04-75.9-16.78-22.62-38.79-40.43-65.98-53.39C1326.83,6.49,1295.69,0,1260.6,0s-67.26,6.48-94.97,19.45c-27.72,12.96-49.33,30.9-64.84,53.78s-23.26,48.81-23.26,77.81c0,33.56,7.88,60.14,23.64,79.71,15.76,19.58,34.83,34.08,57.21,43.48,22.37,9.42,52.12,18.95,89.25,28.61,28.48,7.63,50.85,14.37,67.12,20.21,16.27,5.85,29.88,14.37,40.82,25.55,10.92,11.19,16.39,25.94,16.39,44.24,0,23.91-9.41,43.87-28.22,59.88-18.82,16.02-46.54,24.03-83.15,24.03-28.48,0-52-6.49-70.56-19.45-18.56-12.97-30.65-31.91-36.23-56.83h-83.91c4.57,44.24,23.52,80.1,56.82,107.55,33.31,27.46,77.93,41.2,133.88,41.2M589.79,541.59v-119.76c0-11.68,3.82-20.97,11.44-27.84,7.63-6.87,16.52-10.3,26.7-10.3,8.12,0,15.37,2.17,21.73,6.48,6.35,4.33,11.06,10.81,14.11,19.45l45.01,131.97h114.41l45.01-131.97c3.05-8.64,7.74-15.12,14.11-19.45,6.35-4.31,13.6-6.48,21.73-6.48,10.17,0,19.07,3.43,26.7,10.3,7.62,6.86,11.44,16.15,11.44,27.84v119.76h76.28V7.63h-95.35l-121.28,355.46c-3.05,8.14-7.89,14.49-14.49,19.07-6.61,4.57-13.73,6.86-21.35,6.86-8.14,0-15.52-2.16-22.12-6.48-6.61-4.31-11.44-10.8-14.49-19.45L608.86,7.63h-95.35v533.95h76.28,0ZM238.75,369.95c-20.85,0-38.78-7.49-53.77-22.5-15-14.99-22.5-32.92-22.5-53.78s7.5-38.77,22.5-53.78c14.99-14.99,32.92-22.5,53.77-22.5s38.78,7.5,53.78,22.5c14.99,15.01,22.5,32.94,22.5,53.78s-7.51,38.79-22.5,53.78-32.93,22.5-53.78,22.5M81.62,541.59l27.46-80.86c2.53-7.63,7.11-13.85,13.72-18.69,6.6-4.82,13.98-7.24,22.12-7.24h187.65c8.13,0,15.5,2.42,22.12,7.24,6.6,4.84,11.17,11.06,13.72,18.69l27.46,80.86h81.62L295.96,7.63h-114.41L0,541.59h81.62Z"/>
+    </svg>
+  </div>
+
+  <div class="carousel">
+    <div class="carousel-icon">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    </div>
+    <p class="carousel-label en">Add your images here</p>
+    <p class="carousel-label nl" style="display:none;">Voeg hier je afbeeldingen toe</p>
+    <div class="carousel-dots">
+      <div class="carousel-dot active"></div>
+      <div class="carousel-dot"></div>
+      <div class="carousel-dot"></div>
+    </div>
+  </div>
+
+  <p class="hero-sub en">Botanic-inspired drawing, painting and sculpting in Amstelpark. Small groups. Personal guidance.</p>
+  <p class="hero-sub nl" style="display:none;">Botanisch geïnspireerd tekenen, schilderen en boetseren. Kleine groepen. Persoonlijke begeleiding.</p>
+  <div class="hero-btns">
+    <a href="#signup" class="btn btn-dark en">Sign up</a>
+    <a href="#signup" class="btn btn-dark nl" style="display:none;">Aanmelden</a>
+    <a href="#courses" class="btn btn-outline en">View courses</a>
+    <a href="#courses" class="btn btn-outline nl" style="display:none;">Cursusaanbod</a>
+  </div>
+</section>
+
+<!-- LILY / ABOUT -->
+<section class="lily">
+  <div class="lily-inner">
+    <div>
+      <p class="lily-tag en">About</p>
+      <p class="lily-tag nl" style="display:none;">Over ons</p>
+      <h2 class="en">Hi, I'm Lily.</h2>
+      <h2 class="nl" style="display:none;">Hallo, ik ben Lily.</h2>
+      <p class="en">I'm <a href="https://lilylanfermeijer.com/" target="_blank">Lily Lanfermeijer</a> — an artist and teacher based in Amsterdam. I've been running courses at the Amstelpark Atelier for four years now, and I also teach at Artis.</p>
+      <p class="nl" style="display:none;">Ik ben <a href="https://lilylanfermeijer.com/" target="_blank">Lily Lanfermeijer</a> — kunstenaar en docent in Amsterdam. Ik geef al vier jaar cursussen in het Amstelpark Atelier en doceer ook bij Artis.</p>
+      <p class="en">I have two children, and teaching is a big part of my practice — watching people slow down, look more carefully, and make something with their hands is genuinely one of my favourite things.</p>
+      <p class="nl" style="display:none;">Ik heb twee kinderen, en lesgeven is een belangrijk onderdeel van mijn praktijk. Mensen zien vertragen, beter kijken en iets maken met hun handen — dat vind ik echt geweldig.</p>
+      <p class="en">The park is the studio. Nature is always the starting point.</p>
+      <p class="nl" style="display:none;">Het park is de studio. De natuur is altijd het vertrekpunt.</p>
+    </div>
+    <div style="display:flex; align-items:flex-start; justify-content:flex-end;">
+      <a href="https://lilylanfermeijer.com/" target="_blank" class="btn btn-dark en" style="align-self:flex-start;">lilylanfermeijer.com →</a>
+      <a href="https://lilylanfermeijer.com/" target="_blank" class="btn btn-dark nl" style="align-self:flex-start; display:none;">lilylanfermeijer.com →</a>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="courses" id="courses">
+  <div class="courses-inner">
+    <h2 class="en">Courses</h2>
+    <h2 class="nl" style="display:none;">Cursusaanbod</h2>
+
+    <div class="audience-block">
+      <p class="audience-label en">For adults — 4-week courses</p>
+      <p class="audience-label nl" style="display:none;">Voor volwassenen — cursussen van 4 weken</p>
+      <div class="cards-grid">
+
+        <div class="card-adult">
+          <p class="card-audience-tag en">Adults</p>
+          <p class="card-audience-tag nl" style="display:none;">Volwassenen</p>
+          <div class="c-name en">Drawing &amp;<br>Observation</div>
+          <div class="c-name nl" style="display:none;">Tekenen &amp;<br>Waarnemen</div>
+          <div class="c-sched en">Monday 10:00–12:00<br>All levels</div>
+          <div class="c-sched nl" style="display:none;">Maandag 10:00–12:00<br>Alle niveaus</div>
+          <div class="c-weeks en">4 weeks</div>
+          <div class="c-weeks nl" style="display:none;">4 weken</div>
+          <div class="c-price">€—</div>
+          <a href="#signup" class="c-cta en">Reserve a spot →</a>
+          <a href="#signup" class="c-cta nl" style="display:none;">Plek reserveren →</a>
+        </div>
+
+        <div class="card-adult">
+          <p class="card-audience-tag en">Adults</p>
+          <p class="card-audience-tag nl" style="display:none;">Volwassenen</p>
+          <div class="c-name en">Botanical<br>Painting</div>
+          <div class="c-name nl" style="display:none;">Botanisch<br>Schilderen</div>
+          <div class="c-sched en">Wednesday 10:00–12:00<br>All levels</div>
+          <div class="c-sched nl" style="display:none;">Woensdag 10:00–12:00<br>Alle niveaus</div>
+          <div class="c-weeks en">4 weeks</div>
+          <div class="c-weeks nl" style="display:none;">4 weken</div>
+          <div class="c-price">€—</div>
+          <a href="#signup" class="c-cta en">Reserve a spot →</a>
+          <a href="#signup" class="c-cta nl" style="display:none;">Plek reserveren →</a>
+        </div>
+
+        <div class="card-adult">
+          <p class="card-audience-tag en">Adults</p>
+          <p class="card-audience-tag nl" style="display:none;">Volwassenen</p>
+          <div class="c-name en">Sculpting</div>
+          <div class="c-name nl" style="display:none;">Boetseren</div>
+          <div class="c-sched en">Thursday 14:00–16:00<br>All levels</div>
+          <div class="c-sched nl" style="display:none;">Donderdag 14:00–16:00<br>Alle niveaus</div>
+          <div class="c-weeks en">4 weeks</div>
+          <div class="c-weeks nl" style="display:none;">4 weken</div>
+          <div class="c-price">€—</div>
+          <a href="#signup" class="c-cta en">Reserve a spot →</a>
+          <a href="#signup" class="c-cta nl" style="display:none;">Plek reserveren →</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="audience-block">
+      <p class="audience-label en">For children — 4-week courses</p>
+      <p class="audience-label nl" style="display:none;">Voor kinderen — cursussen van 4 weken</p>
+      <div class="cards-grid">
+
+        <div class="card-child">
+          <p class="card-audience-tag en">Children</p>
+          <p class="card-audience-tag nl" style="display:none;">Kinderen</p>
+          <div class="c-name en">Saturday<br>Atelier</div>
+          <div class="c-name nl" style="display:none;">Zaterdag<br>Atelier</div>
+          <div class="c-sched en">Saturday 10:00–11:30<br>Ages 6–12</div>
+          <div class="c-sched nl" style="display:none;">Zaterdag 10:00–11:30<br>Leeftijd 6–12</div>
+          <div class="c-weeks en">4 weeks</div>
+          <div class="c-weeks nl" style="display:none;">4 weken</div>
+          <div class="c-price">€—</div>
+          <a href="#signup" class="c-cta en">Reserve a spot →</a>
+          <a href="#signup" class="c-cta nl" style="display:none;">Plek reserveren →</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALLOUT -->
+<section class="callout">
+  <div class="callout-inner">
+    <h2 class="en">Ready to start?</h2>
+    <h2 class="nl" style="display:none;">Klaar om te starten?</h2>
+    <p class="en">Small groups. Personal guidance. Right in the park.<br>Not sure which course fits? Then send us a WhatsApp!</p>
+    <p class="nl" style="display:none;">Kleine groepen. Persoonlijke begeleiding. Midden in het park.<br>Niet zeker welke cursus past? Stuur ons een WhatsApp!</p>
+    <div class="callout-btns">
+      <a href="#signup" class="btn btn-dark en">Sign up</a>
+      <a href="#signup" class="btn btn-dark nl" style="display:none;">Aanmelden</a>
+      <a href="https://wa.me/31647194490" class="btn btn-cyan en">WhatsApp us</a>
+      <a href="https://wa.me/31647194490" class="btn btn-cyan nl" style="display:none;">WhatsApp ons</a>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNUP -->
+<section class="signup" id="signup">
+  <div class="signup-inner">
+    <h2 class="en">Sign up.</h2>
+    <h2 class="nl" style="display:none;">Aanmelden.</h2>
+    <p class="signup-sub en">Tell us your name and which course you'd like. We'll confirm your spot personally.</p>
+    <p class="signup-sub nl" style="display:none;">Stuur je naam en gewenste cursus — we bevestigen je plek persoonlijk.</p>
+
+    <form id="signup-form" onsubmit="handleSignup(event)">
+      <div class="form-row">
+        <div class="field">
+          <label for="s-fname" class="en">First name</label>
+          <label for="s-fname" class="nl" style="display:none;">Voornaam</label>
+          <input id="s-fname" type="text" placeholder="Anna" required autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="s-lname" class="en">Last name</label>
+          <label for="s-lname" class="nl" style="display:none;">Achternaam</label>
+          <input id="s-lname" type="text" placeholder="de Vries" required autocomplete="family-name">
+        </div>
+      </div>
+      <div class="field">
+        <label for="s-email" class="en">Email</label>
+        <label for="s-email" class="nl" style="display:none;">E-mailadres</label>
+        <input id="s-email" type="email" placeholder="anna@example.nl" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="s-phone" class="en">Phone / WhatsApp</label>
+        <label for="s-phone" class="nl" style="display:none;">Telefoon / WhatsApp</label>
+        <input id="s-phone" type="tel" placeholder="06 00 00 00 00" autocomplete="tel">
+      </div>
+      <div class="field">
+        <label for="s-course" class="en">Course</label>
+        <label for="s-course" class="nl" style="display:none;">Cursus</label>
+        <select id="s-course" required>
+          <option value="" class="en">Choose a course...</option>
+          <option>Drawing &amp; Observation — Monday 10:00–12:00</option>
+          <option>Botanical Painting — Wednesday 10:00–12:00</option>
+          <option>Sculpting — Thursday 14:00–16:00</option>
+          <option>Children's Atelier — Saturday 10:00–11:30</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="s-note" class="en">Anything we should know?</label>
+        <label for="s-note" class="nl" style="display:none;">Iets wat we moeten weten?</label>
+        <input id="s-note" type="text" placeholder="Experience, child's age, questions...">
+      </div>
+      <button type="submit" class="submit-btn en">Sign me up →</button>
+      <button type="submit" class="submit-btn nl" style="display:none;">Meld mij aan →</button>
+    </form>
+
+    <p class="signup-confirm" id="signup-confirm">
+      <span class="en">Done. We'll be in touch soon.</span>
+      <span class="nl">Bedankt! We nemen snel contact op.</span>
+    </p>
+    <p class="signup-note">
+      <span class="en">Or email <a href="mailto:studio16.1xb@gmail.com">studio16.1xb@gmail.com</a> · WhatsApp <a href="https://wa.me/31647194490">06 47194490</a></span>
+      <span class="nl">Of mail <a href="mailto:studio16.1xb@gmail.com">studio16.1xb@gmail.com</a> · WhatsApp <a href="https://wa.me/31647194490">06 47194490</a></span>
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <p class="f-label en">The atelier</p>
+      <p class="f-label nl" style="display:none;">Het atelier</p>
+      <p>Amstelpark Atelier</p>
+      <p style="font-weight:400; color:rgba(10,10,10,0.6); font-size:13px; margin-top:4px;" class="en">Botanic-inspired art courses<br>in Amstelpark, Amsterdam.</p>
+      <p style="font-weight:400; color:rgba(10,10,10,0.6); font-size:13px; margin-top:4px;" class="nl" style="display:none;">Botanisch geïnspireerde cursussen<br>in het Amstelpark, Amsterdam.</p>
+    </div>
+    <div class="footer-col">
+      <p class="f-label en">Location</p>
+      <p class="f-label nl" style="display:none;">Locatie</p>
+      <p>Amstelpark<br>1083 GA Amsterdam</p>
+      <a href="https://www.google.com/maps?q=Amstelpark+atelier,+Amstelpark,+1083+GA+Amsterdam&ftid=0x47c60b002088f81b:0x9231289efd141281" target="_blank" class="map-link">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Open in Maps
+      </a>
+    </div>
+    <div class="footer-col">
+      <p class="f-label">Contact</p>
+      <a href="mailto:studio16.1xb@gmail.com">studio16.1xb@gmail.com</a>
+      <a href="tel:0647194490">06 47194490</a>
+      <a href="https://wa.me/31647194490">WhatsApp</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 16-1XB</p>
+    <p>Amstelpark Atelier</p>
+  </div>
+</footer>
+
+<script>
+function setLang(lang) {
+  const body = document.getElementById('body');
+  const enEls = document.querySelectorAll('.en');
+  const nlEls = document.querySelectorAll('.nl');
+  if (lang === 'nl') {
+    body.classList.add('lang-nl');
+    document.getElementById('btn-nl').classList.add('active');
+    document.getElementById('btn-en').classList.remove('active');
+    enEls.forEach(el => el.style.display = 'none');
+    nlEls.forEach(el => { el.style.display = el.tagName === 'SPAN' ? 'inline' : 'block'; });
+  } else {
+    body.classList.remove('lang-nl');
+    document.getElementById('btn-en').classList.add('active');
+    document.getElementById('btn-nl').classList.remove('active');
+    nlEls.forEach(el => el.style.display = 'none');
+    enEls.forEach(el => { el.style.display = el.tagName === 'SPAN' ? 'inline' : 'block'; });
+  }
+}
+function handleSignup(e) {
+  e.preventDefault();
+  document.getElementById('signup-form').style.display = 'none';
+  document.getElementById('signup-confirm').style.display = 'block';
+}
+</script>
+</body>
+</html>

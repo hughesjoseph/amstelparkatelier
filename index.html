@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amstelpark Atelier</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+--cream:#F3EFE6;
+--cream2:#EAE3D6;
+--moss:#78866B;
+--leaf:#A7B69D;
+--clay:#C78663;
+--sky:#B8CBD0;
+--ink:#1E1E1A;
+}
+
+body{
+font-family:Helvetica,Arial,sans-serif;
+color:var(--ink);
+background:
+radial-gradient(circle at top left, rgba(167,182,157,0.45), transparent 35%),
+radial-gradient(circle at bottom right, rgba(184,203,208,0.45), transparent 35%),
+linear-gradient(
+180deg,
+#FFF4D6 0%,
+#E7F3D8 22%,
+#D8EEF2 48%,
+#F6DFC9 72%,
+#F3EFE6 100%
+);
+line-height:1.6;
+overflow-x:hidden;
+}
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:24px 36px;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:100;
+}
+
+
+#lang-switch{
+position:absolute;
+right:36px;
+top:20px;
+
+width:42px;
+height:42px;
+border-radius:50%;
+border:none;
+background:rgba(255,255,255,0.35);
+backdrop-filter:blur(12px);
+cursor:pointer;
+font-size:12px;
+font-weight:700;
+}
+
+.hero{
+min-height:100vh;
+padding:140px 7vw 100px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+.hero h1{
+font-size:clamp(44px,8vw,110px);
+line-height:0.92;
+font-weight:600;
+max-width:900px;
+letter-spacing:-0.05em;
+}
+
+.hero p{
+margin-top:28px;
+max-width:620px;
+font-size:18px;
+color:rgba(30,30,26,0.75);
+}
+
+.hero-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+margin-top:60px;
+}
+
+.hero-grid img{
+width:100%;
+height:420px;
+object-fit:cover;
+border-radius:28px;
+}
+
+.section{
+padding:120px 7vw;
+}
+
+.about-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:80px;
+}
+
+.about-grid h2{
+font-size:42px;
+margin-bottom:20px;
+letter-spacing:-0.04em;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:22px;
+margin-top:60px;
+}
+
+.course-card{
+background:rgba(255,255,255,0.28);
+backdrop-filter:blur(14px);
+padding:34px;
+border-radius:28px;
+border:1px solid rgba(255,255,255,0.22);
+}
+
+.course-card h3{
+font-size:26px;
+line-height:1.05;
+margin-bottom:18px;
+letter-spacing:-0.03em;
+}
+
+.course-card p{
+font-size:15px;
+line-height:1.6;
+color:rgba(30,30,26,0.72);
+}
+
+.price{
+margin-top:26px;
+font-size:42px;
+font-weight:700;
+letter-spacing:-0.05em;
+}
+
+.course-btn{
+display:inline-block;
+margin-top:20px;
+padding:12px 18px;
+background:var(--ink);
+color:var(--cream);
+border-radius:999px;
+text-decoration:none;
+font-size:12px;
+letter-spacing:0.08em;
+text-transform:uppercase;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:18px;
+margin-top:50px;
+}
+
+.gallery img{
+width:100%;
+height:320px;
+object-fit:cover;
+border-radius:24px;
+}
+
+.popup{
+position:fixed;
+max-width:280px;
+padding:20px;
+background:#E6D8BF;
+backdrop-filter:blur(14px);
+border-radius:24px;
+z-index:999;
+transition:all 0.7s ease;
+box-shadow:0 10px 40px rgba(0,0,0,0.08);
+}
+
+.popup a{
+text-decoration:none;
+color:inherit;
+display:block;
+}
+
+.popup1{
+top:30px;
+left:-320px;
+}
+
+.popup1.show{
+left:30px;
+}
+
+.popup2{
+bottom:30px;
+right:-320px;
+}
+
+.popup2.show{
+right:30px;
+}
+
+.signup{
+padding:120px 7vw;
+}
+
+.signup h2{
+font-size:54px;
+margin-bottom:30px;
+}
+
+iframe{
+width:100%;
+height:900px;
+border:none;
+border-radius:28px;
+background:white;
+}
+
+footer{
+padding:60px 7vw;
+display:flex;
+justify-content:center;
+font-size:14px;
+color:rgba(30,30,26,0.65);
+}
+
+.nl{
+display:none;
+}
+
+@media(max-width:900px){
+
+.hero-grid,
+.about-grid{
+grid-template-columns:1fr;
+}
+
+.hero{
+padding-top:160px;
+}
+
+footer{
+flex-direction:column;
+gap:20px;
+}
+
+}
+
+/* OLD LOGO HEADER - COLOUR CHANGES ON SCROLL */
+.logo-mark {
+  position: fixed;
+  top: 34px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(320px, 48vw);
+  height: 90px;
+  z-index: 120;
+  color: #1E1E1A;
+  transition: color 0.65s ease, transform 0.65s ease;
+  mix-blend-mode: normal;
+}
+
+.logo-mark span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: currentColor;
+  -webkit-mask: url("AMSTELPARK_ATELIER_LOGO.jpeg") center / contain no-repeat;
+  mask: url("AMSTELPARK_ATELIER_LOGO.jpeg") center / contain no-repeat;
+}
+
+.logo-mark.logo-fluro-green { color: #00FF41; }
+.logo-mark.logo-fluro-cyan { color: #00F5FF; }
+.logo-mark.logo-fluro-orange { color: #FF5A1F; }
+.logo-mark.logo-fluro-pink { color: #FF2BBF; }
+.logo-mark.logo-charcoal { color: #1E1E1A; }
+
+@media(max-width:900px){
+  .logo-mark {
+    width: min(250px, 58vw);
+    height: 72px;
+    top: 26px;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+<a class="logo-mark" href="#" aria-label="Amstelpark Atelier">
+  <span></span>
+</a>
+<button id="lang-switch">NL</button>
+</nav>
+
+<div class="popup popup1" id="popup1">
+<a href="mailto:hello@amstelparkatelier.nl?subject=Birthday Workshop Inquiry">
+<h4>Birthday workshops</h4>
+<p>Book our atelier space for birthdays and creative gatherings in the park from €150.</p>
+</a>
+</div>
+
+<div class="popup popup2" id="popup2">
+<a href="mailto:hello@amstelparkatelier.nl?subject=BSO / School Workshop Inquiry">
+<h4>Schools & BSO</h4>
+<p>Private workshops and sensory learning sessions for schools and BSO groups.</p>
+</a>
+</div>
+
+<section class="hero">
+
+<h1 class="en">Learning through nature, materials and attention.</h1>
+<h1 class="nl">Leren door natuur, materialen en aandacht.</h1>
+
+<p class="en">
+In an era where children grow up in an increasingly digital world, engaging the senses in nature offers a valuable counterbalance.
+</p>
+
+<p class="nl">
+In een tijd waarin kinderen opgroeien in een steeds digitalere wereld, biedt werken met de zintuigen in de natuur een waardevol tegenwicht.
+</p>
+
+<div class="hero-grid">
+<!-- rename your uploaded images to 1.jpg, 2.jpg etc inside /images/ folder -->
+<img src="images/1.jpg">
+<img src="images/2.jpg">
+<img src="images/3.jpg">
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="about-grid">
+
+<div>
+<h2 class="en">About the atelier</h2>
+<h2 class="nl">Over het atelier</h2>
+
+<p class="en">
+We believe learning emerges through the interaction between the senses and the environment. Through collecting, drawing, sculpting and observing, children develop concentration, motor skills and a caring relationship toward nature.
+</p>
+
+<p class="nl">
+Wij geloven dat leren ontstaat in de wisselwerking tussen zintuigen en omgeving. Door te verzamelen, tekenen, boetseren en observeren ontwikkelen kinderen concentratie, motoriek en een zorgzame houding ten opzichte van natuur.
+</p>
+</div>
+
+<div class="cards">
+
+<div class="course-card">
+<h3>Drawing / Painting & Observation</h3>
+<p>Mondays · 10:00–12:00<br>4 weeks · Materials included</p>
+<div class="price">€180</div>
+<a href="#signup" class="course-btn">Reserve spot</a>
+</div>
+
+<div class="course-card">
+<h3>Make Your Own Materials</h3>
+<p>Wednesdays · 10:00–12:00<br>4 weeks · Materials included</p>
+<div class="price">€180</div>
+<a href="#signup" class="course-btn">Reserve spot</a>
+</div>
+
+<div class="course-card">
+<h3>Ceramics</h3>
+<p>Thursdays · 14:00–16:00<br>4 weeks · Materials included</p>
+<div class="price">€220</div>
+<a href="#signup" class="course-btn">Reserve spot</a>
+</div>
+
+<div class="course-card">
+<h3>Saturday Atelier</h3>
+<p>Saturday · 10:00–11:30<br>Children 6–12 years</p>
+<div class="price">€140</div>
+<a href="#signup" class="course-btn">Reserve spot</a>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 style="font-size:54px;letter-spacing:-0.05em;">Workshops</h2>
+
+<div class="gallery">
+
+<img src="images/4.jpg">
+<img src="images/5.jpg">
+<img src="images/6.jpg">
+
+</section>
+
+<section class="section" style="
+background:
+linear-gradient(
+180deg,
+rgba(184,203,208,0.18) 0%,
+rgba(199,134,99,0.10) 100%
+);
+">
+
+<h2 style="font-size:54px;letter-spacing:-0.05em;">Process</h2>
+
+<div class="gallery">
+
+<img src="images/7.jpg">
+<img src="images/8.jpg">
+<img src="images/9.jpg">
+
+</div>
+
+
+
+<!-- REPLACE YOUR CURRENT SIGNUP SECTION WITH THIS -->
+
+<section class="signup" id="signup">
+
+<div class="signup-wrap">
+
+<div class="signup-intro">
+
+<h2 class="en">Course Overview & Signup</h2>
+<h2 class="nl">Cursusoverzicht & Aanmelden</h2>
+
+<p class="en">
+Register interest, ask questions or reserve a place for upcoming workshops and courses.
+</p>
+
+<p class="nl">
+Meld je aan, stel vragen of reserveer een plek voor aankomende workshops en cursussen.
+</p>
+
+</div>
+
+<form
+action="https://formspree.io/f/xzzgvgyr"
+method="POST"
+class="custom-form"
+>
+
+<div class="form-grid">
+
+<div class="field">
+<label class="en">Name</label>
+<label class="nl">Naam</label>
+<input type="text" name="name" required>
+</div>
+
+<div class="field">
+<label>Email</label>
+<input type="email" name="email" required>
+</div>
+
+<div class="field">
+<label class="en">Course</label>
+<label class="nl">Cursus</label>
+
+<select name="course">
+
+<option>Drawing / Painting & Observation</option>
+<option>Make Your Own Materials</option>
+<option>Ceramics</option>
+<option>Saturday Atelier</option>
+<option>Wednesday Atelier</option>
+
+</select>
+
+</div>
+
+<div class="field">
+<label class="en">Child age</label>
+<label class="nl">Leeftijd kind</label>
+<input type="text" name="child_age">
+</div>
+
+</div>
+
+<div class="field full">
+<label class="en">Message</label>
+<label class="nl">Bericht</label>
+
+<textarea
+name="message"
+rows="6"
+placeholder="Questions, availability, additional information..."
+></textarea>
+</div>
+
+<button type="submit" class="submit-btn en">
+Reserve spot
+</button>
+
+<button type="submit" class="submit-btn nl">
+Reserveer plek
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<style>
+
+.signup{
+
+padding:140px 7vw;
+
+background:
+linear-gradient(
+180deg,
+rgba(255,244,214,0.55) 0%,
+rgba(216,238,242,0.45) 50%,
+rgba(243,239,230,0.9) 100%
+);
+
+}
+
+.signup-wrap{
+
+max-width:1200px;
+margin:auto;
+
+}
+
+.signup-intro{
+
+margin-bottom:50px;
+
+}
+
+.signup-intro h2{
+
+font-size:clamp(42px,6vw,88px);
+line-height:0.95;
+letter-spacing:-0.05em;
+margin-bottom:20px;
+
+}
+
+.signup-intro p{
+
+max-width:620px;
+font-size:18px;
+line-height:1.7;
+color:rgba(30,30,26,0.72);
+
+}
+
+.custom-form{
+
+background:rgba(255,255,255,0.32);
+
+backdrop-filter:blur(18px);
+
+border-radius:34px;
+
+padding:42px;
+
+border:1px solid rgba(255,255,255,0.25);
+
+}
+
+.form-grid{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:22px;
+margin-bottom:22px;
+
+}
+
+.field{
+
+display:flex;
+flex-direction:column;
+
+}
+
+.field label{
+
+margin-bottom:10px;
+
+font-size:13px;
+
+letter-spacing:0.08em;
+
+text-transform:uppercase;
+
+opacity:0.7;
+
+}
+
+.field input,
+.field select,
+.field textarea{
+
+border:none;
+
+background:rgba(255,255,255,0.62);
+
+padding:18px;
+
+border-radius:18px;
+
+font-size:16px;
+
+font-family:inherit;
+
+color:#1E1E1A;
+
+outline:none;
+
+}
+
+.field textarea{
+
+resize:vertical;
+
+min-height:140px;
+
+}
+
+.full{
+
+margin-bottom:30px;
+
+}
+
+.submit-btn{
+
+border:none;
+
+background:#1E1E1A;
+
+color:#F3EFE6;
+
+padding:16px 24px;
+
+border-radius:999px;
+
+font-size:12px;
+
+letter-spacing:0.08em;
+
+text-transform:uppercase;
+
+cursor:pointer;
+
+}
+
+.submit-btn.nl{
+
+display:none;
+
+}
+
+@media(max-width:900px){
+
+.form-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.custom-form{
+
+padding:28px;
+
+}
+
+}
+
+
+/* OLD LOGO HEADER - COLOUR CHANGES ON SCROLL */
+.logo-mark {
+  position: fixed;
+  top: 34px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(320px, 48vw);
+  height: 90px;
+  z-index: 120;
+  color: #1E1E1A;
+  transition: color 0.65s ease, transform 0.65s ease;
+  mix-blend-mode: normal;
+}
+
+.logo-mark span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: currentColor;
+  -webkit-mask: url("AMSTELPARK_ATELIER_LOGO.jpeg") center / contain no-repeat;
+  mask: url("AMSTELPARK_ATELIER_LOGO.jpeg") center / contain no-repeat;
+}
+
+.logo-mark.logo-fluro-green { color: #00FF41; }
+.logo-mark.logo-fluro-cyan { color: #00F5FF; }
+.logo-mark.logo-fluro-orange { color: #FF5A1F; }
+.logo-mark.logo-fluro-pink { color: #FF2BBF; }
+.logo-mark.logo-charcoal { color: #1E1E1A; }
+
+@media(max-width:900px){
+  .logo-mark {
+    width: min(250px, 58vw);
+    height: 72px;
+    top: 26px;
+  }
+}
+
+</style>
+
+
+<footer>
+
+<div>
+studio16.1xb@gmail.com<br>
+Amsterdam · Amstelpark Atelier
+</div>
+
+<div>
+Private workshops · Schools · BSO<br>
+Birthday workshops from €150
+</div>
+
+</footer>
+
+<script>
+
+const button = document.getElementById('lang-switch');
+
+let currentLang = 'en';
+
+button.addEventListener('click', () => {
+
+currentLang = currentLang === 'en' ? 'nl' : 'en';
+
+document.querySelectorAll('.en').forEach(el => {
+el.style.display = currentLang === 'en'
+? (el.tagName === 'SPAN' ? 'inline' : 'block')
+: 'none';
+});
+
+document.querySelectorAll('.nl').forEach(el => {
+el.style.display = currentLang === 'nl'
+? (el.tagName === 'SPAN' ? 'inline' : 'block')
+: 'none';
+});
+
+button.textContent = currentLang === 'en' ? 'NL' : 'EN';
+
+});
+
+const popup1 = document.getElementById('popup1');
+const popup2 = document.getElementById('popup2');
+
+setTimeout(() => {
+popup1.classList.add('show');
+},5000);
+
+window.addEventListener('scroll',() => {
+
+if(window.scrollY > window.innerHeight * 0.5){
+popup2.classList.add('show');
+}
+
+});
+
+document.addEventListener('click',(e)=>{
+
+if(!e.target.closest('.popup')){
+popup1.classList.remove('show');
+popup2.classList.remove('show');
+}
+
+});
+
+
+// LOGO COLOUR STATES ON SCROLL
+const logoMark = document.querySelector('.logo-mark');
+
+function updateLogoColour(){
+  const y = window.scrollY;
+  const h = document.body.scrollHeight - window.innerHeight;
+  const p = h > 0 ? y / h : 0;
+
+  logoMark.classList.remove(
+    'logo-fluro-green',
+    'logo-fluro-cyan',
+    'logo-fluro-orange',
+    'logo-fluro-pink',
+    'logo-charcoal'
+  );
+
+  if (p < 0.18) {
+    logoMark.classList.add('logo-charcoal');
+  } else if (p < 0.38) {
+    logoMark.classList.add('logo-fluro-green');
+  } else if (p < 0.58) {
+    logoMark.classList.add('logo-fluro-cyan');
+  } else if (p < 0.78) {
+    logoMark.classList.add('logo-fluro-orange');
+  } else {
+    logoMark.classList.add('logo-fluro-pink');
+  }
+}
+
+window.addEventListener('scroll', updateLogoColour);
+window.addEventListener('load', updateLogoColour);
+
+</script>
+
+</body>
+</html>

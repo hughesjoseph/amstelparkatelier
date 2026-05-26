@@ -13,27 +13,30 @@ padding:0;
 box-sizing:border-box;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 font-family:Helvetica,Arial,sans-serif;
 overflow-x:hidden;
-color:#121212;
+color:#111;
 
 background:
-radial-gradient(circle at top left, rgba(203,234,123,0.45), transparent 35%),
-radial-gradient(circle at top right, rgba(159,245,255,0.32), transparent 35%),
-radial-gradient(circle at bottom left, rgba(255,138,61,0.22), transparent 35%),
+radial-gradient(circle at top left, rgba(215,255,111,0.35), transparent 35%),
+radial-gradient(circle at top right, rgba(86,255,240,0.22), transparent 35%),
+radial-gradient(circle at bottom left, rgba(255,153,51,0.18), transparent 35%),
 linear-gradient(
 180deg,
-#FFF6DA 0%,
-#E6F5D4 20%,
-#DDF7FF 42%,
-#FFE5D1 72%,
-#F7F1E8 100%
+#FFF7E8 0%,
+#E9FFD6 22%,
+#DFFFFB 45%,
+#FFE8D9 72%,
+#F6F2EA 100%
 );
-
 }
 
-/* HEADER */
+/* NAV */
 
 nav{
 position:fixed;
@@ -41,134 +44,152 @@ top:0;
 left:0;
 width:100%;
 padding:24px;
-z-index:200;
+z-index:400;
+pointer-events:none;
 }
 
 .logo-svg{
-
 position:fixed;
-
 top:18px;
-
 left:50%;
-
 transform:translateX(-50%);
-
-width:min(460px,52vw);
-
-z-index:300;
-
+width:min(480px,54vw);
+z-index:500;
 transition:
 filter 0.8s ease,
 transform 0.6s ease,
 opacity 0.6s ease;
-
 }
 
 .logo-svg img{
-
 width:100%;
-
+display:block;
 height:auto;
 
-display:block;
-
 filter:
-brightness(1)
-saturate(1.4);
+brightness(1.2)
+saturate(6)
+hue-rotate(40deg);
 
+transition:filter 0.8s ease;
 }
 
-/* FLURO STATES */
+/* FLURO LOGO STATES */
 
 .logo-green img{
 filter:
-brightness(1.1)
-saturate(6)
+brightness(1.2)
+saturate(7)
 hue-rotate(45deg);
 }
 
 .logo-cyan img{
 filter:
-brightness(1.1)
-saturate(6)
+brightness(1.2)
+saturate(7)
 hue-rotate(160deg);
 }
 
 .logo-orange img{
 filter:
-brightness(1.1)
-saturate(6)
+brightness(1.2)
+saturate(7)
 hue-rotate(-20deg);
 }
 
 .logo-pink img{
 filter:
-brightness(1.1)
+brightness(1.2)
 saturate(7)
-hue-rotate(280deg);
+hue-rotate(290deg);
 }
 
 .logo-yellow img{
 filter:
-brightness(1.2)
-saturate(6)
-hue-rotate(10deg);
+brightness(1.25)
+saturate(7)
+hue-rotate(0deg);
 }
+
+/* LANGUAGE BUTTON */
 
 #lang-switch{
 position:fixed;
-top:26px;
-right:30px;
-width:42px;
-height:42px;
-border-radius:50%;
+top:24px;
+right:24px;
+
+width:48px;
+height:48px;
+
+border-radius:999px;
+
 border:none;
-background:rgba(255,255,255,0.35);
-backdrop-filter:blur(12px);
+
+background:
+rgba(255,255,255,0.35);
+
+backdrop-filter:blur(18px);
+
 font-size:12px;
 font-weight:700;
+
 cursor:pointer;
-z-index:400;
+
+z-index:800;
+
+pointer-events:auto;
 }
 
 /* HERO */
 
 .hero{
 min-height:100vh;
-padding:180px 7vw 100px;
+
+padding:
+220px
+7vw
+120px;
+
 display:flex;
 flex-direction:column;
 justify-content:center;
 }
 
 .hero h1{
-font-size:clamp(54px,8vw,120px);
+font-size:clamp(64px,9vw,132px);
 line-height:0.9;
-letter-spacing:-0.06em;
-max-width:900px;
+letter-spacing:-0.07em;
+max-width:1100px;
 }
 
 .hero p{
-margin-top:26px;
-max-width:620px;
-font-size:19px;
+margin-top:28px;
+max-width:700px;
+
+font-size:20px;
 line-height:1.7;
-opacity:0.72;
+
+opacity:0.7;
 }
 
 .hero-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:18px;
-margin-top:60px;
+gap:22px;
+
+margin-top:70px;
 }
 
 .hero-grid img{
 width:100%;
-height:420px;
+
+aspect-ratio:1.15 / 1;
+
 object-fit:cover;
-border-radius:28px;
+
+border-radius:34px;
+
+display:block;
 }
 
 /* SECTIONS */
@@ -178,140 +199,230 @@ padding:140px 7vw;
 }
 
 .workshops{
+
 background:
 linear-gradient(
 180deg,
-rgba(255,255,255,0) 0%,
-rgba(203,234,123,0.12) 100%
+rgba(217,255,196,0.14) 0%,
+rgba(255,255,255,0) 100%
 );
 }
 
 .process{
+
 background:
 linear-gradient(
 180deg,
-rgba(159,245,255,0.08) 0%,
-rgba(255,138,61,0.08) 100%
+rgba(121,255,236,0.06) 0%,
+rgba(255,161,88,0.08) 100%
 );
 }
 
+/* HEADINGS */
+
 h2{
-font-size:clamp(44px,6vw,88px);
-letter-spacing:-0.05em;
-margin-bottom:30px;
+font-size:clamp(52px,7vw,110px);
+line-height:0.9;
+letter-spacing:-0.07em;
+
+margin-bottom:60px;
 }
+
+/* CARDS */
 
 .cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:22px;
-margin-top:50px;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:28px;
+
+align-items:stretch;
 }
 
 .card{
-background:rgba(255,255,255,0.32);
+
+background:
+rgba(255,255,255,0.4);
+
 backdrop-filter:blur(18px);
-padding:34px;
-border-radius:28px;
-border:1px solid rgba(255,255,255,0.22);
+
+border-radius:36px;
+
+padding:40px;
 
 display:flex;
 flex-direction:column;
 
-min-height:540px;
+min-height:590px;
+
+border:
+1px solid rgba(255,255,255,0.22);
+
+box-shadow:
+0 14px 34px rgba(0,0,0,0.03);
+
+transition:
+transform 0.4s ease,
+background 0.4s ease;
+}
+
+.card:hover{
+
+transform:translateY(-5px);
+
+background:
+rgba(255,255,255,0.5);
 }
 
 .card h3{
-font-size:28px;
-line-height:0.95;
-letter-spacing:-0.05em;
 
-margin-bottom:24px;
+font-size:clamp(38px,3vw,58px);
 
-min-height:120px;
+line-height:0.92;
 
-display:flex;
-align-items:flex-start;
+letter-spacing:-0.06em;
+
+margin-bottom:38px;
+
+max-width:90%;
 }
 
 .card p{
-font-size:15px;
-line-height:1.55;
-opacity:0.72;
 
-min-height:78px;
+font-size:16px;
+
+line-height:1.45;
+
+opacity:0.62;
+
+min-height:92px;
+
+max-width:90%;
 }
+
+/* PRICE LOCKS TO BOTTOM */
 
 .price{
+
 margin-top:auto;
 
-font-size:42px;
+padding-top:40px;
+
+font-size:72px;
+
 font-weight:700;
-letter-spacing:-0.05em;
+
+line-height:0.9;
+
+letter-spacing:-0.08em;
 }
 
+/* BUTTON */
+
 .btn{
-display:inline-block;
 
-margin-top:20px;
+display:inline-flex;
 
-padding:12px 18px;
+align-items:center;
+justify-content:center;
+
+margin-top:24px;
+
+padding:
+15px
+22px;
 
 border-radius:999px;
 
-background:#121212;
+background:#111;
+
 color:#F7F1E8;
 
 text-decoration:none;
 
 font-size:12px;
-letter-spacing:0.08em;
+
+letter-spacing:0.12em;
+
 text-transform:uppercase;
 
 width:fit-content;
+
+transition:
+transform 0.3s ease,
+opacity 0.3s ease;
 }
 
+.btn:hover{
+
+transform:translateY(-2px);
+
+opacity:0.92;
 }
+
+/* GALLERY */
 
 .gallery{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:18px;
-margin-top:40px;
+
+gap:22px;
 }
 
 .gallery img{
 width:100%;
-height:340px;
+
+aspect-ratio:1 / 1;
+
 object-fit:cover;
-border-radius:24px;
+
+border-radius:28px;
+
+display:block;
+
+transition:
+transform 0.5s ease,
+filter 0.5s ease;
+}
+
+.gallery img:hover{
+
+transform:scale(1.02);
+
+filter:saturate(1.08);
 }
 
 /* SIGNUP */
 
 .signup{
+
 padding:140px 7vw;
+
 background:
 linear-gradient(
 180deg,
-rgba(255,245,218,0.3) 0%,
-rgba(159,245,255,0.12) 50%,
-rgba(247,241,232,0.9) 100%
+rgba(255,255,255,0) 0%,
+rgba(255,240,216,0.4) 40%,
+rgba(255,255,255,0.9) 100%
 );
 }
 
 .form{
-background:rgba(255,255,255,0.32);
+
+background:
+rgba(255,255,255,0.4);
+
 backdrop-filter:blur(18px);
-border-radius:34px;
-padding:42px;
-margin-top:40px;
+
+padding:44px;
+
+border-radius:36px;
 }
 
 .grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:22px;
+gap:24px;
 }
 
 .field{
@@ -321,20 +432,31 @@ flex-direction:column;
 
 .field label{
 margin-bottom:10px;
+
 font-size:12px;
+
 text-transform:uppercase;
+
 letter-spacing:0.08em;
+
 opacity:0.7;
 }
 
 .field input,
 .field select,
 .field textarea{
+
 border:none;
+
 padding:18px;
+
 border-radius:18px;
-background:rgba(255,255,255,0.62);
+
+background:
+rgba(255,255,255,0.72);
+
 font-size:16px;
+
 font-family:inherit;
 }
 
@@ -344,19 +466,53 @@ resize:vertical;
 }
 
 .full{
-margin-top:22px;
+margin-top:24px;
 }
 
 /* POPUPS */
 
 .popup{
+
 position:fixed;
-max-width:280px;
-padding:20px;
+
+max-width:260px;
+
+padding:18px 20px;
+
 border-radius:24px;
-z-index:500;
-transition:all 0.7s ease;
-box-shadow:0 10px 40px rgba(0,0,0,0.08);
+
+z-index:700;
+
+opacity:0;
+
+transition:
+opacity 0.8s ease,
+transform 0.8s ease;
+
+backdrop-filter:blur(14px);
+
+box-shadow:
+0 10px 40px rgba(0,0,0,0.06);
+}
+
+.popup h4{
+
+font-size:22px;
+
+line-height:0.95;
+
+margin-bottom:6px;
+
+letter-spacing:-0.04em;
+}
+
+.popup p{
+
+font-size:15px;
+
+line-height:1.3;
+
+opacity:0.7;
 }
 
 .popup a{
@@ -366,38 +522,71 @@ display:block;
 }
 
 .popup1{
-top:100px;
-left:-320px;
-background:#D8E7A8;
+
+top:120px;
+left:24px;
+
+background:
+linear-gradient(
+135deg,
+rgba(214,236,152,0.96),
+rgba(239,255,186,0.94)
+);
+
+transform:translateY(24px);
 }
 
 .popup1.show{
-left:24px;
+
+opacity:1;
+
+transform:translateY(0);
 }
 
 .popup2{
-bottom:24px;
-right:-320px;
-background:#E6C9A4;
+
+bottom:26px;
+right:24px;
+
+background:
+linear-gradient(
+135deg,
+rgba(232,203,165,0.96),
+rgba(255,232,199,0.94)
+);
+
+transform:translateY(24px);
 }
 
 .popup2.show{
-right:24px;
+
+opacity:1;
+
+transform:translateY(0);
 }
 
 /* FOOTER */
 
 footer{
-padding:60px 7vw;
+
+padding:70px 7vw;
+
 display:flex;
+
 justify-content:space-between;
+
+gap:40px;
+
 font-size:14px;
-opacity:0.68;
+
+opacity:0.65;
 }
 
 .nl{
 display:none;
 }
+
+/* MOBILE */
 
 @media(max-width:900px){
 
@@ -406,13 +595,24 @@ display:none;
 grid-template-columns:1fr;
 }
 
+.hero{
+padding-top:180px;
+}
+
 .logo-svg{
-width:min(320px,70vw);
+width:min(320px,72vw);
 }
 
 footer{
 flex-direction:column;
-gap:20px;
+}
+
+.card{
+min-height:auto;
+}
+
+.price{
+font-size:58px;
 }
 
 }
@@ -424,7 +624,7 @@ gap:20px;
 
 <nav>
 
-<div class="logo-svg">
+<div class="logo-svg logo-green">
 <img src="logo/amstelpark-logo.svg" alt="Amstelpark Atelier">
 </div>
 
@@ -460,47 +660,83 @@ In een tijd waarin kinderen opgroeien in een steeds digitalere wereld, biedt wer
 </p>
 
 <div class="hero-grid">
-<img src="images/1.jpg">
-<img src="images/2.jpg">
-<img src="images/3.jpg">
+
+<img src="images/1.jpg" alt="">
+<img src="images/2.jpg" alt="">
+<img src="images/3.jpg" alt="">
+
 </div>
 
 </section>
 
 <section class="section workshops">
+
 <h2>Workshops</h2>
 
 <div class="cards">
 
 <div class="card">
+
 <h3>Drawing / Painting & Observation</h3>
-<p>Mondays · 10:00–12:00<br>4 weeks · Materials included</p>
+
+<p>
+Mondays · 10:00–12:00<br>
+4 weeks · Materials included
+</p>
+
 <div class="price">€180</div>
+
 <a href="#signup" class="btn">Reserve spot</a>
+
 </div>
 
 <div class="card">
+
 <h3>Make Your Own Materials</h3>
-<p>Wednesdays · 10:00–12:00<br>4 weeks · Materials included</p>
+
+<p>
+Wednesdays · 10:00–12:00<br>
+4 weeks · Materials included
+</p>
+
 <div class="price">€180</div>
+
 <a href="#signup" class="btn">Reserve spot</a>
+
 </div>
 
 <div class="card">
+
 <h3>Ceramics</h3>
-<p>Thursdays · 14:00–16:00<br>4 weeks · Materials included</p>
+
+<p>
+Thursdays · 14:00–16:00<br>
+4 weeks · Materials included
+</p>
+
 <div class="price">€220</div>
+
 <a href="#signup" class="btn">Reserve spot</a>
+
 </div>
 
 <div class="card">
+
 <h3>Saturday Atelier</h3>
-<p>Saturday · 10:00–11:30<br>Children 6–12 years</p>
+
+<p>
+Saturday · 10:00–11:30<br>
+Children 6–12 years
+</p>
+
 <div class="price">€140</div>
+
 <a href="#signup" class="btn">Reserve spot</a>
+
 </div>
 
 </div>
+
 </section>
 
 <section class="section process">
@@ -508,12 +744,14 @@ In een tijd waarin kinderen opgroeien in een steeds digitalere wereld, biedt wer
 <h2>Process</h2>
 
 <div class="gallery">
-<img src="images/4.jpg">
-<img src="images/5.jpg">
-<img src="images/6.jpg">
-<img src="images/7.jpg">
-<img src="images/8.jpg">
-<img src="images/9.jpg">
+
+<img src="images/4.jpg" alt="">
+<img src="images/5.jpg" alt="">
+<img src="images/6.jpg" alt="">
+<img src="images/7.jpg" alt="">
+<img src="images/8.jpg" alt="">
+<img src="images/9.jpg" alt="">
+
 </div>
 
 </section>
@@ -527,38 +765,52 @@ In een tijd waarin kinderen opgroeien in een steeds digitalere wereld, biedt wer
 <div class="grid">
 
 <div class="field">
+
 <label>Name</label>
+
 <input type="text" name="name" required>
+
 </div>
 
 <div class="field">
+
 <label>Email</label>
+
 <input type="email" name="email" required>
+
 </div>
 
 <div class="field">
+
 <label>Course</label>
 
 <select name="course">
+
 <option>Drawing / Painting & Observation</option>
 <option>Make Your Own Materials</option>
 <option>Ceramics</option>
 <option>Saturday Atelier</option>
-<option>Wednesday Atelier</option>
+
 </select>
 
 </div>
 
 <div class="field">
+
 <label>Child age</label>
+
 <input type="text" name="child_age">
+
 </div>
 
 </div>
 
 <div class="field full">
+
 <label>Message</label>
+
 <textarea name="message"></textarea>
+
 </div>
 
 <button type="submit" class="btn">Reserve spot</button>
@@ -583,7 +835,10 @@ Birthday workshops from €150
 
 <script>
 
+/* LANGUAGE SWITCH */
+
 const button = document.getElementById('lang-switch');
+
 let currentLang = 'en';
 
 button.addEventListener('click', () => {
@@ -602,18 +857,22 @@ button.textContent = currentLang === 'en' ? 'NL' : 'EN';
 
 });
 
+/* POPUPS */
+
 const popup1 = document.getElementById('popup1');
 const popup2 = document.getElementById('popup2');
 
 setTimeout(() => {
 popup1.classList.add('show');
-},5000);
+},2500);
 
 window.addEventListener('scroll',() => {
 
-if(window.scrollY > window.innerHeight * 0.5){
+if(window.scrollY > window.innerHeight * 0.35){
 popup2.classList.add('show');
 }
+
+/* LOGO COLOUR CHANGE */
 
 const y = window.scrollY;
 
@@ -649,11 +908,16 @@ logo.classList.add('logo-yellow');
 
 });
 
+/* CLOSE POPUPS */
+
 document.addEventListener('click',(e)=>{
 
 if(!e.target.closest('.popup')){
+
 popup1.classList.remove('show');
+
 popup2.classList.remove('show');
+
 }
 
 });

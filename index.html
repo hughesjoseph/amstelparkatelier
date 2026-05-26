@@ -13,21 +13,10 @@ padding:0;
 box-sizing:border-box;
 }
 
-:root{
---cream:#F7F1E8;
---cream2:#F3E6D3;
---green:#CBEA7B;
---cyan:#9FF5FF;
---orange:#FF8A3D;
---pink:#FF5BC8;
---yellow:#F5FF57;
---ink:#121212;
-}
-
 body{
 font-family:Helvetica,Arial,sans-serif;
-color:var(--ink);
 overflow-x:hidden;
+color:#121212;
 
 background:
 radial-gradient(circle at top left, rgba(203,234,123,0.45), transparent 35%),
@@ -42,8 +31,9 @@ linear-gradient(
 #F7F1E8 100%
 );
 
-transition:background 1s ease;
 }
+
+/* HEADER */
 
 nav{
 position:fixed;
@@ -55,30 +45,76 @@ z-index:200;
 }
 
 .logo-svg{
+
 position:fixed;
+
 top:18px;
+
 left:50%;
+
 transform:translateX(-50%);
+
 width:min(460px,52vw);
+
 z-index:300;
-color:#00FF66;
+
 transition:
-color 0.7s ease,
+filter 0.8s ease,
 transform 0.6s ease,
 opacity 0.6s ease;
+
 }
 
-.logo-svg svg{
+.logo-svg img{
+
 width:100%;
+
 height:auto;
+
 display:block;
+
+filter:
+brightness(1)
+saturate(1.4);
+
 }
 
-.logo-green{color:#00FF66;}
-.logo-cyan{color:#00F7FF;}
-.logo-orange{color:#FF6A00;}
-.logo-pink{color:#FF2DAD;}
-.logo-yellow{color:#F5FF00;}
+/* FLURO STATES */
+
+.logo-green img{
+filter:
+brightness(1.1)
+saturate(6)
+hue-rotate(45deg);
+}
+
+.logo-cyan img{
+filter:
+brightness(1.1)
+saturate(6)
+hue-rotate(160deg);
+}
+
+.logo-orange img{
+filter:
+brightness(1.1)
+saturate(6)
+hue-rotate(-20deg);
+}
+
+.logo-pink img{
+filter:
+brightness(1.1)
+saturate(7)
+hue-rotate(280deg);
+}
+
+.logo-yellow img{
+filter:
+brightness(1.2)
+saturate(6)
+hue-rotate(10deg);
+}
 
 #lang-switch{
 position:fixed;
@@ -95,6 +131,8 @@ font-weight:700;
 cursor:pointer;
 z-index:400;
 }
+
+/* HERO */
 
 .hero{
 min-height:100vh;
@@ -132,6 +170,8 @@ height:420px;
 object-fit:cover;
 border-radius:28px;
 }
+
+/* SECTIONS */
 
 .section{
 padding:140px 7vw;
@@ -223,6 +263,8 @@ object-fit:cover;
 border-radius:24px;
 }
 
+/* SIGNUP */
+
 .signup{
 padding:140px 7vw;
 background:
@@ -281,6 +323,8 @@ resize:vertical;
 margin-top:22px;
 }
 
+/* POPUPS */
+
 .popup{
 position:fixed;
 max-width:280px;
@@ -316,6 +360,8 @@ background:#E6C9A4;
 .popup2.show{
 right:24px;
 }
+
+/* FOOTER */
 
 footer{
 padding:60px 7vw;
@@ -355,11 +401,7 @@ gap:20px;
 <nav>
 
 <div class="logo-svg">
-
-<svg viewBox="0 0 4400.9 1228.79" xmlns="http://www.w3.org/2000/svg">
-<path fill="currentColor" d="M3257.98,923.67c-20.85,0-38.78-7.49-53.77-22.5-15.01-14.99-22.5-32.92-22.5-53.77s7.49-38.78,22.5-53.78c14.99-14.99,32.92-22.5,53.77-22.5h76.28c20.84,0,38.77,7.51,53.78,22.5,14.99,15,22.5,32.94,22.5,53.78s-7.5,38.78-22.5,53.77c-15.01,15.01-32.94,22.5-53.78,22.5h-76.28Z"/>
-</svg>
-
+<img src="logo/amstelpark-logo.svg" alt="Amstelpark Atelier">
 </div>
 
 <button id="lang-switch">NL</button>
@@ -402,9 +444,7 @@ In een tijd waarin kinderen opgroeien in een steeds digitalere wereld, biedt wer
 </section>
 
 <section class="section workshops">
-
-<h2 class="en">Workshops</h2>
-<h2 class="nl">Workshops</h2>
+<h2>Workshops</h2>
 
 <div class="cards">
 
@@ -437,39 +477,33 @@ In een tijd waarin kinderen opgroeien in een steeds digitalere wereld, biedt wer
 </div>
 
 </div>
-
 </section>
 
 <section class="section process">
 
-<h2 class="en">Process</h2>
-<h2 class="nl">Proces</h2>
+<h2>Process</h2>
 
 <div class="gallery">
-
 <img src="images/4.jpg">
 <img src="images/5.jpg">
 <img src="images/6.jpg">
 <img src="images/7.jpg">
 <img src="images/8.jpg">
 <img src="images/9.jpg">
-
 </div>
 
 </section>
 
 <section class="signup" id="signup">
 
-<h2 class="en">Course Overview & Signup</h2>
-<h2 class="nl">Cursusoverzicht & Aanmelden</h2>
+<h2>Course Overview & Signup</h2>
 
 <form action="https://formspree.io/f/xzzgvgyr" method="POST" class="form">
 
 <div class="grid">
 
 <div class="field">
-<label class="en">Name</label>
-<label class="nl">Naam</label>
+<label>Name</label>
 <input type="text" name="name" required>
 </div>
 
@@ -479,8 +513,7 @@ In een tijd waarin kinderen opgroeien in een steeds digitalere wereld, biedt wer
 </div>
 
 <div class="field">
-<label class="en">Course</label>
-<label class="nl">Cursus</label>
+<label>Course</label>
 
 <select name="course">
 <option>Drawing / Painting & Observation</option>
@@ -493,16 +526,14 @@ In een tijd waarin kinderen opgroeien in een steeds digitalere wereld, biedt wer
 </div>
 
 <div class="field">
-<label class="en">Child age</label>
-<label class="nl">Leeftijd kind</label>
+<label>Child age</label>
 <input type="text" name="child_age">
 </div>
 
 </div>
 
 <div class="field full">
-<label class="en">Message</label>
-<label class="nl">Bericht</label>
+<label>Message</label>
 <textarea name="message"></textarea>
 </div>
 
@@ -561,7 +592,9 @@ popup2.classList.add('show');
 }
 
 const y = window.scrollY;
+
 const h = document.body.scrollHeight - window.innerHeight;
+
 const p = h > 0 ? y / h : 0;
 
 const logo = document.querySelector('.logo-svg');

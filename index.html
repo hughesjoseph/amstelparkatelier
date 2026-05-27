@@ -30,10 +30,10 @@ background:none;
 }
 body.menu-open{overflow:hidden}
 a{color:inherit}img{max-width:100%}
-.site-header{position:fixed;top:0;left:0;width:100%;height:420px;z-index:900;pointer-events:none}.site-header:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.45) 0%,rgba(255,255,255,.32) 8%,rgba(255,255,255,.18) 22%,rgba(255,255,255,.08) 42%,rgba(255,255,255,.02) 65%,rgba(255,255,255,0) 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);-webkit-mask-image:linear-gradient(180deg,black 0%,black 15%,transparent 100%);mask-image:linear-gradient(180deg,black 0%,black 15%,transparent 100%)}
+.site-header{position:fixed;top:0;left:0;width:100%;height:280px;z-index:900;pointer-events:none}.site-header:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.45) 0%,rgba(255,255,255,.32) 8%,rgba(255,255,255,.18) 22%,rgba(255,255,255,.08) 42%,rgba(255,255,255,.02) 65%,rgba(255,255,255,0) 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);-webkit-mask-image:linear-gradient(180deg,black 0%,black 15%,transparent 100%);mask-image:linear-gradient(180deg,black 0%,black 15%,transparent 100%)}
 
 
-.logo-svg{position:fixed;top:28px;left:50%;transform:translateX(-50%);width:min(660px,68vw);z-index:920;pointer-events:auto;filter:none;transition:filter 1s ease,transform .6s ease,opacity .6s ease}
+.logo-svg{position:fixed;top:28px;left:50%;transform:translateX(-50%);width:min(780px,74vw);z-index:920;pointer-events:auto;filter:none;transition:filter 1s ease,transform .6s ease,opacity .6s ease}
 .logo-svg img{display:block;width:100%;height:auto}
 .logo-green{filter:invert(86%) sepia(96%) saturate(2600%) hue-rotate(42deg) brightness(102%) contrast(108%) drop-shadow(0 0 12px rgba(200,255,0,.22))}
 .logo-cyan{filter:invert(89%) sepia(99%) saturate(3100%) hue-rotate(145deg) brightness(104%) contrast(108%) drop-shadow(0 0 12px rgba(0,255,255,.22))}
@@ -46,7 +46,7 @@ a{color:inherit}img{max-width:100%}
 .menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.menu-toggle.open span:nth-child(2){opacity:0}.menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .menu-overlay{position:fixed;inset:0;z-index:850;background:rgba(255,255,255,.18);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);opacity:0;pointer-events:none;transition:opacity .45s ease;display:flex;align-items:center;justify-content:center;padding:8vw}
 .menu-overlay.open{opacity:1;pointer-events:auto}.menu-list{list-style:none;width:100%;max-width:980px}.menu-list a{display:block;text-decoration:none;font-size:clamp(48px,8vw,130px);line-height:.92;letter-spacing:-.08em;font-weight:700;padding:.06em 0;color:#1a1a1a;transition:transform .3s ease,opacity .3s ease}.menu-list a:hover{transform:translateX(18px);opacity:.72}
-.popup{position:fixed;max-width:260px;padding:18px 20px;z-index:780;opacity:0;transition:opacity .8s ease,transform .8s ease;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:none}.popup h4{font-size:22px;line-height:.95;letter-spacing:-.04em;margin-bottom:6px}.popup p{font-size:15px;line-height:1.3;opacity:.72}.popup a{text-decoration:none;color:inherit;display:block}.popup1{top:128px;left:24px;background:rgba(255,255,255,.15);transform:translateX(-20px)}.popup1.show{opacity:1;transform:translateX(0)}.popup2{bottom:26px;right:24px;background:rgba(255,255,255,.15);transform:translateX(20px)}.popup2.show{opacity:1;transform:translateX(0)}
+.popup{position:fixed;max-width:260px;padding:16px 22px;z-index:1000;opacity:0;transition:opacity .8s ease,transform .8s ease;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(255,255,255,.72);border-radius:32px;box-shadow:0 4px 24px rgba(0,0,0,.10)}.popup h4{font-size:22px;line-height:.95;letter-spacing:-.04em;margin-bottom:6px}.popup p{font-size:15px;line-height:1.3;opacity:.72}.popup a{text-decoration:none;color:inherit;display:block}.popup1{top:128px;left:24px;background:rgba(255,255,255,.15);transform:translateX(-20px)}.popup1.show{opacity:1;transform:translateX(0)}.popup2{bottom:26px;right:24px;background:rgba(255,255,255,.15);transform:translateX(20px)}.popup2.show{opacity:1;transform:translateX(0)}
 section{position:relative}.hero{min-height:100vh;padding:210px 7vw 95px;display:flex;flex-direction:column;justify-content:center}.hero h1{font-size:clamp(42px,6vw,88px);line-height:.92;letter-spacing:-.075em;max-width:900px}.hero p{margin-top:26px;max-width:720px;font-size:20px;line-height:1.65;opacity:.72}
 .slideshow{margin-top:70px;width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;background:rgba(255,255,255,.22)}.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease}.slide.active{opacity:1}.slide img{width:100%;height:100%;object-fit:cover;display:block}
 .about{padding:135px 7vw 140px;background:transparent}.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:8vw;align-items:start}.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.16em;font-weight:700;opacity:.55;margin-bottom:24px}h2{font-size:clamp(44px,6vw,96px);line-height:.92;letter-spacing:-.07em;margin-bottom:60px}.about-text{max-width:900px}.about-text p{font-size:clamp(20px,2vw,34px);line-height:1.22;letter-spacing:-.04em;margin-bottom:28px}
@@ -59,7 +59,7 @@ footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);ga
 </head>
 <body>
 <header class="site-header" id="site-header">
-  <div class="logo-svg" id="logo"><img src="logo/amstelpark-logo.svg" alt="Amstelpark Atelier"></div>
+  <div class="logo-svg" id="logo"><a href="https://amstelparkatelier.nl/" aria-label="Home"><img src="logo/amstelpark-logo.svg" alt="Amstelpark Atelier"></a></div>
   <button id="lang-switch" type="button" aria-label="Switch language">NL</button>
   <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
 </header>
@@ -80,7 +80,7 @@ footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);ga
 <main>
 <section class="hero" id="top">
   <h1><span class="en">Learning through nature, materials and attention.</span><span class="nl">Leren door natuur, materialen en aandacht.</span></h1>
-  <p><span class="en">Nature oriented studio courses in Amstelpark. Small groups, guided by observation, material and process.</span><span class="nl">Natuurgerichte ateliercursussen in Amstelpark. Kleine groepen, met aandacht voor observatie, materiaal en proces.</span></p>
+  <p><span class="en">Nature oriented studio courses in Amstelpark.<br>Small groups, guided by observation, material and process.</span><span class="nl">Natuurgerichte ateliercursussen in Amstelpark.<br>Kleine groepen, met aandacht voor observatie, materiaal en proces.</span></p>
   <div class="slideshow" id="slideshow">
     <div class="slide active"><img src="images/1.jpg" alt=""></div>
     <div class="slide"><img src="images/2.jpg" alt=""></div>

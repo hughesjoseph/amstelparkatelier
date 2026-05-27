@@ -25,7 +25,7 @@ animation:glassmove 28s ease infinite;
 100%{background-position:0% 0%,50% 50%,0% 0%}
 }
 body.menu-open{overflow:hidden}
-a{color:inherit}img{max-width:100%}
+a{color:inherit}img{max-width:100%}.en{display:block}.nl{display:none}
 .site-header{position:fixed;top:0;left:0;width:100%;height:108px;z-index:900;pointer-events:none}
 .site-header:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.78) 0%,rgba(255,255,255,.42) 52%,rgba(255,255,255,0) 100%);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);opacity:0;transition:opacity .7s ease}
 .site-header.scrolled:before{opacity:1}
@@ -49,7 +49,7 @@ section{position:relative}.hero{min-height:100vh;padding:210px 7vw 95px;display:
 .programme{padding:135px 7vw 145px;background:radial-gradient(circle at 20% 0%,rgba(0,255,115,.2),transparent 32%),linear-gradient(180deg,rgba(217,255,196,.18),rgba(255,255,255,0))}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;align-items:stretch}.card{background:rgba(255,255,255,.42);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:30px;display:flex;flex-direction:column;min-height:520px;border:1px solid rgba(255,255,255,.24);box-shadow:0 14px 34px rgba(0,0,0,.03);transition:transform .4s ease,background .4s ease}.card:hover{transform:translateY(-5px);background:rgba(255,255,255,.52)}.card h3{font-size:clamp(28px,2.4vw,46px);line-height:.98;letter-spacing:-.055em;margin-bottom:18px}.card-meta{font-size:15px;line-height:1.35;opacity:.72;margin-bottom:18px}.card-desc{font-size:15px;line-height:1.45;opacity:.65;margin-bottom:18px}.lessons{list-style:none;font-size:14px;line-height:1.45;opacity:.62;margin-top:4px}.price{margin-top:auto;padding-top:22px;font-size:34px;font-weight:500;line-height:1;letter-spacing:-.03em;opacity:.72}.btn{display:inline-flex;align-items:center;justify-content:center;margin-top:20px;padding:13px 20px;background:#111;color:#fff7ea;border:none;text-decoration:none;font-size:12px;letter-spacing:.1em;text-transform:uppercase;width:fit-content;cursor:pointer;transition:transform .3s ease,opacity .3s ease}.btn:hover{transform:translateY(-2px);opacity:.9}
 .gallery-section{padding:135px 7vw 145px;background:radial-gradient(circle at 80% 10%,rgba(0,242,255,.16),transparent 32%),radial-gradient(circle at 15% 90%,rgba(255,76,28,.12),transparent 34%),linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.14))}.gallery{display:flex;overflow-x:auto;gap:22px;scroll-snap-type:x mandatory;padding-bottom:15px}.gallery img{flex:0 0 70vw;max-width:900px;aspect-ratio:16/9;object-fit:cover;scroll-snap-align:center;display:block;transition:transform .5s ease,filter .5s ease}.gallery img:hover{transform:scale(1.02);filter:saturate(1.08)}
 .signup{padding:135px 7vw 145px;background:radial-gradient(circle at 90% 0%,rgba(255,0,196,.12),transparent 30%),linear-gradient(180deg,rgba(255,255,255,0),rgba(255,240,216,.42),rgba(255,255,255,.88))}.signup-intro{max-width:900px;margin-bottom:44px}.signup-intro p{font-size:20px;line-height:1.55;opacity:.72}.form{background:rgba(255,255,255,.42);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:44px;max-width:1100px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.field{display:flex;flex-direction:column}.field label{margin-bottom:10px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;opacity:.7}.field input,.field select,.field textarea{border:none;padding:18px;background:rgba(255,255,255,.76);font-size:16px;font-family:inherit;color:#111}.field textarea{min-height:140px;resize:vertical}.field.full{margin-top:24px}.form-actions{margin-top:24px}.form-message{margin-top:14px;font-size:15px;opacity:.72;min-height:22px}.submit-success{background:#fff;color:#111;border:1px solid #111}.smiley{font-size:17px;margin-right:7px}
-footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);gap:50px;background:#072CFF;color:#fff}.footer-heading{font-size:13px;text-transform:uppercase;letter-spacing:.16em;font-weight:700;opacity:.65;margin-bottom:18px}footer strong{display:block;margin-bottom:10px;font-size:16px}footer p,footer a{font-size:16px;line-height:1.55;text-decoration:none}.nl{display:none}
+footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);gap:50px;background:#072CFF;color:#fff}.footer-heading{font-size:13px;text-transform:uppercase;letter-spacing:.16em;font-weight:700;opacity:.45;margin-bottom:18px}footer strong{display:block;margin-bottom:10px;font-size:16px}footer p,footer a{font-size:16px;line-height:1.55;text-decoration:none}.nl{display:none}
 @media(max-width:900px){.site-header{height:90px}.logo-svg{width:min(310px,66vw);top:28px}#lang-switch,.menu-toggle{width:42px;height:42px;top:24px}#lang-switch{left:16px}.menu-toggle{right:16px}.hero{padding:160px 6vw 80px}.hero h1{font-size:clamp(42px,15vw,74px)}.slideshow{aspect-ratio:1.25/1}.about,.programme,.gallery-section,.signup{padding:90px 6vw}.about-grid,.form-grid,footer{grid-template-columns:1fr}h2{font-size:clamp(42px,14vw,76px)}.about-text p{font-size:22px}.card{min-height:auto}.popup{max-width:230px;transform:scale(.92)}.popup1{top:96px;left:14px}.popup2{right:14px;bottom:14px}}
 </style>
 </head>
@@ -117,26 +117,32 @@ footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);ga
 
 <section class="signup" id="signup"><div class="signup-intro"><div class="kicker"><span class="en">Signup</span><span class="nl">Aanmelden</span></div><h2><span class="en">Reserve your spot!</span><span class="nl">Reserveer je plek!</span></h2><p><span class="en">Fill in the form and we will confirm your place or answer your question personally.</span><span class="nl">Vul het formulier in en we bevestigen je plek of beantwoorden je vraag persoonlijk.</span></p></div>
 <form action="https://formsubmit.co/studio16.1xb@gmail.com" method="POST" class="form" id="signup-form">
-<input type="hidden" name="_subject" value="New Amstelpark Atelier Signup"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input type="hidden" name="_next" value="https://amstelparkatelier.nl"><input type="hidden" name="_autoresponse" value="Thank you for your signup. We received your message and will get back to you shortly. / Dank je wel voor je aanmelding. We hebben je bericht ontvangen en nemen binnenkort contact op.">
-<div class="form-grid"><div class="field"><label><span class="en">Name</span><span class="nl">Naam</span></label><input type="text" name="name" required></div><div class="field"><label>Email</label><input type="email" name="email" required></div><div class="field"><label><span class="en">Course</span><span class="nl">Cursus</span></label><select name="course" required id="course-select">
-<option value="Kids Drawing & Painting / Wednesday" data-en="Kids Drawing & Painting — Wednesday" data-nl="Kinderen tekenen & schilderen — woensdag">Kids Drawing & Painting — Wednesday</option>
-<option value="Saturday Atelier" data-en="Saturday Atelier" data-nl="Zaterdag Atelier">Saturday Atelier</option>
-<option value="Make Your Own Materials" data-en="Make Your Own Materials" data-nl="Maak je eigen materiaal">Make Your Own Materials</option>
-<option value="Adults Drawing & Painting" data-en="Adults Drawing & Painting" data-nl="Volwassenen tekenen & schilderen">Adults Drawing & Painting</option>
-<option value="Ceramics" data-en="Ceramics" data-nl="Keramiek">Ceramics</option>
-<option value="Birthday bookings / Space for hire" data-en="Birthday bookings / Space for hire" data-nl="Verjaardag boekingen / Ruimte huren">Birthday bookings / Space for hire</option>
-<option value="Private workshops / Schools / BSO" data-en="Private workshops / Schools / BSO" data-nl="Privéworkshops / Scholen / BSO">Private workshops / Schools / BSO</option>
-</select></div><div class="field"><label><span class="en">Age</span><span class="nl">Leeftijd</span></label><input type="text" name="age"></div></div>
+<input type="hidden" name="_subject" value="New Amstelpark Atelier Signup"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input type="hidden" name="_next" value="https://amstelparkatelier.nl"><input type="hidden" name="_autoresponse" value="Thank you for your signup. We received your message and will get back to you shortly.">
+<div class="form-grid"><div class="field"><label><span class="en">Name</span><span class="nl">Naam</span></label><input type="text" name="name" required></div><div class="field"><label>Email</label><input type="email" name="email" required></div><div class="field"><label><span class="en">Course</span><span class="nl">Cursus</span></label><select name="course" required><option value="Kids Drawing & Painting / Wednesday">Kids Drawing & Painting — Wednesday</option><option value="Saturday Atelier">Saturday Atelier</option><option value="Make Your Own Materials">Make Your Own Materials</option><option value="Adults Drawing & Painting">Adults Drawing & Painting</option><option value="Ceramics">Ceramics</option><option value="Birthday bookings / Space for hire">Birthday bookings / Space for hire</option><option value="Private workshops / Schools / BSO">Private workshops / Schools / BSO</option></select></div><div class="field"><label><span class="en">Age</span><span class="nl">Leeftijd</span></label><input type="text" name="age"></div></div>
 <div class="field full"><label><span class="en">Message</span><span class="nl">Bericht</span></label><textarea name="message"></textarea></div><div class="form-actions"><button type="submit" class="btn" id="submit-btn"><span class="en">Sign up today</span><span class="nl">Meld je vandaag aan</span></button><div class="form-message" id="form-message"></div></div>
 </form></section>
 </main>
 
-<footer id="contact"><div><div class="footer-heading"><span class="en">The Atelier</span><span class="nl">Het Atelier</span></div><strong>Amstelpark Atelier</strong><p><span class="en">Botanical-inspired art courses<br>in Amstelpark, Amsterdam.</span><span class="nl">Botanisch geïnspireerde kunstcursussen<br>in Amstelpark, Amsterdam.</span></p></div><div><div class="footer-heading"><span class="en">Location</span><span class="nl">Locatie</span></div><strong>Amstelpark Atelier</strong><p>Amstelpark<br>Amsterdam</p><p><a href="https://www.google.com/maps/place/Amstelpark+atelier/@52.3317515,4.8964245,18.62z/data=!4m6!3m5!1s0x47c60b002088f81b:0x9231289efd141281!8m2!3d52.3310471!4d4.895784!16s%2Fg%2F11nc5nsbs2?entry=ttu" target="_blank" rel="noopener">◎ <span class="en">Open in Maps</span><span class="nl">Open in Kaarten</span></a></p></div><div><div class="footer-heading">Contact</div><strong><a href="mailto:studio16.1xb@gmail.com">studio16.1xb@gmail.com</a></strong><p><a href="tel:+31647194490">06 47194490</a></p><p><a href="https://wa.me/31647194490" target="_blank" rel="noopener">WhatsApp</a></p></div></footer>
+<footer id="contact"><div><div class="footer-heading"><span class="en">The Atelier</span><span class="nl">Het Atelier</span></div><strong>Amstelpark Atelier</strong><p><span class="en">Botanical-inspired art courses<br>in Amstelpark, Amsterdam.</span><span class="nl">Botanisch geïnspireerde kunstcursussen<br>in Amstelpark, Amsterdam.</span></p></div><div><div class="footer-heading"><span class="en">Location</span><span class="nl">Locatie</span></div><strong>Amstelpark Atelier</strong><p>Amstelpark<br>Amsterdam</p><p><a href="https://www.google.com/maps/place/Amstelpark+atelier/@52.3317515,4.8964245,18.62z/data=!4m6!3m5!1s0x47c60b002088f81b:0x9231289efd141281!8m2!3d52.3310471!4d4.895784!16s%2Fg%2F11nc5nsbs2?entry=ttu" target="_blank" rel="noopener">◎ <span class="en">Open in Maps</span><span class="nl">Open in Maps</span></a></p></div><div><div class="footer-heading">Contact</div><strong><a href="mailto:studio16.1xb@gmail.com">studio16.1xb@gmail.com</a></strong><p><a href="tel:+31647194490">06 47194490</a></p><p><a href="https://wa.me/31647194490" target="_blank" rel="noopener">WhatsApp</a></p></div></footer>
 
 <script>
-const langButton=document.getElementById('lang-switch'),menuButton=document.getElementById('menu-toggle'),menuOverlay=document.getElementById('menu-overlay'),header=document.getElementById('site-header'),logo=document.getElementById('logo'),popup1=document.getElementById('popup1'),popup2=document.getElementById('popup2'),form=document.getElementById('signup-form'),submitBtn=document.getElementById('submit-btn'),formMessage=document.getElementById('form-message');let currentLang='en';
+const langButton=document.getElementById('lang-switch'),
+menuButton=document.getElementById('menu-toggle'),
+menuOverlay=document.getElementById('menu-overlay'),
+header=document.getElementById('site-header'),
+logo=document.getElementById('logo'),
+popup1=document.getElementById('popup1'),
+popup2=document.getElementById('popup2'),
+form=document.getElementById('signup-form'),
+submitBtn=document.getElementById('submit-btn'),
+formMessage=document.getElementById('form-message');
+
+let currentLang='en';
+
 function setLanguage(lang){
+
 currentLang=lang;
+
 document.documentElement.lang=lang;
 
 document.querySelectorAll('.en').forEach(el=>{
@@ -147,17 +153,29 @@ document.querySelectorAll('.nl').forEach(el=>{
 el.style.display=lang==='nl'?'':'none';
 });
 
-document.querySelectorAll('#course-select option').forEach(option=>{
+const courseSelect=document.getElementById('course-select');
+
+if(courseSelect){
+
+courseSelect.querySelectorAll('option').forEach(option=>{
+
 if(option.dataset[lang]){
 option.textContent=option.dataset[lang];
 }
+
 });
 
-langButton.textContent=lang==='en'?'NL':'EN';
-langButton.setAttribute('aria-label',lang==='en'?'Switch to Dutch':'Wissel naar Engels');
-menuButton.setAttribute('aria-label',lang==='en'?'Open menu':'Menu openen');
 }
-langButton.addEventListener('click',()=>setLanguage(currentLang==='en'?'nl':'en'));
+
+langButton.textContent=lang==='en'?'NL':'EN';
+
+}
+
+setLanguage('en');
+
+langButton.addEventListener('click',()=>{
+setLanguage(currentLang==='en'?'nl':'en');
+});
 menuButton.addEventListener('click',()=>{menuButton.classList.toggle('open');menuOverlay.classList.toggle('open');document.body.classList.toggle('menu-open')});
 document.querySelectorAll('.menu-overlay a').forEach(link=>{link.addEventListener('click',()=>{menuButton.classList.remove('open');menuOverlay.classList.remove('open');document.body.classList.remove('menu-open')})});
 menuOverlay.addEventListener('click',event=>{if(event.target===menuOverlay){menuButton.classList.remove('open');menuOverlay.classList.remove('open');document.body.classList.remove('menu-open')}});
@@ -166,55 +184,11 @@ setTimeout(()=>popup1.classList.add('show'),2500);
 function updateScrollState(){const y=window.scrollY,h=document.body.scrollHeight-window.innerHeight,p=h>0?y/h:0;if(y>18){header.classList.add('scrolled')}else{header.classList.remove('scrolled')}if(y>window.innerHeight*.35){popup2.classList.add('show')}logo.classList.remove('logo-green','logo-cyan','logo-orange','logo-pink','logo-yellow');if(y<50){return}if(p<.25){logo.classList.add('logo-green')}else if(p<.45){logo.classList.add('logo-cyan')}else if(p<.65){logo.classList.add('logo-orange')}else if(p<.85){logo.classList.add('logo-pink')}else{logo.classList.add('logo-yellow')}}
 window.addEventListener('scroll',updateScrollState);window.addEventListener('load',()=>{setLanguage('en');updateScrollState()});
 document.addEventListener('click',event=>{if(!event.target.closest('.popup')){popup1.classList.remove('show');popup2.classList.remove('show')}});
-form.addEventListener('submit',async event=>{
-event.preventDefault();
-
-const formData=new FormData(form);
-formData.append('language',currentLang);
-
-submitBtn.disabled=true;
-submitBtn.textContent=currentLang==='en'?'Sending...':'Versturen...';
-formMessage.textContent='';
-
-try{
-const response=await fetch(form.action,{
-method:'POST',
-body:formData,
-headers:{Accept:'application/json'}
-});
-
-if(response.ok){
-form.reset();
-submitBtn.classList.add('submit-success');
-submitBtn.innerHTML=currentLang==='en'
-?'<span class="smiley">☺</span> Received'
-:'<span class="smiley">☺</span> Ontvangen';
-
-formMessage.textContent=currentLang==='en'
-?'Your signup has been received.'
-:'Je aanmelding is ontvangen.';
-}
-else{
-throw new Error('Form submission failed');
-}
-}
-catch(error){
-submitBtn.textContent=currentLang==='en'
-?'Email us directly'
-:'Mail ons direct';
-
-formMessage.textContent=currentLang==='en'
-?'Something went wrong. Please email studio16.1xb@gmail.com.'
-:'Er ging iets mis. Mail naar studio16.1xb@gmail.com.';
-}
-
-setTimeout(()=>{
-submitBtn.disabled=false;
-submitBtn.classList.remove('submit-success');
-submitBtn.innerHTML='<span class="en">Sign up today</span><span class="nl">Meld je vandaag aan</span>';
-setLanguage(currentLang);
-},4200);
-});
+form.addEventListener('submit',async event=>{event.preventDefault();const formData=new FormData(form);submitBtn.disabled=true;submitBtn.innerHTML=currentLang==='en'?'Sending...':'Versturen...';formMessage.textContent='';try{const response=await fetch(form.action,{method:'POST',body:formData,headers:{Accept:'application/json'}});if(response.ok){form.reset();submitBtn.classList.add('submit-success');submitBtn.innerHTML=currentLang==='en'?'<span class="smiley">☺</span> Received':'<span class="smiley">☺</span> Ontvangen';formMessage.textContent=currentLang==='en'?'Your signup has been received.':'Je aanmelding is ontvangen.'}else{throw new Error('Form submission failed')}}catch(error){submitBtn.innerHTML=currentLang==='en'?'Email us directly':'Mail ons direct';formMessage.innerHTML=currentLang==='en'?'Something went wrong. Please email studio16.1xb@gmail.com.':'Er ging iets mis. Mail naar studio16.1xb@gmail.com.'}setTimeout(()=>{submitBtn.disabled=false;submitBtn.classList.remove('submit-success');submitBtn.innerHTML=`
+<span class="en">Sign up today</span>
+<span class="nl">Meld je vandaag aan</span>
+`;
+setLanguage(currentLang)},4200)});
 </script>
 </body>
 </html>

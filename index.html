@@ -55,10 +55,33 @@ section{position:relative}.hero{min-height:100vh;padding:210px 7vw 95px;display:
 .signup{padding:135px 7vw 145px}.signup-intro{max-width:900px;margin-bottom:44px}.signup-intro p{font-size:20px;line-height:1.55;opacity:.72}.form{background:rgba(255,255,255,.28);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:44px;max-width:1100px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.field{display:flex;flex-direction:column}.field label{margin-bottom:10px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;opacity:.7}.field input,.field select,.field textarea{border:none;padding:18px;background:rgba(255,255,255,.7);font-size:16px;font-family:inherit;color:#1a1a1a}.field textarea{min-height:140px;resize:vertical}.field.full{margin-top:24px}.form-actions{margin-top:24px}.form-message{margin-top:14px;font-size:15px;opacity:.72;min-height:22px}.submit-success{background:#fff;color:#1a1a1a;border:1px solid #111}.smiley{font-size:17px;margin-right:7px}
 footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);gap:50px;color:#fff}.footer-heading{font-size:13px;text-transform:uppercase;letter-spacing:.16em;font-weight:700;opacity:.45;margin-bottom:18px}footer strong{display:block;margin-bottom:10px;font-size:16px;color:#fff}footer p,footer a{font-size:16px;line-height:1.55;text-decoration:none;color:#fff}
 @media(max-width:900px){.site-header{height:96px}.logo-svg{width:min(340px,70vw);top:30px}#lang-switch,.menu-toggle{width:42px;height:42px;top:24px}#lang-switch{left:16px}.menu-toggle{right:16px}.hero{padding:160px 6vw 80px}.hero h1{font-size:clamp(42px,15vw,74px)}.slideshow{aspect-ratio:1.25/1}.about,.programme,.gallery-section,.signup{padding:90px 6vw}.about-grid,.form-grid,footer,.gallery{grid-template-columns:1fr}h2{font-size:clamp(42px,14vw,76px)}.about-text p{font-size:22px}.card{min-height:auto}.popup{max-width:230px;transform:scale(.92)}.popup1{top:96px;left:14px}.popup2{right:14px;bottom:14px}}
+
+.draw-canvas{position:fixed;inset:0;z-index:500;display:none;cursor:crosshair;touch-action:none;mix-blend-mode:soft-light;pointer-events:none}
+.draw-canvas.active{display:block;pointer-events:all}
+.draw-toolbar{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);z-index:600;display:none;align-items:center;gap:12px;background:rgba(255,255,255,.28);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:12px 20px;border-radius:40px;box-shadow:0 4px 24px rgba(0,0,0,.10)}
+.draw-toolbar.active{display:flex}
+.draw-toolbar button{border:none;background:none;cursor:pointer;font-size:18px;padding:4px 6px;border-radius:8px;transition:background .2s}
+.draw-toolbar button:hover{background:rgba(0,0,0,.08)}
+.draw-toolbar input[type=range]{width:80px;accent-color:#555}
+.pencil-btn{position:fixed;bottom:32px;left:32px;z-index:600;width:52px;height:52px;border-radius:50%;border:none;background:rgba(255,255,255,.38);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);cursor:pointer;font-size:22px;box-shadow:0 4px 24px rgba(0,0,0,.10);transition:background .2s}
+.pencil-btn.active{background:rgba(0,0,0,.18)}
+
 </style>
 </head>
 <body>
-<header class="site-header" id="site-header">
+<canvas id="drawCanvas" class="draw-canvas"></canvas>
+<button class="pencil-btn" id="pencilBtn" title="Draw mode">✏️</button>
+<div class="draw-toolbar" id="drawToolbar">
+  <span style="font-size:13px;font-weight:600;opacity:.6">size</span>
+  <input type="range" id="brushSize" min="2" max="40" value="12">
+  <span style="font-size:13px;font-weight:600;opacity:.6">opacity</span>
+  <input type="range" id="brushOpacity" min="10" max="100" value="55">
+  <button id="undoBtn" title="Undo">↩</button>
+  <button id="clearBtn" title="Clear">🗑</button>
+  <button id="printBtn" title="Print">🖨</button>
+  <button id="emailBtn" title="Email">📧</button>
+</div>
+<div class="site-content"><header class="site-header" id="site-header">
   <div class="logo-svg" id="logo"><a href="https://amstelparkatelier.nl/" aria-label="Home"><img src="logo/amstelpark-logo.svg" alt="Amstelpark Atelier"></a></div>
   <button id="lang-switch" type="button" aria-label="Switch language">NL</button>
   <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
@@ -147,5 +170,167 @@ form.addEventListener('submit',async event=>{event.preventDefault();const formDa
 `;
 setLanguage(currentLang)},4200)});
 </script>
-</body>
+
+<script>
+(function(){
+  const canvas = document.getElementById('drawCanvas');
+  const ctx = canvas.getContext('2d');
+  const pencilBtn = document.getElementById('pencilBtn');
+  const toolbar = document.getElementById('drawToolbar');
+  const brushSize = document.getElementById('brushSize');
+  const brushOpacity = document.getElementById('brushOpacity');
+  const undoBtn = document.getElementById('undoBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const printBtn = document.getElementById('printBtn');
+  const emailBtn = document.getElementById('emailBtn');
+
+  let drawing = false;
+  let drawMode = false;
+  let lastX = 0, lastY = 0;
+  let snapshots = [];
+  let pressure = 1;
+
+  function resize(){
+    // Preserve drawing
+    const tmp = canvas.toDataURL();
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    if(snapshots.length){
+      const img = new Image();
+      img.onload = ()=> ctx.drawImage(img,0,0);
+      img.src = tmp;
+    }
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const siteContent = document.querySelector('.site-content');
+  let hiddenContent = null;
+
+  pencilBtn.addEventListener('click', ()=>{
+    drawMode = !drawMode;
+    pencilBtn.classList.toggle('active', drawMode);
+    canvas.classList.toggle('active', drawMode);
+    toolbar.classList.toggle('active', drawMode);
+    document.body.style.overflow = drawMode ? 'hidden' : '';
+    if(drawMode){
+      hiddenContent = siteContent.innerHTML;
+      siteContent.innerHTML = '';
+    } else {
+      if(hiddenContent) siteContent.innerHTML = hiddenContent;
+      hiddenContent = null;
+    }
+  });
+
+  function getPos(e){
+    const r = canvas.getBoundingClientRect();
+    if(e.touches) return {x: e.touches[0].clientX - r.left, y: e.touches[0].clientY - r.top, p: e.touches[0].force || 0.5};
+    return {x: e.clientX - r.left, y: e.clientY - r.top, p: 0.5};
+  }
+
+  function startDraw(e){
+    if(!drawMode) return;
+    e.preventDefault();
+    drawing = true;
+    // Save snapshot for undo
+    snapshots.push(ctx.getImageData(0,0,canvas.width,canvas.height));
+    if(snapshots.length > 30) snapshots.shift();
+    const pos = getPos(e);
+    lastX = pos.x; lastY = pos.y;
+  }
+
+  function doDraw(e){
+    if(!drawing || !drawMode) return;
+    e.preventDefault();
+    const pos = getPos(e);
+    // Simulate pressure via speed
+    const dist = Math.hypot(pos.x - lastX, pos.y - lastY);
+    const speedPressure = Math.max(0.3, 1 - dist/80);
+    const size = parseFloat(brushSize.value) * speedPressure;
+    const opacity = parseFloat(brushOpacity.value) / 100;
+
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.lineWidth = size;
+    ctx.strokeStyle = `rgba(255,252,240,${opacity})`;  // cream white
+    // Slightly textured via shadowBlur
+    ctx.shadowColor = `rgba(255,255,255,${opacity * 0.5})`;
+    ctx.shadowBlur = size * 0.6;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    lastX = pos.x; lastY = pos.y;
+  }
+
+  function endDraw(){ drawing = false; }
+
+  canvas.addEventListener('mousedown', startDraw);
+  canvas.addEventListener('mousemove', doDraw);
+  canvas.addEventListener('mouseup', endDraw);
+  canvas.addEventListener('mouseleave', endDraw);
+  canvas.addEventListener('touchstart', startDraw, {passive:false});
+  canvas.addEventListener('touchmove', doDraw, {passive:false});
+  canvas.addEventListener('touchend', endDraw);
+
+  undoBtn.addEventListener('click', ()=>{
+    if(snapshots.length) ctx.putImageData(snapshots.pop(), 0, 0);
+  });
+
+  clearBtn.addEventListener('click', ()=>{
+    snapshots.push(ctx.getImageData(0,0,canvas.width,canvas.height));
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+  });
+
+  function getCompositeImage(cb){
+    // Capture gradient background + drawing together
+    const bg = document.createElement('canvas');
+    bg.width = canvas.width;
+    bg.height = canvas.height;
+    const bgCtx = bg.getContext('2d');
+    // Render gradient
+    const totalH = document.documentElement.scrollHeight;
+    const scrollY = window.scrollY;
+    const stops = [
+      [0,'#ffe34d'],[.14,'#aaee55'],[.26,'#22ddaa'],[.38,'#11bbff'],
+      [.50,'#44aaff'],[.62,'#ff7722'],[.74,'#ff3388'],[.86,'#cc44ff'],[1,'#7722ee']
+    ];
+    const grad = bgCtx.createLinearGradient(0,0,0,bg.height);
+    stops.forEach(([pos, col])=>{
+      const shifted = (pos * totalH - scrollY) / bg.height;
+      const clamped = Math.max(0, Math.min(1, shifted));
+      grad.addColorStop(clamped, col);
+    });
+    bgCtx.fillStyle = grad;
+    bgCtx.fillRect(0,0,bg.width,bg.height);
+    bgCtx.drawImage(canvas,0,0);
+    cb(bg.toDataURL('image/png'));
+  }
+
+  printBtn.addEventListener('click', ()=>{
+    getCompositeImage(dataUrl=>{
+      const win = window.open('');
+      win.document.write(`<img src="${dataUrl}" style="max-width:100%">`);
+      win.print();
+    });
+  });
+
+  emailBtn.addEventListener('click', ()=>{
+    getCompositeImage(dataUrl=>{
+      // Download the image first (mailto can't attach blobs cross-browser)
+      const a = document.createElement('a');
+      a.download = 'amstelpark-drawing.png';
+      a.href = dataUrl;
+      a.click();
+      // Then open mail
+      setTimeout(()=>{
+        window.location.href = 'mailto:?subject=My drawing from Amstelpark Atelier&body=Hi! I made a drawing at amstelparkatelier.nl — find it attached.';
+      }, 800);
+    });
+  });
+})();
+</script>
+</div><!-- /.site-content --></body>
 </html>

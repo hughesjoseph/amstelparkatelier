@@ -56,7 +56,7 @@ section{position:relative}.hero{min-height:100vh;padding:210px 7vw 95px;display:
 footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);gap:50px;color:#fff}.footer-heading{font-size:13px;text-transform:uppercase;letter-spacing:.16em;font-weight:700;opacity:.45;margin-bottom:18px}footer strong{display:block;margin-bottom:10px;font-size:16px;color:#fff}footer p,footer a{font-size:16px;line-height:1.55;text-decoration:none;color:#fff}
 @media(max-width:900px){.site-header{height:96px}.logo-svg{width:min(340px,70vw);top:30px}#lang-switch,.menu-toggle{width:42px;height:42px;top:24px}#lang-switch{left:16px}.menu-toggle{right:16px}.hero{padding:160px 6vw 80px}.hero h1{font-size:clamp(42px,15vw,74px)}.slideshow{aspect-ratio:1.25/1}.about,.programme,.gallery-section,.signup{padding:90px 6vw}.about-grid,.form-grid,footer,.gallery{grid-template-columns:1fr}h2{font-size:clamp(42px,14vw,76px)}.about-text p{font-size:22px}.card{min-height:auto}.popup{max-width:230px;transform:scale(.92)}.popup1{top:96px;left:14px}.popup2{right:14px;bottom:14px}}
 
-.draw-canvas{position:fixed;inset:0;z-index:500;display:none;cursor:crosshair;touch-action:none;mix-blend-mode:soft-light;pointer-events:none}
+.draw-canvas{position:fixed;inset:0;z-index:500;display:none;cursor:crosshair;touch-action:none;pointer-events:none}
 .draw-canvas.active{display:block;pointer-events:all}
 .draw-toolbar{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);z-index:600;display:none;align-items:center;gap:12px;background:rgba(255,255,255,.28);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:12px 20px;border-radius:40px;box-shadow:0 4px 24px rgba(0,0,0,.10)}
 .draw-toolbar.active{display:flex}
@@ -73,12 +73,10 @@ footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);ga
 <button class="pencil-btn" id="pencilBtn" title="Draw mode">✏️</button>
 <div class="draw-toolbar" id="drawToolbar">
   <span style="font-size:13px;font-weight:600;opacity:.6">size</span>
-  <input type="range" id="brushSize" min="2" max="40" value="12">
-  <span style="font-size:13px;font-weight:600;opacity:.6">opacity</span>
-  <input type="range" id="brushOpacity" min="10" max="100" value="55">
+  <input type="range" id="brushSize" min="8" max="80" value="28">
   <button id="undoBtn" title="Undo">↩</button>
   <button id="clearBtn" title="Clear">🗑</button>
-  <button id="printBtn" title="Print">🖨</button>
+  <button id="printBtn" title="Download drawing">💾 Save</button>
   <button id="emailBtn" title="Email">📧</button>
 </div>
 <div class="site-content"><header class="site-header" id="site-header">
@@ -132,11 +130,11 @@ footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);ga
 <section class="programme" id="programme">
   <div class="kicker"><span class="en">Education</span><span class="nl">Educatie</span></div><h2><span class="en">Programme</span><span class="nl">Programma</span></h2>
   <div class="cards">
-    <article class="card"><h3><span class="en">Kids Drawing & Painting</span><span class="nl">Kinderen tekenen & schilderen</span></h3><p class="card-meta"><span class="en">Wednesday · 14:45–16:15<br>5–14 years · 4 lessons</span><span class="nl">Woensdag · 14:45–16:15<br>5–14 jaar · 4 lessen</span></p><p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p><div class="price">€94,60</div><a href="#signup" class="btn"><span class="en">Reserve spot</span><span class="nl">Reserveer plek</span></a></article>
+    <article class="card"><h3><span class="en">Wednesday Atelier</span><span class="nl">Woensdag Atelier</span></h3><p class="card-meta"><span class="en">Wednesday · 14:45–16:15<br>5–14 years · 4 lessons</span><span class="nl">Woensdag · 14:45–16:15<br>5–14 jaar · 4 lessen</span></p><p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p><div class="price">€94,60</div><a href="#signup" class="btn"><span class="en">Reserve spot</span><span class="nl">Reserveer plek</span></a></article>
     <article class="card"><h3><span class="en">Saturday Atelier</span><span class="nl">Zaterdag Atelier</span></h3><p class="card-meta"><span class="en">Saturday · 13:00–14:30<br>5–14 years · 4 lessons</span><span class="nl">Zaterdag · 13:00–14:30<br>5–14 jaar · 4 lessen</span></p><p class="card-desc"><span class="en">A weekly atelier for children to draw, paint and work from the park as a starting point.</span><span class="nl">Een wekelijks atelier waar kinderen tekenen, schilderen en werken vanuit het park als vertrekpunt.</span></p><div class="price">€94,60</div><a href="#signup" class="btn"><span class="en">Reserve spot</span><span class="nl">Reserveer plek</span></a></article>
-    <article class="card"><h3><span class="en">Make Your Own Materials</span><span class="nl">Maak je eigen materiaal</span></h3><p class="card-meta"><span class="en">Tuesday or Friday · 4 lessons<br>Adults / Children</span><span class="nl">Dinsdag of vrijdag · 4 lessen<br>Volwassenen / Kinderen</span></p><p class="card-desc"><span class="en">Make paper, brushes, pigments and paint from natural materials.</span><span class="nl">Maak papier, penselen, pigmenten en verf van natuurlijke materialen.</span></p><ul class="lessons"><li><span class="en">Paper · Brushes · Pigments · Paint</span><span class="nl">Papier · Penselen · Pigment · Verf</span></li></ul><div class="price">€106</div><a href="#signup" class="btn"><span class="en">Reserve spot</span><span class="nl">Reserveer plek</span></a></article>
-    <article class="card"><h3><span class="en">Adults Drawing & Painting</span><span class="nl">Volwassenen tekenen & schilderen</span></h3><p class="card-meta"><span class="en">Monday or Sunday · Weekly<br>4 lessons</span><span class="nl">Maandag of zondag · Wekelijks<br>4 lessen</span></p><p class="card-desc"><span class="en">Drawing, painting and plein-air observation with watercolour, oil pastel and acrylic.</span><span class="nl">Tekenen, schilderen en plein-air observatie met aquarel, olieverfkrijt en acrylverf.</span></p><div class="price">€65,50</div><a href="#signup" class="btn"><span class="en">Reserve spot</span><span class="nl">Reserveer plek</span></a></article>
-    <article class="card"><h3><span class="en">Ceramics</span><span class="nl">Keramiek</span></h3><p class="card-meta"><span class="en">Friday adults / Saturday children<br>4 lessons</span><span class="nl">Vrijdag volwassenen / Zaterdag kinderen<br>4 lessen</span></p><p class="card-desc"><span class="en">Small-scale ceramic classes with attention to form, hand-building and material process.</span><span class="nl">Kleinschalige keramieklessen met aandacht voor vorm, handopbouw en materiaalproces.</span></p><div class="price">€125</div><a href="#signup" class="btn"><span class="en">Reserve spot</span><span class="nl">Reserveer plek</span></a></article>
+    <article class="card"><h3><span class="en">Make Your Own Materials</span><span class="nl">Maak je eigen materiaal</span></h3><p class="card-meta"><span class="en">Tuesday 14:00–16:30 · Adults<br>Friday 15:30–17:00 · Children<br>4 lessons · 1 lesson €26,50</span><span class="nl">Dinsdag 14:00–16:30 · Volwassenen<br>Vrijdag 15:30–17:00 · Kinderen<br>4 lessen · 1 les €26,50</span></p><p class="card-desc"><span class="en">Make paper, brushes, pigments and paint from natural materials.</span><span class="nl">Maak papier, penselen, pigmenten en verf van natuurlijke materialen.</span></p><ul class="lessons"><li><span class="en">Les 1 · Make your own paper</span><span class="nl">Les 1 · Papier maken</span></li><li><span class="en">Les 2 · Make your own brushes</span><span class="nl">Les 2 · Penselen maken</span></li><li><span class="en">Les 3 · Make your own pigments &amp; paint</span><span class="nl">Les 3 · Pigmenten &amp; verf maken</span></li><li><span class="en">Les 4 · Make your own paint</span><span class="nl">Les 4 · Verf maken</span></li></ul><div class="price">€106</div><a href="#signup" class="btn"><span class="en">Reserve spot</span><span class="nl">Reserveer plek</span></a></article>
+    <article class="card"><h3><span class="en">Adults Drawing &amp; Painting</span><span class="nl">Volwassenen tekenen &amp; schilderen</span></h3><p class="card-meta"><span class="en">Monday 10:00–12:30 · Monday 14:00–16:30<br>Watercolour · Oil pastel · Acrylic<br>4 lessons · 1 lesson €26,50</span><span class="nl">Maandag 10:00–12:30 · Maandag 14:00–16:30<br>Aquarel · Olievetkrijt · Acrylverf<br>4 lessen · 1 les €26,50</span></p><p class="card-desc"><span class="en">Drawing and painting through observation, material and process. Sessions move between outdoor work and the studio.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en proces. Lessen wisselen tussen buiten en atelier.</span></p><div class="price">€94,60</div><a href="#signup" class="btn"><span class="en">Reserve spot</span><span class="nl">Reserveer plek</span></a></article><article class="card"><h3><span class="en">Oil Painting</span><span class="nl">Olieverf schilderen</span></h3><p class="card-meta"><span class="en">Sunday 10:00–12:30 · Sunday 14:00–16:30<br>Painting in the park with oil paint<br>4 lessons · 1 lesson €26,50</span><span class="nl">Zondag 10:00–12:30 · Zondag 14:00–16:30<br>Schilderen in het park met olieverf<br>4 lessen · 1 les €26,50</span></p><p class="card-desc"><span class="en">Outdoor painting in Amstelpark. The park as a living subject — light, season, landscape.</span><span class="nl">Buiten schilderen in het Amstelpark. Het park als levend onderwerp — licht, seizoen, landschap.</span></p><div class="price">€120</div><a href="#signup" class="btn"><span class="en">Reserve spot</span><span class="nl">Reserveer plek</span></a></article>
+    <article class="card"><h3><span class="en">Ceramics</span><span class="nl">Keramiek</span></h3><p class="card-meta"><span class="en">Friday 10:00–12:30 · Adults<br>Saturday 10:00–11:30 · Children<br>4 lessons · 1 lesson €26,50</span><span class="nl">Vrijdag 10:00–12:30 · Volwassenen<br>Zaterdag 10:00–11:30 · Kinderen<br>4 lessen · 1 les €26,50</span></p><p class="card-desc"><span class="en">Small-scale ceramic classes with attention to form, hand-building and material process.</span><span class="nl">Kleinschalige keramieklessen met aandacht voor vorm, handopbouw en materiaalproces.</span></p><div class="price">€125</div><a href="#signup" class="btn"><span class="en">Reserve spot</span><span class="nl">Reserveer plek</span></a></article>
   </div>
 </section>
 
@@ -145,7 +143,7 @@ footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);ga
 <section class="signup" id="signup"><div class="signup-intro"><div class="kicker"><span class="en">Signup</span><span class="nl">Aanmelden</span></div><h2><span class="en">Reserve your spot!</span><span class="nl">Reserveer je plek!</span></h2><p><span class="en">Fill in the form and we will confirm your place or answer your question personally.</span><span class="nl">Vul het formulier in en we bevestigen je plek of beantwoorden je vraag persoonlijk.</span></p></div>
 <form action="https://formsubmit.co/studio16.1xb@gmail.com" method="POST" class="form" id="signup-form">
 <input type="hidden" name="_subject" value="New Amstelpark Atelier Signup"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input type="hidden" name="_next" value="https://amstelparkatelier.nl"><input type="hidden" name="_autoresponse" value="Thank you for your signup. We received your message and will get back to you shortly.">
-<div class="form-grid"><div class="field"><label><span class="en">Name</span><span class="nl">Naam</span></label><input type="text" name="name" required></div><div class="field"><label>Email</label><input type="email" name="email" required></div><div class="field"><label><span class="en">Course</span><span class="nl">Cursus</span></label><select name="course" required><option value="Kids Drawing & Painting / Wednesday" data-en="Kids Drawing & Painting — Wednesday" data-nl="Kinderen tekenen & schilderen — Woensdag">Kids Drawing & Painting — Wednesday</option><option value="Saturday Atelier" data-en="Saturday Atelier" data-nl="Zaterdag Atelier">Saturday Atelier</option><option value="Make Your Own Materials" data-en="Make Your Own Materials" data-nl="Maak je eigen materiaal">Make Your Own Materials</option><option value="Adults Drawing & Painting" data-en="Adults Drawing & Painting" data-nl="Volwassenen tekenen & schilderen">Adults Drawing & Painting</option><option value="Ceramics" data-en="Ceramics" data-nl="Keramiek">Ceramics</option><option value="Birthday bookings / Space for hire" data-en="Birthday bookings / Space for hire" data-nl="Verjaardagsboekingen / Ruimte huren">Birthday bookings / Space for hire</option><option value="Private workshops / Schools / BSO" data-en="Private workshops / Schools / BSO" data-nl="Privéworkshops / Scholen / BSO">Private workshops / Schools / BSO</option></select></div><div class="field"><label><span class="en">Age</span><span class="nl">Leeftijd</span></label><input type="text" name="age"></div></div>
+<div class="form-grid"><div class="field"><label><span class="en">Name</span><span class="nl">Naam</span></label><input type="text" name="name" required></div><div class="field"><label>Email</label><input type="email" name="email" required></div><div class="field"><label><span class="en">Course</span><span class="nl">Cursus</span></label><select name="course" required><option value="Wednesday Atelier" data-en="Wednesday Atelier" data-nl="Woensdag Atelier">Wednesday Atelier</option><option value="Saturday Atelier" data-en="Saturday Atelier" data-nl="Zaterdag Atelier">Saturday Atelier</option><option value="Make Your Own Materials" data-en="Make Your Own Materials" data-nl="Maak je eigen materiaal">Make Your Own Materials</option><option value="Adults Drawing & Painting" data-en="Adults Drawing & Painting — Monday" data-nl="Volwassenen tekenen & schilderen — Maandag">Adults Drawing & Painting — Monday</option><option value="Oil Painting En Plein Air" data-en="Oil Painting — En Plein Air (Sunday)" data-nl="Olieverf — En Plein Air (Zondag)">Oil Painting — En Plein Air (Sunday)</option><option value="Ceramics" data-en="Ceramics" data-nl="Keramiek">Ceramics</option><option value="Birthday bookings / Space for hire" data-en="Birthday bookings / Space for hire" data-nl="Verjaardagsboekingen / Ruimte huren">Birthday bookings / Space for hire</option><option value="Private workshops / Schools / BSO" data-en="Private workshops / Schools / BSO" data-nl="Privéworkshops / Scholen / BSO">Private workshops / Schools / BSO</option></select></div><div class="field"><label><span class="en">Age</span><span class="nl">Leeftijd</span></label><input type="text" name="age"></div></div>
 <div class="field full"><label><span class="en">Message</span><span class="nl">Bericht</span></label><textarea name="message"></textarea></div><div class="form-actions"><button type="submit" class="btn" id="submit-btn"><span class="en">Sign up today</span><span class="nl">Meld je vandaag aan</span></button><div class="form-message" id="form-message"></div></div>
 </form></section>
 </main>
@@ -178,7 +176,6 @@ setLanguage(currentLang)},4200)});
   const pencilBtn = document.getElementById('pencilBtn');
   const toolbar = document.getElementById('drawToolbar');
   const brushSize = document.getElementById('brushSize');
-  const brushOpacity = document.getElementById('brushOpacity');
   const undoBtn = document.getElementById('undoBtn');
   const clearBtn = document.getElementById('clearBtn');
   const printBtn = document.getElementById('printBtn');
@@ -247,7 +244,7 @@ setLanguage(currentLang)},4200)});
     const dist = Math.hypot(pos.x - lastX, pos.y - lastY);
     const speedPressure = Math.max(0.3, 1 - dist/80);
     const size = parseFloat(brushSize.value) * speedPressure;
-    const opacity = parseFloat(brushOpacity.value) / 100;
+    const opacity = 1.0;
 
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
@@ -255,9 +252,9 @@ setLanguage(currentLang)},4200)});
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     ctx.lineWidth = size;
-    ctx.strokeStyle = `rgba(255,252,240,${opacity})`;  // cream white
+    ctx.strokeStyle = '#ffffff';
     // Slightly textured via shadowBlur
-    ctx.shadowColor = `rgba(255,255,255,${opacity * 0.5})`;
+    ctx.shadowColor = 'rgba(255,255,255,0.6)';
     ctx.shadowBlur = size * 0.6;
     ctx.stroke();
     ctx.shadowBlur = 0;
@@ -311,23 +308,28 @@ setLanguage(currentLang)},4200)});
 
   printBtn.addEventListener('click', ()=>{
     getCompositeImage(dataUrl=>{
-      const win = window.open('');
-      win.document.write(`<img src="${dataUrl}" style="max-width:100%">`);
-      win.print();
+      // Download as PNG directly — most reliable cross-browser
+      const a = document.createElement('a');
+      a.download = 'amstelpark-drawing.png';
+      a.href = dataUrl;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     });
   });
 
   emailBtn.addEventListener('click', ()=>{
     getCompositeImage(dataUrl=>{
-      // Download the image first (mailto can't attach blobs cross-browser)
+      // Step 1: download the image
       const a = document.createElement('a');
       a.download = 'amstelpark-drawing.png';
       a.href = dataUrl;
       a.click();
-      // Then open mail
+      // Step 2: open mail with instructions (browsers cannot auto-attach files)
       setTimeout(()=>{
-        window.location.href = 'mailto:?subject=My drawing from Amstelpark Atelier&body=Hi! I made a drawing at amstelparkatelier.nl — find it attached.';
-      }, 800);
+        const body = encodeURIComponent('Hi!\n\nI made a drawing on amstelparkatelier.nl.\nFind it in your Downloads as amstelpark-drawing.png — just attach it to this email!');
+        window.location.href = 'mailto:?subject=My drawing from Amstelpark Atelier&body=' + body;
+      }, 1000);
     });
   });
 })();

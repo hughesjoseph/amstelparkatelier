@@ -173,17 +173,17 @@ footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);ga
 <h2><span class="en">Programme</span><span class="nl">Programma</span></h2>
 <div class="cards">
 
-<article class="card"><div class="card-day">TUESDAY</div><div class="card-age">ADULTS</div><h3>MAKE YOUR OWN MATERIALS</h3><div class="card-time">14:00–16:30</div><p class="card-desc">Make paper, brushes, pigments and paint from natural materials.</p><div class="price">€106</div></article>
+<article class="card"><div class="card-day">TUESDAY</div><div class="card-age">ADULTS</div><h3>MAKE YOUR OWN MATERIALS</h3><div class="card-time">14:00–16:30</div><p class="card-desc">Make paper, brushes, pigments and paint from natural materials.</p><div class="price">€106</div><a href="#signup" class="btn preselect-programme" data-programme="Regular Programme">Reserve your place</a></article>
 
-<article class="card"><div class="card-day">WEDNESDAY</div><div class="card-age">AGES 5–8</div><h3>KIDS DRAWING & PAINTING</h3><div class="card-time">14:00–15:30</div><p class="card-desc">Drawing and painting through observation, materials and nature exploration.</p><div class="price">€94,60</div></article>
+<article class="card"><div class="card-day">WEDNESDAY</div><div class="card-age">AGES 5–8</div><h3>KIDS DRAWING & PAINTING</h3><div class="card-time">14:00–15:30</div><p class="card-desc">Drawing and painting through observation, materials and nature exploration.</p><div class="price">€94,60</div><a href="#signup" class="btn preselect-programme" data-programme="Regular Programme">Reserve your place</a></article>
 
-<article class="card"><div class="card-day">FRIDAY</div><div class="card-age">ADULTS</div><h3>CERAMICS</h3><div class="card-time">13:00–14:30</div><p class="card-desc">Hand-building and material exploration.</p><div class="price">€125</div></article>
+<article class="card"><div class="card-day">FRIDAY</div><div class="card-age">ADULTS</div><h3>CERAMICS</h3><div class="card-time">13:00–14:30</div><p class="card-desc">Hand-building and material exploration.</p><div class="price">€125</div><a href="#signup" class="btn preselect-programme" data-programme="Regular Programme">Reserve your place</a></article>
 
-<article class="card"><div class="card-day">FRIDAY</div><div class="card-age">AGES 9–14</div><h3>MAKE YOUR OWN MATERIALS</h3><div class="card-time">15:30–17:00</div><p class="card-desc">Make paper, brushes, pigments and paint from natural materials.</p><div class="price">€106</div></article>
+<article class="card"><div class="card-day">FRIDAY</div><div class="card-age">AGES 9–14</div><h3>MAKE YOUR OWN MATERIALS</h3><div class="card-time">15:30–17:00</div><p class="card-desc">Make paper, brushes, pigments and paint from natural materials.</p><div class="price">€106</div><a href="#signup" class="btn preselect-programme" data-programme="Regular Programme">Reserve your place</a></article>
 
-<article class="card"><div class="card-day">SATURDAY</div><div class="card-age">AGES 5–8</div><h3>SATURDAY ATELIER</h3><div class="card-time">10:00–11:30</div><p class="card-desc">Drawing, painting and making in and around Amstelpark.</p><div class="price">€94,60</div></article>
+<article class="card"><div class="card-day">SATURDAY</div><div class="card-age">AGES 5–8</div><h3>SATURDAY ATELIER</h3><div class="card-time">10:00–11:30</div><p class="card-desc">Drawing, painting and making in and around Amstelpark.</p><div class="price">€94,60</div><a href="#signup" class="btn preselect-programme" data-programme="Regular Programme">Reserve your place</a></article>
 
-<article class="card"><div class="card-day">SATURDAY</div><div class="card-age">AGES 9–14</div><h3>SATURDAY ATELIER</h3><div class="card-time">13:00–14:30</div><p class="card-desc">Drawing, painting and making in and around Amstelpark.</p><div class="price">€94,60</div></article>
+<article class="card"><div class="card-day">SATURDAY</div><div class="card-age">AGES 9–14</div><h3>SATURDAY ATELIER</h3><div class="card-time">13:00–14:30</div><p class="card-desc">Drawing, painting and making in and around Amstelpark.</p><div class="price">€94,60</div><a href="#signup" class="btn preselect-programme" data-programme="Regular Programme">Reserve your place</a></article>
 
 </div>
 
@@ -340,6 +340,20 @@ form.addEventListener('submit',async event=>{event.preventDefault();const formDa
 <span class="nl">Meld je vandaag aan</span>
 `;
 setLanguage(currentLang)},4200)});
+
+document.querySelectorAll('.preselect-programme').forEach(button=>{
+ button.addEventListener('click',()=>{
+   const select=document.getElementById('programme-select');
+   if(!select) return;
+   const programme=button.dataset.programme;
+   if(programme && select.querySelector(`option[value="${programme}"]`)){
+      select.value=programme;
+   }
+   select.dispatchEvent(new Event('change'));
+   document.getElementById('signup')?.scrollIntoView({behavior:'smooth'});
+ });
+});
+
 </script>
 
 <script>

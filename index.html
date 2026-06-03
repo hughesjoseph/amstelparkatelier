@@ -106,6 +106,24 @@ footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);ga
 .pencil-btn{position:fixed;bottom:32px;left:32px;z-index:600;width:52px;height:52px;border-radius:50%;border:none;background:rgba(255,255,255,.38);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);cursor:pointer;font-size:22px;box-shadow:0 4px 24px rgba(0,0,0,.10);transition:background .2s}
 .pencil-btn.active{background:rgba(0,0,0,.18)}
 
+
+.card h3{font-size:clamp(26px,2.05vw,42px);line-height:.98;letter-spacing:-.04em;min-height:96px}
+.card-desc{min-height:76px}
+.price{font-size:22px;line-height:1.35;margin-top:auto;padding-top:20px}
+.card .btn{margin-top:20px;width:100%}
+.radio-group{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px}
+.radio-group label{display:flex;align-items:center;gap:8px;font-size:16px;line-height:1.35;cursor:pointer}
+.radio-group input{transform:scale(1.15)}
+.booking-type-field{display:none}
+.booking-type-field.show{display:flex}
+@media(max-width:900px){
+.card h3{font-size:34px;min-height:auto}
+.card-desc{min-height:auto}
+.form-grid{grid-template-columns:1fr;gap:16px}
+.field input,.field select,.field textarea{font-size:16px;padding:14px}
+.radio-group{flex-direction:column;gap:12px}
+}
+
 </style>
 </head>
 <body>
@@ -171,19 +189,68 @@ footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);ga
 <section class="programme" id="programme">
 <div class="kicker"><span class="en">Education</span><span class="nl">Educatie</span></div>
 <h2><span class="en">Programme</span><span class="nl">Programma</span></h2>
+
 <div class="cards">
 
-<article class="card"><div class="card-day">TUESDAY</div><div class="card-time">14:00–16:30</div><div class="card-age">ADULTS</div><h3>MAKE YOUR OWN MATERIALS</h3><p class="card-desc">Make paper, brushes, pigments and paint from natural materials.</p><div class="price">€106</div><a href="#signup" class="btn preselect-programme" data-programme="Tuesday · Adults · Make Your Own Materials">Reserve your place</a></article>
+<article class="card">
+<div class="card-day"><span class="en">TUESDAY</span><span class="nl">DINSDAG</span></div>
+<div class="card-time">14:00–16:30</div>
+<div class="card-age"><span class="en">ADULTS</span><span class="nl">VOLWASSENEN</span></div>
+<h3><span class="en">MAKE YOUR OWN MATERIALS</span><span class="nl">MAAK JE EIGEN MATERIAAL</span></h3>
+<p class="card-desc"><span class="en">Make paper, brushes, pigments and paint from natural materials.</span><span class="nl">Maak papier, penselen, pigmenten en verf van natuurlijke materialen.</span></p>
+<div class="price">€106</div>
+<a href="#signup" class="btn preselect-programme" data-programme="Tuesday · Adults · Make Your Own Materials"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+</article>
 
-<article class="card"><div class="card-day">WEDNESDAY</div><div class="card-time">14:00–15:30</div><div class="card-age">AGES 5–8</div><h3>KIDS DRAWING & PAINTING</h3><p class="card-desc">Drawing and painting through observation, materials and nature exploration.</p><div class="price">€94,60</div><a href="#signup" class="btn preselect-programme" data-programme="Wednesday · Ages 5–8 · Kids Drawing & Painting">Reserve your place</a></article>
+<article class="card">
+<div class="card-day"><span class="en">WEDNESDAY</span><span class="nl">WOENSDAG</span></div>
+<div class="card-time">14:00–15:30</div>
+<div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div>
+<h3><span class="en">WEDNESDAY ATELIER</span><span class="nl">WOENSDAG ATELIER</span></h3>
+<p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p>
+<div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div>
+<a href="#signup" class="btn preselect-programme" data-programme="Wednesday · Ages 5–8 · Wednesday Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+</article>
 
-<article class="card"><div class="card-day">FRIDAY</div><div class="card-time">13:00–14:30</div><div class="card-age">ADULTS</div><h3>CERAMICS</h3><p class="card-desc">Hand-building and material exploration.</p><div class="price">€125</div><a href="#signup" class="btn preselect-programme" data-programme="Friday · Adults · Ceramics">Reserve your place</a></article>
+<article class="card">
+<div class="card-day"><span class="en">FRIDAY</span><span class="nl">VRIJDAG</span></div>
+<div class="card-time">13:00–14:30</div>
+<div class="card-age"><span class="en">ADULTS</span><span class="nl">VOLWASSENEN</span></div>
+<h3><span class="en">CERAMICS</span><span class="nl">KERAMIEK</span></h3>
+<p class="card-desc"><span class="en">Hand-building and material exploration.</span><span class="nl">Handopbouw en materiaalonderzoek.</span></p>
+<div class="price">€125</div>
+<a href="#signup" class="btn preselect-programme" data-programme="Friday · Adults · Ceramics"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+</article>
 
-<article class="card"><div class="card-day">FRIDAY</div><div class="card-time">15:30–17:00</div><div class="card-age">AGES 9–14</div><h3>MAKE YOUR OWN MATERIALS</h3><p class="card-desc">Make paper, brushes, pigments and paint from natural materials.</p><div class="price">€106</div><a href="#signup" class="btn preselect-programme" data-programme="Friday · Ages 9–14 · Make Your Own Materials">Reserve your place</a></article>
+<article class="card">
+<div class="card-day"><span class="en">FRIDAY</span><span class="nl">VRIJDAG</span></div>
+<div class="card-time">15:30–17:00</div>
+<div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div>
+<h3><span class="en">MAKE YOUR OWN MATERIALS</span><span class="nl">MAAK JE EIGEN MATERIAAL</span></h3>
+<p class="card-desc"><span class="en">Make paper, brushes, pigments and paint from natural materials.</span><span class="nl">Maak papier, penselen, pigmenten en verf van natuurlijke materialen.</span></p>
+<div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div>
+<a href="#signup" class="btn preselect-programme" data-programme="Friday · Ages 9–14 · Make Your Own Materials"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+</article>
 
-<article class="card"><div class="card-day">SATURDAY</div><div class="card-time">10:00–11:30</div><div class="card-age">AGES 5–8</div><h3>SATURDAY ATELIER</h3><p class="card-desc">Drawing, painting and making in and around Amstelpark.</p><div class="price">€94,60</div><a href="#signup" class="btn preselect-programme" data-programme="Saturday · Ages 5–8 · Saturday Atelier">Reserve your place</a></article>
+<article class="card">
+<div class="card-day"><span class="en">SATURDAY</span><span class="nl">ZATERDAG</span></div>
+<div class="card-time">10:00–11:30</div>
+<div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div>
+<h3><span class="en">SATURDAY ATELIER</span><span class="nl">ZATERDAG ATELIER</span></h3>
+<p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p>
+<div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div>
+<a href="#signup" class="btn preselect-programme" data-programme="Saturday · Ages 5–8 · Saturday Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+</article>
 
-<article class="card"><div class="card-day">SATURDAY</div><div class="card-time">13:00–14:30</div><div class="card-age">AGES 9–14</div><h3>SATURDAY ATELIER</h3><p class="card-desc">Drawing, painting and making in and around Amstelpark.</p><div class="price">€94,60</div><a href="#signup" class="btn preselect-programme" data-programme="Saturday · Ages 9–14 · Saturday Atelier">Reserve your place</a></article>
+<article class="card">
+<div class="card-day"><span class="en">SATURDAY</span><span class="nl">ZATERDAG</span></div>
+<div class="card-time">13:00–14:30</div>
+<div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div>
+<h3><span class="en">SATURDAY ATELIER</span><span class="nl">ZATERDAG ATELIER</span></h3>
+<p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p>
+<div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div>
+<a href="#signup" class="btn preselect-programme" data-programme="Saturday · Ages 9–14 · Saturday Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+</article>
 
 </div>
 
@@ -194,90 +261,27 @@ footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);ga
 </div>
 
 <div class="cards">
-<article class="card">
-<div class="card-day"><span class="en">MONDAY</span><span class="nl">MAANDAG</span></div>
-<div class="card-time">10:00–11:30</div>
-<div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div>
-<h3><span class="en">SUMMER ATELIER</span><span class="nl">ZOMERATELIER</span></h3>
-<a href="#signup" class="btn preselect-programme" data-programme="Monday · Ages 5–8 · Summer Atelier">
-<span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span>
-</a>
-</article>
-<article class="card">
-<div class="card-day"><span class="en">MONDAY</span><span class="nl">MAANDAG</span></div>
-<div class="card-time">14:00–15:30</div>
-<div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div>
-<h3><span class="en">SUMMER ATELIER</span><span class="nl">ZOMERATELIER</span></h3>
-<a href="#signup" class="btn preselect-programme" data-programme="Monday · Ages 9–14 · Summer Atelier">
-<span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span>
-</a>
-</article>
-<article class="card">
-<div class="card-day"><span class="en">TUESDAY</span><span class="nl">DINSDAG</span></div>
-<div class="card-time">10:00–11:30</div>
-<div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div>
-<h3><span class="en">TIE-DYE ATELIER</span><span class="nl">TIE-DYE ATELIER</span></h3>
-<a href="#signup" class="btn preselect-programme" data-programme="Tuesday · Ages 5–8 · Tie-Dye Atelier">
-<span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span>
-</a>
-</article>
-<article class="card">
-<div class="card-day"><span class="en">TUESDAY</span><span class="nl">DINSDAG</span></div>
-<div class="card-time">13:00–14:30</div>
-<div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div>
-<h3><span class="en">TIE-DYE ATELIER</span><span class="nl">TIE-DYE ATELIER</span></h3>
-<a href="#signup" class="btn preselect-programme" data-programme="Tuesday · Ages 9–14 · Tie-Dye Atelier">
-<span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span>
-</a>
-</article>
-<article class="card">
-<div class="card-day"><span class="en">WEDNESDAY</span><span class="nl">WOENSDAG</span></div>
-<div class="card-time">10:00–11:30</div>
-<div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div>
-<h3><span class="en">SUMMER ATELIER</span><span class="nl">ZOMERATELIER</span></h3>
-<a href="#signup" class="btn preselect-programme" data-programme="Wednesday · Ages 5–8 · Summer Atelier">
-<span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span>
-</a>
-</article>
-<article class="card">
-<div class="card-day"><span class="en">WEDNESDAY</span><span class="nl">WOENSDAG</span></div>
-<div class="card-time">14:00–15:30</div>
-<div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div>
-<h3><span class="en">SUMMER ATELIER</span><span class="nl">ZOMERATELIER</span></h3>
-<a href="#signup" class="btn preselect-programme" data-programme="Wednesday · Ages 9–14 · Summer Atelier">
-<span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span>
-</a>
-</article>
-<article class="card">
-<div class="card-day"><span class="en">FRIDAY</span><span class="nl">VRIJDAG</span></div>
-<div class="card-time">10:00–11:30</div>
-<div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div>
-<h3><span class="en">CERAMICS ATELIER</span><span class="nl">KERAMIEK ATELIER</span></h3>
-<a href="#signup" class="btn preselect-programme" data-programme="Friday · Ages 9–14 · Ceramics Atelier">
-<span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span>
-</a>
-</article>
-<article class="card">
-<div class="card-day"><span class="en">SATURDAY</span><span class="nl">ZATERDAG</span></div>
-<div class="card-time">10:00–11:30</div>
-<div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div>
-<h3><span class="en">SATURDAY ATELIER</span><span class="nl">ZATERDAG ATELIER</span></h3>
-<a href="#signup" class="btn preselect-programme" data-programme="Saturday · Ages 5–8 · Saturday Atelier">
-<span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span>
-</a>
-</article>
-<article class="card">
-<div class="card-day"><span class="en">SATURDAY</span><span class="nl">ZATERDAG</span></div>
-<div class="card-time">13:00–14:30</div>
-<div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div>
-<h3><span class="en">SATURDAY ATELIER</span><span class="nl">ZATERDAG ATELIER</span></h3>
-<a href="#signup" class="btn preselect-programme" data-programme="Saturday · Ages 9–14 · Saturday Atelier">
-<span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span>
-</a>
-</article>
+
+<article class="card"><div class="card-day"><span class="en">MONDAY</span><span class="nl">MAANDAG</span></div><div class="card-time">10:00–11:30</div><div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div><h3><span class="en">SUMMER ATELIER</span><span class="nl">ZOMERATELIER</span></h3><p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Monday · Ages 5–8 · Summer Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">MONDAY</span><span class="nl">MAANDAG</span></div><div class="card-time">14:00–15:30</div><div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div><h3><span class="en">SUMMER ATELIER</span><span class="nl">ZOMERATELIER</span></h3><p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Monday · Ages 9–14 · Summer Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">TUESDAY</span><span class="nl">DINSDAG</span></div><div class="card-time">10:00–11:30</div><div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div><h3><span class="en">TIE-DYE ATELIER</span><span class="nl">TIE-DYE ATELIER</span></h3><p class="card-desc"><span class="en">Learn the process and techniques to dye your fabrics and clothes.</span><span class="nl">Leer het proces en de technieken om stoffen en kleding te verven.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Tuesday · Ages 5–8 · Tie-Dye Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">TUESDAY</span><span class="nl">DINSDAG</span></div><div class="card-time">13:00–14:30</div><div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div><h3><span class="en">TIE-DYE ATELIER</span><span class="nl">TIE-DYE ATELIER</span></h3><p class="card-desc"><span class="en">Learn the process and techniques to dye your fabrics and clothes.</span><span class="nl">Leer het proces en de technieken om stoffen en kleding te verven.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Tuesday · Ages 9–14 · Tie-Dye Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">WEDNESDAY</span><span class="nl">WOENSDAG</span></div><div class="card-time">10:00–11:30</div><div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div><h3><span class="en">SUMMER ATELIER</span><span class="nl">ZOMERATELIER</span></h3><p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Wednesday · Ages 5–8 · Summer Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">WEDNESDAY</span><span class="nl">WOENSDAG</span></div><div class="card-time">14:00–15:30</div><div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div><h3><span class="en">SUMMER ATELIER</span><span class="nl">ZOMERATELIER</span></h3><p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Wednesday · Ages 5–8 · Summer Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">FRIDAY</span><span class="nl">VRIJDAG</span></div><div class="card-time">10:00–11:30</div><div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div><h3><span class="en">CERAMICS ATELIER</span><span class="nl">KERAMIEK ATELIER</span></h3><p class="card-desc"><span class="en">Hand-building and material exploration.</span><span class="nl">Handopbouw en materiaalonderzoek.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Friday · Ages 9–14 · Ceramics Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">SATURDAY</span><span class="nl">ZATERDAG</span></div><div class="card-time">10:00–11:30</div><div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div><h3><span class="en">SATURDAY ATELIER</span><span class="nl">ZATERDAG ATELIER</span></h3><p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Saturday · Ages 5–8 · Saturday Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">SATURDAY</span><span class="nl">ZATERDAG</span></div><div class="card-time">13:00–14:30</div><div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div><h3><span class="en">SATURDAY ATELIER</span><span class="nl">ZATERDAG ATELIER</span></h3><p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Saturday · Ages 9–14 · Saturday Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
 </div>
 </section>
-
 <section class="gallery-section" id="gallery"><div class="kicker"><span class="en">Gallery</span><span class="nl">Galerij</span></div><h2><span class="en">Process</span><span class="nl">Proces</span></h2><div class="gallery"><img src="images/4.jpg" alt=""><img src="images/5.jpg" alt=""><img src="images/6.jpg" alt=""><img src="images/7.jpg" alt=""><img src="images/8.jpg" alt=""><img src="images/9.jpg" alt=""></div></section>
 
 <section class="signup" id="signup"><div class="signup-intro"><div class="kicker"><span class="en">Signup</span><span class="nl">Aanmelden</span></div><h2><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></h2><p><span class="en">Fill in the form and we will confirm your place or answer your question personally.</span><span class="nl">Vul het formulier in en we bevestigen je plek of beantwoorden je vraag persoonlijk.</span></p></div>
@@ -286,26 +290,35 @@ footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);ga
 <div class="form-grid"><div class="field"><label><span class="en">Name</span><span class="nl">Naam</span></label><input type="text" name="name" required></div><div class="field"><label>Email</label><input type="email" name="email" required></div><div class="field"><label><span class="en">Programme</span><span class="nl">Programma</span></label><select name="course" required id="programme-select">
 <optgroup label="Regular Programme">
 <option value="Tuesday · Adults · Make Your Own Materials" data-en="Tuesday · Adults · Make Your Own Materials" data-nl="Dinsdag · Volwassenen · Maak je eigen materiaal">Tuesday · Adults · Make Your Own Materials</option>
-<option value="Wednesday · Ages 5–8 · Kids Drawing & Painting" data-en="Wednesday · Ages 5–8 · Kids Drawing & Painting" data-nl="Woensdag · 5–8 jaar · Kinderen tekenen & schilderen">Wednesday · Ages 5–8 · Kids Drawing & Painting</option>
+<option value="Wednesday · Ages 5–8 · Wednesday Atelier" data-booking="choice" data-en="Wednesday · Ages 5–8 · Wednesday Atelier" data-nl="Woensdag · 5–8 jaar · Woensdag Atelier">Wednesday · Ages 5–8 · Wednesday Atelier</option>
 <option value="Friday · Adults · Ceramics" data-en="Friday · Adults · Ceramics" data-nl="Vrijdag · Volwassenen · Keramiek">Friday · Adults · Ceramics</option>
-<option value="Friday · Ages 9–14 · Make Your Own Materials" data-en="Friday · Ages 9–14 · Make Your Own Materials" data-nl="Vrijdag · 9–14 jaar · Maak je eigen materiaal">Friday · Ages 9–14 · Make Your Own Materials</option>
-<option value="Saturday · Ages 5–8 · Saturday Atelier" data-en="Saturday · Ages 5–8 · Saturday Atelier" data-nl="Zaterdag · 5–8 jaar · Zaterdag Atelier">Saturday · Ages 5–8 · Saturday Atelier</option>
-<option value="Saturday · Ages 9–14 · Saturday Atelier" data-en="Saturday · Ages 9–14 · Saturday Atelier" data-nl="Zaterdag · 9–14 jaar · Zaterdag Atelier">Saturday · Ages 9–14 · Saturday Atelier</option>
+<option value="Friday · Ages 9–14 · Make Your Own Materials" data-booking="choice" data-en="Friday · Ages 9–14 · Make Your Own Materials" data-nl="Vrijdag · 9–14 jaar · Maak je eigen materiaal">Friday · Ages 9–14 · Make Your Own Materials</option>
+<option value="Saturday · Ages 5–8 · Saturday Atelier" data-booking="choice" data-en="Saturday · Ages 5–8 · Saturday Atelier" data-nl="Zaterdag · 5–8 jaar · Zaterdag Atelier">Saturday · Ages 5–8 · Saturday Atelier</option>
+<option value="Saturday · Ages 9–14 · Saturday Atelier" data-booking="choice" data-en="Saturday · Ages 9–14 · Saturday Atelier" data-nl="Zaterdag · 9–14 jaar · Zaterdag Atelier">Saturday · Ages 9–14 · Saturday Atelier</option>
 </optgroup>
 <optgroup label="Summer Programme">
-<option value="Monday · Ages 5–8 · Summer Atelier" data-en="Monday · Ages 5–8 · Summer Atelier" data-nl="Maandag · 5–8 jaar · Summer Atelier">Monday · Ages 5–8 · Summer Atelier</option>
-<option value="Monday · Ages 9–14 · Summer Atelier" data-en="Monday · Ages 9–14 · Summer Atelier" data-nl="Maandag · 9–14 jaar · Summer Atelier">Monday · Ages 9–14 · Summer Atelier</option>
-<option value="Tuesday · Ages 5–8 · Tie-Dye Atelier" data-en="Tuesday · Ages 5–8 · Tie-Dye Atelier" data-nl="Dinsdag · 5–8 jaar · Tie-Dye Atelier">Tuesday · Ages 5–8 · Tie-Dye Atelier</option>
-<option value="Tuesday · Ages 9–14 · Tie-Dye Atelier" data-en="Tuesday · Ages 9–14 · Tie-Dye Atelier" data-nl="Dinsdag · 9–14 jaar · Tie-Dye Atelier">Tuesday · Ages 9–14 · Tie-Dye Atelier</option>
-<option value="Wednesday · Ages 5–8 · Summer Atelier" data-en="Wednesday · Ages 5–8 · Summer Atelier" data-nl="Woensdag · 5–8 jaar · Summer Atelier">Wednesday · Ages 5–8 · Summer Atelier</option>
+<option value="Monday · Ages 5–8 · Summer Atelier" data-booking="choice" data-en="Monday · Ages 5–8 · Summer Atelier" data-nl="Maandag · 5–8 jaar · Zomeratelier">Monday · Ages 5–8 · Summer Atelier</option>
+<option value="Monday · Ages 9–14 · Summer Atelier" data-booking="choice" data-en="Monday · Ages 9–14 · Summer Atelier" data-nl="Maandag · 9–14 jaar · Zomeratelier">Monday · Ages 9–14 · Summer Atelier</option>
+<option value="Tuesday · Ages 5–8 · Tie-Dye Atelier" data-booking="choice" data-en="Tuesday · Ages 5–8 · Tie-Dye Atelier" data-nl="Dinsdag · 5–8 jaar · Tie-Dye Atelier">Tuesday · Ages 5–8 · Tie-Dye Atelier</option>
+<option value="Tuesday · Ages 9–14 · Tie-Dye Atelier" data-booking="choice" data-en="Tuesday · Ages 9–14 · Tie-Dye Atelier" data-nl="Dinsdag · 9–14 jaar · Tie-Dye Atelier">Tuesday · Ages 9–14 · Tie-Dye Atelier</option>
+<option value="Wednesday · Ages 5–8 · Summer Atelier" data-booking="choice" data-en="Wednesday · Ages 5–8 · Summer Atelier" data-nl="Woensdag · 5–8 jaar · Zomeratelier">Wednesday · Ages 5–8 · Summer Atelier</option>
 <option value="Wednesday · Ages 9–14 · Summer Atelier" data-en="Wednesday · Ages 9–14 · Summer Atelier" data-nl="Woensdag · 9–14 jaar · Summer Atelier">Wednesday · Ages 9–14 · Summer Atelier</option>
-<option value="Friday · Ages 9–14 · Ceramics Atelier" data-en="Friday · Ages 9–14 · Ceramics Atelier" data-nl="Vrijdag · 9–14 jaar · Keramiek Atelier">Friday · Ages 9–14 · Ceramics Atelier</option>
+<option value="Friday · Ages 9–14 · Ceramics Atelier" data-booking="choice" data-en="Friday · Ages 9–14 · Ceramics Atelier" data-nl="Vrijdag · 9–14 jaar · Keramiek Atelier">Friday · Ages 9–14 · Ceramics Atelier</option>
 <option value="Saturday · Ages 5–8 · Saturday Atelier" data-en="Saturday · Ages 5–8 · Saturday Atelier" data-nl="Zaterdag · 5–8 jaar · Zaterdag Atelier">Saturday · Ages 5–8 · Saturday Atelier</option>
 <option value="Saturday · Ages 9–14 · Saturday Atelier" data-en="Saturday · Ages 9–14 · Saturday Atelier" data-nl="Zaterdag · 9–14 jaar · Zaterdag Atelier">Saturday · Ages 9–14 · Saturday Atelier</option>
 </optgroup>
 <option value="Birthday bookings / Space for hire" data-en="Birthday bookings / Space for hire" data-nl="Verjaardagsboekingen / Ruimte huren">Birthday bookings / Space for hire</option>
 <option value="Private workshops / Schools / BSO" data-en="Private workshops / Schools / BSO" data-nl="Privéworkshops / Scholen / BSO">Private workshops / Schools / BSO</option>
 </select></div><div class="field"><label><span class="en">Age</span><span class="nl">Leeftijd</span></label><input type="text" name="age"></div></div>
+
+<div class="field full booking-type-field" id="booking-type-field">
+<label><span class="en">Booking type *</span><span class="nl">Boekingstype *</span></label>
+<div class="radio-group">
+<label><input type="radio" name="booking_type" value="4-week programme (€94,60)"> <span class="en">4 weeks · €94,60</span><span class="nl">4 weken · €94,60</span></label>
+<label><input type="radio" name="booking_type" value="Single lesson (€26,50)"> <span class="en">Single lesson · €26,50</span><span class="nl">Losse les · €26,50</span></label>
+</div>
+</div>
+
 <div class="field full"><label><span class="en">Message</span><span class="nl">Bericht</span></label><textarea name="message"></textarea></div><div class="form-actions"><button type="submit" class="btn" id="submit-btn"><span class="en">Sign up today</span><span class="nl">Meld je vandaag aan</span></button><div class="form-message" id="form-message"></div></div>
 </form></section>
 </main>
@@ -322,7 +335,7 @@ menuOverlay.addEventListener('click',event=>{if(event.target===menuOverlay){menu
 let slideIndex=0;const slides=document.querySelectorAll('.slide');function showNextSlide(){slides[slideIndex].classList.remove('active');slideIndex=(slideIndex+1)%slides.length;slides[slideIndex].classList.add('active')}setInterval(showNextSlide,4200);
 setTimeout(()=>popup1.classList.add('show'),2500);
 function updateScrollState(){const y=window.scrollY,h=document.body.scrollHeight-window.innerHeight,p=h>0?y/h:0;if(y>18){header.classList.add('scrolled')}else{header.classList.remove('scrolled')}if(y>window.innerHeight*.35){popup2.classList.add('show')}logo.classList.remove('logo-green','logo-cyan','logo-orange','logo-pink','logo-yellow');if(y<50){return}if(p<.25){logo.classList.add('logo-green')}else if(p<.45){logo.classList.add('logo-cyan')}else if(p<.65){logo.classList.add('logo-orange')}else if(p<.85){logo.classList.add('logo-pink')}else{logo.classList.add('logo-yellow')}}
-window.addEventListener('scroll',updateScrollState);window.addEventListener('load',()=>{setLanguage('en');updateScrollState()});
+window.addEventListener('scroll',updateScrollState);window.addEventListener('load',()=>{setLanguage('en');toggleBookingType();updateScrollState()});
 document.addEventListener('click',event=>{if(!event.target.closest('.popup')){popup1.classList.remove('show');popup2.classList.remove('show')}});
 
 document.querySelectorAll('.preselect-programme').forEach(button=>{
@@ -331,9 +344,29 @@ const programme=button.dataset.programme;
 const select=document.getElementById('programme-select');
 if(select && programme){
 select.value=programme;
+toggleBookingType();
 }
 });
 });
+
+
+const programmeSelect=document.getElementById('programme-select');
+const bookingTypeField=document.getElementById('booking-type-field');
+
+function toggleBookingType(){
+if(!programmeSelect || !bookingTypeField) return;
+const selected=programmeSelect.selectedOptions[0];
+const needsChoice=selected && selected.dataset.booking==='choice';
+bookingTypeField.classList.toggle('show',needsChoice);
+bookingTypeField.querySelectorAll('input[name="booking_type"]').forEach(input=>{
+input.required=needsChoice;
+if(!needsChoice){input.checked=false;}
+});
+}
+
+if(programmeSelect){
+programmeSelect.addEventListener('change',toggleBookingType);
+}
 
 form.addEventListener('submit',async event=>{event.preventDefault();const formData=new FormData(form);submitBtn.disabled=true;submitBtn.innerHTML=currentLang==='en'?'Sending...':'Versturen...';formMessage.textContent='';try{const response=await fetch(form.action,{method:'POST',body:formData,headers:{Accept:'application/json'}});if(response.ok){form.reset();submitBtn.classList.add('submit-success');submitBtn.innerHTML=currentLang==='en'?'<span class="smiley">☺</span> Received':'<span class="smiley">☺</span> Ontvangen';formMessage.textContent=currentLang==='en'?'Your signup has been received.':'Je aanmelding is ontvangen.'}else{throw new Error('Form submission failed')}}catch(error){submitBtn.innerHTML=currentLang==='en'?'Email us directly':'Mail ons direct';formMessage.innerHTML=currentLang==='en'?'Something went wrong. Please email studio16.1xb@gmail.com.':'Er ging iets mis. Mail naar studio16.1xb@gmail.com.'}setTimeout(()=>{submitBtn.disabled=false;submitBtn.classList.remove('submit-success');submitBtn.innerHTML=`
 <span class="en">Sign up today</span>
@@ -348,6 +381,7 @@ document.querySelectorAll('.preselect-programme').forEach(button=>{
    const programme=button.dataset.programme;
    if(programme && select.querySelector(`option[value="${programme}"]`)){
       select.value=programme;
+      toggleBookingType();
    }
    select.dispatchEvent(new Event('change'));
    document.getElementById('signup')?.scrollIntoView({behavior:'smooth'});

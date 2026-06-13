@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Amstelpark Atelier</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{
+scroll-behavior:smooth;
+min-height:100%;
+background:linear-gradient(
+  180deg,
+  #ffe34d 0%,
+  #aaee55 14%,
+  #22ddaa 26%,
+  #11bbff 38%,
+  #44aaff 50%,
+  #ff7722 62%,
+  #ff3388 74%,
+  #cc44ff 86%,
+  #7722ee 100%
+);
+}
+body{
+font-family:Helvetica,Arial,sans-serif;
+color:#1a1a1a;
+overflow-x:hidden;
+background:none;
+}
+body.menu-open{overflow:hidden}
+a{color:inherit}img{max-width:100%}
+.site-header{position:fixed;top:0;left:0;width:100%;height:280px;z-index:900;pointer-events:none}.site-header:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.45) 0%,rgba(255,255,255,.32) 8%,rgba(255,255,255,.18) 22%,rgba(255,255,255,.08) 42%,rgba(255,255,255,.02) 65%,rgba(255,255,255,0) 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);-webkit-mask-image:linear-gradient(180deg,black 0%,black 15%,transparent 100%);mask-image:linear-gradient(180deg,black 0%,black 15%,transparent 100%)}
+
+
+.logo-svg{position:fixed;top:28px;left:50%;transform:translateX(-50%);width:min(780px,74vw);z-index:920;pointer-events:auto;filter:none;transition:filter 1s ease,transform .6s ease,opacity .6s ease}
+.logo-svg img{display:block;width:100%;height:auto}
+.logo-green{filter:invert(86%) sepia(96%) saturate(2600%) hue-rotate(42deg) brightness(102%) contrast(108%) drop-shadow(0 0 12px rgba(200,255,0,.22))}
+.logo-cyan{filter:invert(89%) sepia(99%) saturate(3100%) hue-rotate(145deg) brightness(104%) contrast(108%) drop-shadow(0 0 12px rgba(0,255,255,.22))}
+.logo-orange{filter:invert(70%) sepia(99%) saturate(3000%) hue-rotate(350deg) brightness(104%) contrast(108%) drop-shadow(0 0 12px rgba(255,120,0,.18))}
+.logo-pink{filter:invert(62%) sepia(99%) saturate(3600%) hue-rotate(285deg) brightness(108%) contrast(110%) drop-shadow(0 0 12px rgba(255,0,190,.18))}
+.logo-yellow{filter:invert(92%) sepia(99%) saturate(2400%) hue-rotate(2deg) brightness(106%) contrast(106%) drop-shadow(0 0 12px rgba(255,230,0,.2))}
+#lang-switch,.menu-toggle{position:fixed;top:26px;width:48px;height:48px;border-radius:50%;border:none;background:rgba(255,255,255,.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);font-size:12px;font-weight:700;color:#1a1a1a;cursor:pointer;z-index:940;pointer-events:auto}
+#lang-switch{left:24px}.menu-toggle{right:24px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.menu-toggle span{width:18px;height:2px;background:#1a1a1a;display:block;transition:transform .35s ease,opacity .35s ease}
+.menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.menu-toggle.open span:nth-child(2){opacity:0}.menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.menu-overlay{position:fixed;inset:0;z-index:850;background:rgba(255,255,255,.18);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);opacity:0;pointer-events:none;transition:opacity .45s ease;display:flex;align-items:center;justify-content:center;padding:8vw}
+.menu-overlay.open{opacity:1;pointer-events:auto}.menu-list{list-style:none;width:100%;max-width:980px}.menu-list a{display:block;text-decoration:none;font-size:clamp(48px,8vw,130px);line-height:.92;letter-spacing:-.08em;font-weight:700;padding:.06em 0;color:#1a1a1a;transition:transform .3s ease,opacity .3s ease}.menu-list a:hover{transform:translateX(18px);opacity:.72}
+.popup{position:fixed;max-width:260px;padding:16px 22px;z-index:1000;opacity:0;transition:opacity .8s ease,transform .8s ease;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(255,255,255,.72);border-radius:32px;box-shadow:0 4px 24px rgba(0,0,0,.10)}.popup h4{font-size:22px;line-height:.95;letter-spacing:-.04em;margin-bottom:6px}.popup p{font-size:15px;line-height:1.3;opacity:.72}.popup a{text-decoration:none;color:inherit;display:block}.popup1{top:128px;left:24px;background:rgba(255,255,255,.15);transform:translateX(-20px)}.popup1.show{opacity:1;transform:translateX(0)}.popup2{bottom:26px;right:24px;background:rgba(255,255,255,.15);transform:translateX(20px)}.popup2.show{opacity:1;transform:translateX(0)}
+section{position:relative}.hero{min-height:100vh;padding:210px 7vw 95px;display:flex;flex-direction:column;justify-content:center}.hero h1{font-size:clamp(42px,6vw,88px);line-height:.92;letter-spacing:-.075em;max-width:900px}.hero p{margin-top:26px;max-width:720px;font-size:20px;line-height:1.65;opacity:.72}
+.slideshow{margin-top:70px;width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;background:rgba(255,255,255,.22)}.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease}.slide.active{opacity:1}.slide img{width:100%;height:100%;object-fit:cover;display:block}
+.about{padding:135px 7vw 140px;background:transparent}.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:8vw;align-items:start}.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.16em;font-weight:700;opacity:.55;margin-bottom:24px}h2{font-size:clamp(44px,6vw,96px);line-height:.92;letter-spacing:-.07em;margin-bottom:60px}.about-text{max-width:900px}.about-text p{font-size:clamp(20px,2vw,34px);line-height:1.22;letter-spacing:-.04em;margin-bottom:28px}
+.programme{padding:135px 7vw 145px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;align-items:stretch}.card{background:rgba(255,255,255,.28);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:30px;display:flex;flex-direction:column;min-height:520px;border:1px solid rgba(255,255,255,.5);box-shadow:0 14px 34px rgba(0,0,0,.03);transition:transform .4s ease,background .4s ease}.card:hover{transform:translateY(-5px);background:rgba(255,255,255,.55)}
+.card-day{
+font-size:12px;
+font-weight:700;
+letter-spacing:.18em;
+text-transform:uppercase;
+opacity:.55;
+margin-bottom:10px;
+}
+
+.card-age{
+font-size:15px;
+font-weight:700;
+letter-spacing:.04em;
+text-transform:uppercase;
+opacity:.75;
+margin-bottom:18px;
+}
+
+.card-time{
+font-size:18px;
+opacity:.8;
+margin-top:10px;
+margin-bottom:22px;
+}
+
+.card .btn{
+margin-top:auto;
+}
+
+.summer-intro{
+margin-top:120px;
+}
+
+.summer-intro p{
+font-size:20px;
+margin-bottom:50px;
+opacity:.7;
+}
+
+.card h3{font-size:clamp(28px,2.4vw,46px);line-height:.98;letter-spacing:-.055em;margin-bottom:18px}.card-meta{font-size:15px;line-height:1.35;opacity:.72;margin-bottom:18px}.card-desc{font-size:15px;line-height:1.45;opacity:.65;margin-bottom:18px}.lessons{list-style:none;font-size:14px;line-height:1.45;opacity:.62;margin-top:4px}.price{margin-top:auto;padding-top:22px;font-size:34px;font-weight:500;line-height:1;letter-spacing:-.03em;opacity:.72}.btn{display:inline-flex;align-items:center;justify-content:center;margin-top:20px;padding:13px 20px;background:#1a1a1a;color:#fff;border:none;text-decoration:none;font-size:12px;letter-spacing:.1em;text-transform:uppercase;width:fit-content;cursor:pointer;transition:transform .3s ease,opacity .3s ease}.btn:hover{transform:translateY(-2px);opacity:.9}
+.gallery-section{padding:135px 7vw 145px}.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.gallery img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .5s ease,filter .5s ease}.gallery img:hover{transform:scale(1.02);filter:saturate(1.08)}
+.signup{padding:135px 7vw 145px}.signup-intro{max-width:900px;margin-bottom:44px}.signup-intro p{font-size:20px;line-height:1.55;opacity:.72}.form{background:rgba(255,255,255,.28);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:44px;max-width:1100px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.field{display:flex;flex-direction:column}.field label{margin-bottom:10px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;opacity:.7}.field input,.field select,.field textarea{border:none;padding:18px;background:rgba(255,255,255,.7);font-size:16px;font-family:inherit;color:#1a1a1a}.field textarea{min-height:140px;resize:vertical}.field.full{margin-top:24px}.form-actions{margin-top:24px}.form-message{margin-top:14px;font-size:15px;opacity:.72;min-height:22px}.submit-success{background:#fff;color:#1a1a1a;border:1px solid #111}.smiley{font-size:17px;margin-right:7px}
+footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);gap:50px;color:#fff}.footer-heading{font-size:13px;text-transform:uppercase;letter-spacing:.16em;font-weight:700;opacity:.45;margin-bottom:18px}footer strong{display:block;margin-bottom:10px;font-size:16px;color:#fff}footer p,footer a{font-size:16px;line-height:1.55;text-decoration:none;color:#fff}
+@media(max-width:900px){.site-header{height:96px}.logo-svg{width:min(340px,70vw);top:30px}#lang-switch,.menu-toggle{width:42px;height:42px;top:24px}#lang-switch{left:16px}.menu-toggle{right:16px}.hero{padding:160px 6vw 80px}.hero h1{font-size:clamp(42px,15vw,74px)}.slideshow{aspect-ratio:1.25/1}.about,.programme,.gallery-section,.signup{padding:90px 6vw}.about-grid,.form-grid,footer,.gallery{grid-template-columns:1fr}h2{font-size:clamp(42px,14vw,76px)}.about-text p{font-size:22px}.card{min-height:auto}.popup{max-width:230px;transform:scale(.92)}.popup1{top:96px;left:14px}.popup2{right:14px;bottom:14px}}
+
+.draw-canvas{position:fixed;inset:0;z-index:500;display:none;cursor:crosshair;touch-action:none;pointer-events:none}
+.draw-canvas.active{display:block;pointer-events:all}
+.draw-toolbar{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);z-index:600;display:none;align-items:center;gap:12px;background:rgba(255,255,255,.28);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:12px 20px;border-radius:40px;box-shadow:0 4px 24px rgba(0,0,0,.10)}
+.draw-toolbar.active{display:flex}
+.draw-toolbar button{border:none;background:none;cursor:pointer;font-size:18px;padding:4px 6px;border-radius:8px;transition:background .2s}
+.draw-toolbar button:hover{background:rgba(0,0,0,.08)}
+.draw-toolbar input[type=range]{width:80px;accent-color:#555}
+.pencil-btn{position:fixed;bottom:32px;left:32px;z-index:600;width:52px;height:52px;border-radius:50%;border:none;background:rgba(255,255,255,.38);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);cursor:pointer;font-size:22px;box-shadow:0 4px 24px rgba(0,0,0,.10);transition:background .2s}
+.pencil-btn.active{background:rgba(0,0,0,.18)}
+
+
+.card h3{font-size:clamp(26px,2.05vw,42px);line-height:.98;letter-spacing:-.04em;min-height:96px}
+.card-desc{min-height:76px}
+.price{font-size:22px;line-height:1.35;margin-top:auto;padding-top:20px}
+.card .btn{margin-top:20px;width:100%}
+.radio-group{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px}
+.radio-group label{display:flex;align-items:center;gap:8px;font-size:16px;line-height:1.35;cursor:pointer}
+.radio-group input{transform:scale(1.15)}
+.booking-type-field{display:none}
+.booking-type-field.show{display:flex}
+@media(max-width:900px){
+.card h3{font-size:34px;min-height:auto}
+.card-desc{min-height:auto}
+.form-grid{grid-template-columns:1fr;gap:16px}
+.field input,.field select,.field textarea{font-size:16px;padding:14px}
+.radio-group{flex-direction:column;gap:12px}
+}
+
+</style>
+</head>
+<body>
+<canvas id="drawCanvas" class="draw-canvas"></canvas>
+<button class="pencil-btn" id="pencilBtn" title="Draw mode">✏️</button>
+<div class="draw-toolbar" id="drawToolbar">
+  <span style="font-size:13px;font-weight:600;opacity:.6">size</span>
+  <input type="range" id="brushSize" min="8" max="80" value="28">
+  <button id="undoBtn" title="Undo">↩</button>
+  <button id="clearBtn" title="Clear">🗑</button>
+  <button id="printBtn" title="Download drawing">💾 Save</button>
+  <button id="emailBtn" title="Email">📧</button>
+</div>
+<div class="site-content"><header class="site-header" id="site-header">
+  <div class="logo-svg" id="logo"><a href="https://amstelparkatelier.nl/" aria-label="Home"><img src="logo/amstelpark-logo.svg" alt="Amstelpark Atelier"></a></div>
+  <button id="lang-switch" type="button" aria-label="Switch language">NL</button>
+  <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
+</header>
+
+<nav class="menu-overlay" id="menu-overlay" aria-label="Main menu">
+  <ul class="menu-list">
+    <li><a href="#about"><span class="en">About</span><span class="nl">Over</span></a></li>
+    <li><a href="#programme"><span class="en">Education</span><span class="nl">Educatie</span></a></li>
+    <li><a href="#gallery"><span class="en">Gallery</span><span class="nl">Galerij</span></a></li>
+    <li><a href="#signup"><span class="en">Signup</span><span class="nl">Aanmelden</span></a></li>
+    <li><a href="#contact"><span class="en">Contact</span><span class="nl">Contact</span></a></li>
+  </ul>
+</nav>
+
+<div class="popup popup1" id="popup1"><a href="mailto:studio16.1xb@gmail.com?subject=Birthday Booking / Space Hire Inquiry"><h4><span class="en">Birthday bookings</span><span class="nl">Verjaardag boekingen</span></h4><p><span class="en">Space for hire from €150</span><span class="nl">Ruimte huren vanaf €150</span></p></a></div>
+<div class="popup popup2" id="popup2"><a href="mailto:studio16.1xb@gmail.com?subject=School / BSO Workshop Inquiry"><h4><span class="en">Private workshops</span><span class="nl">Privéworkshops</span></h4><p><span class="en">Schools · BSO · Group sessions</span><span class="nl">Scholen · BSO · Groepen</span></p></a></div>
+
+<main>
+<section class="hero" id="top">
+  <h1><span class="en">Learning through nature, materials and attention.</span><span class="nl">Leren door natuur, materialen en aandacht.</span></h1>
+  <p><span class="en">Nature oriented studio courses in Amstelpark.<br>Small groups, guided by observation, material and process.</span><span class="nl">Natuurgerichte ateliercursussen in Amstelpark.<br>Kleine groepen, met aandacht voor observatie, materiaal en proces.</span></p>
+  <div class="slideshow" id="slideshow">
+    <div class="slide active"><img src="images/1.jpg" alt=""></div>
+    <div class="slide"><img src="images/2.jpg" alt=""></div>
+    <div class="slide"><img src="images/3.jpg" alt=""></div>
+    <div class="slide"><img src="images/4.jpg" alt=""></div>
+    <div class="slide"><img src="images/5.jpg" alt=""></div>
+    <div class="slide"><img src="images/6.jpg" alt=""></div>
+    <div class="slide"><img src="images/7.jpg" alt=""></div>
+    <div class="slide"><img src="images/8.jpg" alt=""></div>
+    <div class="slide"><img src="images/9.jpg" alt=""></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-grid">
+    <div><div class="kicker"><span class="en">About</span><span class="nl">Over</span></div><h2><span class="en">About Amstelpark Atelier</span><span class="nl">Over Amstelpark Atelier</span></h2></div>
+    <div class="about-text">
+      <p class="en">In an era where children grow up in an increasingly digital world, engaging the senses in nature offers a valuable counterbalance. By looking, feeling, smelling, collecting, drawing, and sculpting, children develop not only their motor skills and concentration but also their attention to the living environment. Direct contact with plants, materials, and seasonal changes stimulates wonder, a slowing down, and a caring attitude toward nature.</p>
+      <p class="en">We believe that learning does not take place exclusively cognitively, but rather arises from the interaction between the senses and the environment. In a time when digital reality has become a natural part of daily life, we consider it essential for children to return to nature regularly. There, they can discover through experimentation how materials are created and used, how attentive observation can lead to wonder and insight, and how feeling, smelling, hearing, seeing, and tasting contribute to their broad development. These multi-sensory experiences offer children space to learn, explore, and give meaning in their own way.</p>
+      <p class="nl">In een tijd waarin kinderen opgroeien in een steeds digitalere wereld, biedt werken met de zintuigen in de natuur een waardevol tegenwicht. Door te kijken, voelen, ruiken, verzamelen, tekenen en boetseren ontwikkelen kinderen niet alleen hun motoriek en concentratie, maar ook hun aandacht voor de levende omgeving. Het directe contact met planten, materialen en seizoensveranderingen stimuleert verwondering, vertraging en een zorgzame houding ten opzichte van natuur.</p>
+      <p class="nl">Wij geloven dat leren niet uitsluitend cognitief plaatsvindt, maar juist ontstaat in de wisselwerking tussen zintuigen en omgeving. In een tijd waarin de digitale werkelijkheid een vanzelfsprekend onderdeel van het dagelijks leven is geworden, vinden wij het essentieel dat kinderen regelmatig terugkeren naar de natuur. Daar kunnen zij proefondervindelijk ontdekken hoe materialen ontstaan en gebruikt worden, hoe aandachtige observatie kan leiden tot verwondering en inzicht, en hoe voelen, ruiken, horen, kijken en proeven bijdragen aan hun brede ontwikkeling. Deze meer zintuiglijke ervaringen bieden kinderen ruimte om op eigen wijze te leren, te onderzoeken en betekenis te geven.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="programme" id="programme">
+<div class="kicker"><span class="en">Education</span><span class="nl">Educatie</span></div>
+<h2><span class="en">Programme</span><span class="nl">Programma</span></h2>
+
+<div class="cards">
+
+<article class="card">
+<div class="card-day"><span class="en">TUESDAY</span><span class="nl">DINSDAG</span></div>
+<div class="card-time">14:00–16:30</div>
+<div class="card-age"><span class="en">ADULTS</span><span class="nl">VOLWASSENEN</span></div>
+<h3><span class="en">MAKE YOUR OWN MATERIALS</span><span class="nl">MAAK JE EIGEN MATERIAAL</span></h3>
+<p class="card-desc"><span class="en">Make paper, brushes, pigments and paint from natural materials.</span><span class="nl">Maak papier, penselen, pigmenten en verf van natuurlijke materialen.</span></p>
+<div class="price">€106</div>
+<a href="#signup" class="btn preselect-programme" data-programme="Tuesday · Adults · Make Your Own Materials"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+</article>
+
+<article class="card">
+<div class="card-day"><span class="en">WEDNESDAY</span><span class="nl">WOENSDAG</span></div>
+<div class="card-time">14:00–15:30</div>
+<div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div>
+<h3><span class="en">WEDNESDAY ATELIER</span><span class="nl">WOENSDAG ATELIER</span></h3>
+<p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p>
+<div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div>
+<a href="#signup" class="btn preselect-programme" data-programme="Wednesday · Ages 5–8 · Wednesday Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+</article>
+
+<article class="card">
+<div class="card-day"><span class="en">FRIDAY</span><span class="nl">VRIJDAG</span></div>
+<div class="card-time">13:00–14:30</div>
+<div class="card-age"><span class="en">ADULTS</span><span class="nl">VOLWASSENEN</span></div>
+<h3><span class="en">CERAMICS</span><span class="nl">KERAMIEK</span></h3>
+<p class="card-desc"><span class="en">Hand-building and material exploration.</span><span class="nl">Handopbouw en materiaalonderzoek.</span></p>
+<div class="price">€125</div>
+<a href="#signup" class="btn preselect-programme" data-programme="Friday · Adults · Ceramics"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+</article>
+
+<article class="card">
+<div class="card-day"><span class="en">FRIDAY</span><span class="nl">VRIJDAG</span></div>
+<div class="card-time">15:30–17:00</div>
+<div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div>
+<h3><span class="en">MAKE YOUR OWN MATERIALS</span><span class="nl">MAAK JE EIGEN MATERIAAL</span></h3>
+<p class="card-desc"><span class="en">Make paper, brushes, pigments and paint from natural materials.</span><span class="nl">Maak papier, penselen, pigmenten en verf van natuurlijke materialen.</span></p>
+<div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div>
+<a href="#signup" class="btn preselect-programme" data-programme="Friday · Ages 9–14 · Make Your Own Materials"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+</article>
+
+<article class="card">
+<div class="card-day"><span class="en">SATURDAY</span><span class="nl">ZATERDAG</span></div>
+<div class="card-time">10:00–11:30</div>
+<div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div>
+<h3><span class="en">SATURDAY ATELIER</span><span class="nl">ZATERDAG ATELIER</span></h3>
+<p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p>
+<div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div>
+<a href="#signup" class="btn preselect-programme" data-programme="Saturday · Ages 5–8 · Saturday Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+</article>
+
+<article class="card">
+<div class="card-day"><span class="en">SATURDAY</span><span class="nl">ZATERDAG</span></div>
+<div class="card-time">13:00–14:30</div>
+<div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div>
+<h3><span class="en">SATURDAY ATELIER</span><span class="nl">ZATERDAG ATELIER</span></h3>
+<p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p>
+<div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div>
+<a href="#signup" class="btn preselect-programme" data-programme="Saturday · Ages 9–14 · Saturday Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+</article>
+
+
+<article class="card">
+<div class="card-day"><span class="en">SUNDAY</span><span class="nl">ZONDAG</span></div>
+<div class="card-time">10:00–12:30</div>
+<div class="card-age"><span class="en">ADULTS</span><span class="nl">VOLWASSENEN</span></div>
+<h3><span class="en">OIL PAINTING</span><span class="nl">SCHILDEREN MET OLIEVERF</span></h3>
+<p class="card-desc"><span class="en">Painting outdoors with oil paints, inspired by the surroundings of Amstelpark.<br>With Ruud Lanfermeijer.</span><span class="nl">Schilderen in de open lucht met olieverf, geïnspireerd door de omgeving van het Amstelpark.<br>Door Ruud Lanfermeijer.</span></p>
+<div class="price"><span class="en">4 weeks · €120 excl. VAT</span><span class="nl">4 weken · €120 excl. btw</span></div>
+<a href="#signup" class="btn preselect-programme" data-programme="Sunday · Adults · Oil Painting 10:00–12:30"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+</article>
+
+<article class="card">
+<div class="card-day"><span class="en">SUNDAY</span><span class="nl">ZONDAG</span></div>
+<div class="card-time">14:00–16:30</div>
+<div class="card-age"><span class="en">ADULTS</span><span class="nl">VOLWASSENEN</span></div>
+<h3><span class="en">OIL PAINTING</span><span class="nl">SCHILDEREN MET OLIEVERF</span></h3>
+<p class="card-desc"><span class="en">Painting outdoors with oil paints, inspired by the surroundings of Amstelpark.<br>With Ruud Lanfermeijer.</span><span class="nl">Schilderen in de open lucht met olieverf, geïnspireerd door de omgeving van het Amstelpark.<br>Door Ruud Lanfermeijer.</span></p>
+<div class="price"><span class="en">4 weeks · €120 excl. VAT</span><span class="nl">4 weken · €120 excl. btw</span></div>
+<a href="#signup" class="btn preselect-programme" data-programme="Sunday · Adults · Oil Painting 14:00–16:30"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+</article>
+
+</div>
+
+<div class="summer-intro">
+<div class="kicker"><span class="en">Summer 2026</span><span class="nl">Zomer 2026</span></div>
+<h2><span class="en">Summer Programme</span><span class="nl">Zomerprogramma</span></h2>
+<p><span class="en">6 July — 16 August 2026 · Limited availability</span><span class="nl">6 juli — 16 augustus 2026 · Beperkte beschikbaarheid</span></p>
+</div>
+
+<div class="cards">
+
+<article class="card"><div class="card-day"><span class="en">MONDAY</span><span class="nl">MAANDAG</span></div><div class="card-time">10:00–11:30</div><div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div><h3><span class="en">SUMMER ATELIER</span><span class="nl">ZOMERATELIER</span></h3><p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Monday · Ages 5–8 · Summer Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">MONDAY</span><span class="nl">MAANDAG</span></div><div class="card-time">14:00–15:30</div><div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div><h3><span class="en">SUMMER ATELIER</span><span class="nl">ZOMERATELIER</span></h3><p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Monday · Ages 9–14 · Summer Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">TUESDAY</span><span class="nl">DINSDAG</span></div><div class="card-time">10:00–11:30</div><div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div><h3><span class="en">TIE-DYE ATELIER</span><span class="nl">TIE-DYE ATELIER</span></h3><p class="card-desc"><span class="en">Learn the process and techniques to dye your fabrics and clothes.</span><span class="nl">Leer het proces en de technieken om stoffen en kleding te verven.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Tuesday · Ages 5–8 · Tie-Dye Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">TUESDAY</span><span class="nl">DINSDAG</span></div><div class="card-time">13:00–14:30</div><div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div><h3><span class="en">TIE-DYE ATELIER</span><span class="nl">TIE-DYE ATELIER</span></h3><p class="card-desc"><span class="en">Learn the process and techniques to dye your fabrics and clothes.</span><span class="nl">Leer het proces en de technieken om stoffen en kleding te verven.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Tuesday · Ages 9–14 · Tie-Dye Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">WEDNESDAY</span><span class="nl">WOENSDAG</span></div><div class="card-time">10:00–11:30</div><div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div><h3><span class="en">SUMMER ATELIER</span><span class="nl">ZOMERATELIER</span></h3><p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Wednesday · Ages 5–8 · Summer Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">WEDNESDAY</span><span class="nl">WOENSDAG</span></div><div class="card-time">14:00–15:30</div><div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div><h3><span class="en">SUMMER ATELIER</span><span class="nl">ZOMERATELIER</span></h3><p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Wednesday · Ages 5–8 · Summer Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">FRIDAY</span><span class="nl">VRIJDAG</span></div><div class="card-time">10:00–11:30</div><div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div><h3><span class="en">CERAMICS ATELIER</span><span class="nl">KERAMIEK ATELIER</span></h3><p class="card-desc"><span class="en">Hand-building and material exploration.</span><span class="nl">Handopbouw en materiaalonderzoek.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Friday · Ages 9–14 · Ceramics Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">SATURDAY</span><span class="nl">ZATERDAG</span></div><div class="card-time">10:00–11:30</div><div class="card-age"><span class="en">AGES 5–8</span><span class="nl">5–8 JAAR</span></div><h3><span class="en">SATURDAY ATELIER</span><span class="nl">ZATERDAG ATELIER</span></h3><p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Saturday · Ages 5–8 · Saturday Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+<article class="card"><div class="card-day"><span class="en">SATURDAY</span><span class="nl">ZATERDAG</span></div><div class="card-time">13:00–14:30</div><div class="card-age"><span class="en">AGES 9–14</span><span class="nl">9–14 JAAR</span></div><h3><span class="en">SATURDAY ATELIER</span><span class="nl">ZATERDAG ATELIER</span></h3><p class="card-desc"><span class="en">Drawing and painting through observation, materials and nature exploration.</span><span class="nl">Tekenen en schilderen vanuit observatie, materiaal en natuuronderzoek.</span></p><div class="price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50</span></div><a href="#signup" class="btn preselect-programme" data-programme="Saturday · Ages 9–14 · Saturday Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a></article>
+
+</div>
+</section>
+<section class="gallery-section" id="gallery"><div class="kicker"><span class="en">Gallery</span><span class="nl">Galerij</span></div><h2><span class="en">Process</span><span class="nl">Proces</span></h2><div class="gallery"><img src="images/4.jpg" alt=""><img src="images/5.jpg" alt=""><img src="images/6.jpg" alt=""><img src="images/7.jpg" alt=""><img src="images/8.jpg" alt=""><img src="images/9.jpg" alt=""></div></section>
+
+<section class="signup" id="signup"><div class="signup-intro"><div class="kicker"><span class="en">Signup</span><span class="nl">Aanmelden</span></div><h2><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></h2><p><span class="en">Fill in the form and we will confirm your place or answer your question personally.</span><span class="nl">Vul het formulier in en we bevestigen je plek of beantwoorden je vraag persoonlijk.</span></p></div>
+<form action="https://formsubmit.co/studio16.1xb@gmail.com" method="POST" class="form" id="signup-form">
+<input type="hidden" name="_subject" value="New Amstelpark Atelier Signup"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input type="hidden" name="_next" value="https://amstelparkatelier.nl"><input type="hidden" name="_autoresponse" value="Thank you for your signup. We received your message and will get back to you shortly.">
+<div class="form-grid"><div class="field"><label><span class="en">Name</span><span class="nl">Naam</span></label><input type="text" name="name" required></div><div class="field"><label>Email</label><input type="email" name="email" required></div><div class="field"><label><span class="en">Programme</span><span class="nl">Programma</span></label><select name="course" required id="programme-select">
+<optgroup label="Regular Programme">
+<option value="Tuesday · Adults · Make Your Own Materials" data-en="Tuesday · Adults · Make Your Own Materials" data-nl="Dinsdag · Volwassenen · Maak je eigen materiaal">Tuesday · Adults · Make Your Own Materials</option>
+<option value="Wednesday · Ages 5–8 · Wednesday Atelier" data-booking="choice" data-en="Wednesday · Ages 5–8 · Wednesday Atelier" data-nl="Woensdag · 5–8 jaar · Woensdag Atelier">Wednesday · Ages 5–8 · Wednesday Atelier</option>
+<option value="Friday · Adults · Ceramics" data-en="Friday · Adults · Ceramics" data-nl="Vrijdag · Volwassenen · Keramiek">Friday · Adults · Ceramics</option>
+<option value="Friday · Ages 9–14 · Make Your Own Materials" data-booking="choice" data-en="Friday · Ages 9–14 · Make Your Own Materials" data-nl="Vrijdag · 9–14 jaar · Maak je eigen materiaal">Friday · Ages 9–14 · Make Your Own Materials</option>
+<option value="Saturday · Ages 5–8 · Saturday Atelier" data-booking="choice" data-en="Saturday · Ages 5–8 · Saturday Atelier" data-nl="Zaterdag · 5–8 jaar · Zaterdag Atelier">Saturday · Ages 5–8 · Saturday Atelier</option>
+<option value="Saturday · Ages 9–14 · Saturday Atelier" data-booking="choice" data-en="Saturday · Ages 9–14 · Saturday Atelier" data-nl="Zaterdag · 9–14 jaar · Zaterdag Atelier">Saturday · Ages 9–14 · Saturday Atelier</option>
+
+<option value="Sunday · Adults · Oil Painting 10:00–12:30" data-en="Sunday · Adults · Oil Painting 10:00–12:30" data-nl="Zondag · Volwassenen · Schilderen met olieverf 10:00–12:30">Sunday · Adults · Oil Painting 10:00–12:30</option>
+<option value="Sunday · Adults · Oil Painting 14:00–16:30" data-en="Sunday · Adults · Oil Painting 14:00–16:30" data-nl="Zondag · Volwassenen · Schilderen met olieverf 14:00–16:30">Sunday · Adults · Oil Painting 14:00–16:30</option>
+
+</optgroup>
+<optgroup label="Summer Programme">
+<option value="Monday · Ages 5–8 · Summer Atelier" data-booking="choice" data-en="Monday · Ages 5–8 · Summer Atelier" data-nl="Maandag · 5–8 jaar · Zomeratelier">Monday · Ages 5–8 · Summer Atelier</option>
+<option value="Monday · Ages 9–14 · Summer Atelier" data-booking="choice" data-en="Monday · Ages 9–14 · Summer Atelier" data-nl="Maandag · 9–14 jaar · Zomeratelier">Monday · Ages 9–14 · Summer Atelier</option>
+<option value="Tuesday · Ages 5–8 · Tie-Dye Atelier" data-booking="choice" data-en="Tuesday · Ages 5–8 · Tie-Dye Atelier" data-nl="Dinsdag · 5–8 jaar · Tie-Dye Atelier">Tuesday · Ages 5–8 · Tie-Dye Atelier</option>
+<option value="Tuesday · Ages 9–14 · Tie-Dye Atelier" data-booking="choice" data-en="Tuesday · Ages 9–14 · Tie-Dye Atelier" data-nl="Dinsdag · 9–14 jaar · Tie-Dye Atelier">Tuesday · Ages 9–14 · Tie-Dye Atelier</option>
+<option value="Wednesday · Ages 5–8 · Summer Atelier" data-booking="choice" data-en="Wednesday · Ages 5–8 · Summer Atelier" data-nl="Woensdag · 5–8 jaar · Zomeratelier">Wednesday · Ages 5–8 · Summer Atelier</option>
+<option value="Wednesday · Ages 9–14 · Summer Atelier" data-en="Wednesday · Ages 9–14 · Summer Atelier" data-nl="Woensdag · 9–14 jaar · Summer Atelier">Wednesday · Ages 9–14 · Summer Atelier</option>
+<option value="Friday · Ages 9–14 · Ceramics Atelier" data-booking="choice" data-en="Friday · Ages 9–14 · Ceramics Atelier" data-nl="Vrijdag · 9–14 jaar · Keramiek Atelier">Friday · Ages 9–14 · Ceramics Atelier</option>
+<option value="Saturday · Ages 5–8 · Saturday Atelier" data-en="Saturday · Ages 5–8 · Saturday Atelier" data-nl="Zaterdag · 5–8 jaar · Zaterdag Atelier">Saturday · Ages 5–8 · Saturday Atelier</option>
+<option value="Saturday · Ages 9–14 · Saturday Atelier" data-en="Saturday · Ages 9–14 · Saturday Atelier" data-nl="Zaterdag · 9–14 jaar · Zaterdag Atelier">Saturday · Ages 9–14 · Saturday Atelier</option>
+</optgroup>
+<option value="Birthday bookings / Space for hire" data-en="Birthday bookings / Space for hire" data-nl="Verjaardagsboekingen / Ruimte huren">Birthday bookings / Space for hire</option>
+<option value="Private workshops / Schools / BSO" data-en="Private workshops / Schools / BSO" data-nl="Privéworkshops / Scholen / BSO">Private workshops / Schools / BSO</option>
+</select></div><div class="field"><label><span class="en">Age</span><span class="nl">Leeftijd</span></label><input type="text" name="age"></div></div>
+
+<div class="field full booking-type-field" id="booking-type-field">
+<label><span class="en">Booking type *</span><span class="nl">Boekingstype *</span></label>
+<div class="radio-group">
+<label><input type="radio" name="booking_type" value="4-week programme (€94,60)"> <span class="en">4 weeks · €94,60</span><span class="nl">4 weken · €94,60</span></label>
+<label><input type="radio" name="booking_type" value="Single lesson (€26,50)"> <span class="en">Single lesson · €26,50</span><span class="nl">Losse les · €26,50</span></label>
+<label><input type="radio" name="booking_type" value="Stadspas (€10)"> <span class="en">Stadspas · €10</span><span class="nl">Stadspas · €10</span></label>
+</div>
+</div>
+
+<div class="field full"><label><span class="en">Message</span><span class="nl">Bericht</span></label><textarea name="message"></textarea></div><div class="form-actions"><button type="submit" class="btn" id="submit-btn"><span class="en">Sign up today</span><span class="nl">Meld je vandaag aan</span></button><div class="form-message" id="form-message"></div></div>
+</form></section>
+</main>
+
+<footer id="contact"><div><div class="footer-heading"><span class="en">The Atelier</span><span class="nl">Het Atelier</span></div><strong>Amstelpark Atelier</strong><p><span class="en">Botanical-inspired art courses<br>in Amstelpark, Amsterdam.</span><span class="nl">Botanisch geïnspireerde kunstcursussen<br>in Amstelpark, Amsterdam.</span></p></div><div><div class="footer-heading"><span class="en">Location</span><span class="nl">Locatie</span></div><strong>Amstelpark Atelier</strong><p>Amstelpark<br>Amsterdam</p><p><a href="https://www.google.com/maps/place/Amstelpark+atelier/@52.3317515,4.8964245,18.62z/data=!4m6!3m5!1s0x47c60b002088f81b:0x9231289efd141281!8m2!3d52.3310471!4d4.895784!16s%2Fg%2F11nc5nsbs2?entry=ttu" target="_blank" rel="noopener">◎ <span class="en">Open in Maps</span><span class="nl">Open in Maps</span></a></p></div><div><div class="footer-heading">Contact</div><strong><a href="mailto:studio16.1xb@gmail.com">studio16.1xb@gmail.com</a></strong><p><a href="tel:+31647194490">06 47194490</a></p><p><a href="https://wa.me/31647194490" target="_blank" rel="noopener">WhatsApp</a></p></div></footer>
+
+<script>
+const langButton=document.getElementById('lang-switch'),menuButton=document.getElementById('menu-toggle'),menuOverlay=document.getElementById('menu-overlay'),header=document.getElementById('site-header'),logo=document.getElementById('logo'),popup1=document.getElementById('popup1'),popup2=document.getElementById('popup2'),form=document.getElementById('signup-form'),submitBtn=document.getElementById('submit-btn'),formMessage=document.getElementById('form-message');let currentLang='en';
+function showEl(el){el.style.display=el.tagName==='SPAN'?'inline':el.tagName==='LI'?'list-item':'block'}function setLanguage(lang){currentLang=lang;document.documentElement.lang=lang;document.querySelectorAll('.en').forEach(el=>{lang==='en'?showEl(el):el.style.display='none'});document.querySelectorAll('.nl').forEach(el=>{lang==='nl'?showEl(el):el.style.display='none'});document.querySelectorAll('option[data-en]').forEach(el=>{el.textContent=lang==='nl'?el.dataset.nl:el.dataset.en});langButton.textContent=lang==='en'?'NL':'EN'}
+langButton.addEventListener('click',()=>setLanguage(currentLang==='en'?'nl':'en'));
+menuButton.addEventListener('click',()=>{menuButton.classList.toggle('open');menuOverlay.classList.toggle('open');document.body.classList.toggle('menu-open')});
+document.querySelectorAll('.menu-overlay a').forEach(link=>{link.addEventListener('click',()=>{menuButton.classList.remove('open');menuOverlay.classList.remove('open');document.body.classList.remove('menu-open')})});
+menuOverlay.addEventListener('click',event=>{if(event.target===menuOverlay){menuButton.classList.remove('open');menuOverlay.classList.remove('open');document.body.classList.remove('menu-open')}});
+let slideIndex=0;const slides=document.querySelectorAll('.slide');function showNextSlide(){slides[slideIndex].classList.remove('active');slideIndex=(slideIndex+1)%slides.length;slides[slideIndex].classList.add('active')}setInterval(showNextSlide,4200);
+setTimeout(()=>popup1.classList.add('show'),2500);
+function updateScrollState(){const y=window.scrollY,h=document.body.scrollHeight-window.innerHeight,p=h>0?y/h:0;if(y>18){header.classList.add('scrolled')}else{header.classList.remove('scrolled')}if(y>window.innerHeight*.35){popup2.classList.add('show')}logo.classList.remove('logo-green','logo-cyan','logo-orange','logo-pink','logo-yellow');if(y<50){return}if(p<.25){logo.classList.add('logo-green')}else if(p<.45){logo.classList.add('logo-cyan')}else if(p<.65){logo.classList.add('logo-orange')}else if(p<.85){logo.classList.add('logo-pink')}else{logo.classList.add('logo-yellow')}}
+window.addEventListener('scroll',updateScrollState);window.addEventListener('load',()=>{setLanguage('en');toggleBookingType();updateScrollState()});
+document.addEventListener('click',event=>{if(!event.target.closest('.popup')){popup1.classList.remove('show');popup2.classList.remove('show')}});
+
+document.querySelectorAll('.preselect-programme').forEach(button=>{
+button.addEventListener('click',()=>{
+const programme=button.dataset.programme;
+const select=document.getElementById('programme-select');
+if(select && programme){
+select.value=programme;
+toggleBookingType();
+}
+});
+});
+
+
+const programmeSelect=document.getElementById('programme-select');
+const bookingTypeField=document.getElementById('booking-type-field');
+
+function toggleBookingType(){
+if(!programmeSelect || !bookingTypeField) return;
+const selected=programmeSelect.selectedOptions[0];
+const needsChoice=selected && selected.dataset.booking==='choice';
+bookingTypeField.classList.toggle('show',needsChoice);
+bookingTypeField.querySelectorAll('input[name="booking_type"]').forEach(input=>{
+input.required=needsChoice;
+if(!needsChoice){input.checked=false;}
+});
+}
+
+if(programmeSelect){
+programmeSelect.addEventListener('change',toggleBookingType);
+}
+
+form.addEventListener('submit',async event=>{event.preventDefault();const formData=new FormData(form);submitBtn.disabled=true;submitBtn.innerHTML=currentLang==='en'?'Sending...':'Versturen...';formMessage.textContent='';try{const response=await fetch(form.action,{method:'POST',body:formData,headers:{Accept:'application/json'}});if(response.ok){form.reset();submitBtn.classList.add('submit-success');submitBtn.innerHTML=currentLang==='en'?'<span class="smiley">☺</span> Received':'<span class="smiley">☺</span> Ontvangen';formMessage.textContent=currentLang==='en'?'Your signup has been received.':'Je aanmelding is ontvangen.'}else{throw new Error('Form submission failed')}}catch(error){submitBtn.innerHTML=currentLang==='en'?'Email us directly':'Mail ons direct';formMessage.innerHTML=currentLang==='en'?'Something went wrong. Please email studio16.1xb@gmail.com.':'Er ging iets mis. Mail naar studio16.1xb@gmail.com.'}setTimeout(()=>{submitBtn.disabled=false;submitBtn.classList.remove('submit-success');submitBtn.innerHTML=`
+<span class="en">Sign up today</span>
+<span class="nl">Meld je vandaag aan</span>
+`;
+setLanguage(currentLang)},4200)});
+
+document.querySelectorAll('.preselect-programme').forEach(button=>{
+ button.addEventListener('click',()=>{
+   const select=document.getElementById('programme-select');
+   if(!select) return;
+   const programme=button.dataset.programme;
+   if(programme && select.querySelector(`option[value="${programme}"]`)){
+      select.value=programme;
+      toggleBookingType();
+   }
+   select.dispatchEvent(new Event('change'));
+   document.getElementById('signup')?.scrollIntoView({behavior:'smooth'});
+ });
+});
+
+</script>
+
+<script>
+(function(){
+  const canvas = document.getElementById('drawCanvas');
+  const ctx = canvas.getContext('2d');
+  const pencilBtn = document.getElementById('pencilBtn');
+  const toolbar = document.getElementById('drawToolbar');
+  const brushSize = document.getElementById('brushSize');
+  const undoBtn = document.getElementById('undoBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const printBtn = document.getElementById('printBtn');
+  const emailBtn = document.getElementById('emailBtn');
+
+  let drawing = false;
+  let drawMode = false;
+  let lastX = 0, lastY = 0;
+  let snapshots = [];
+  let pressure = 1;
+
+  function resize(){
+    // Preserve drawing
+    const tmp = canvas.toDataURL();
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    if(snapshots.length){
+      const img = new Image();
+      img.onload = ()=> ctx.drawImage(img,0,0);
+      img.src = tmp;
+    }
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const siteContent = document.querySelector('.site-content');
+  let hiddenContent = null;
+
+  pencilBtn.addEventListener('click', ()=>{
+    drawMode = !drawMode;
+    pencilBtn.classList.toggle('active', drawMode);
+    canvas.classList.toggle('active', drawMode);
+    toolbar.classList.toggle('active', drawMode);
+    document.body.style.overflow = drawMode ? 'hidden' : '';
+    if(drawMode){
+      hiddenContent = siteContent.innerHTML;
+      siteContent.innerHTML = '';
+    } else {
+      if(hiddenContent) siteContent.innerHTML = hiddenContent;
+      hiddenContent = null;
+    }
+  });
+
+  function getPos(e){
+    const r = canvas.getBoundingClientRect();
+    if(e.touches) return {x: e.touches[0].clientX - r.left, y: e.touches[0].clientY - r.top, p: e.touches[0].force || 0.5};
+    return {x: e.clientX - r.left, y: e.clientY - r.top, p: 0.5};
+  }
+
+  function startDraw(e){
+    if(!drawMode) return;
+    e.preventDefault();
+    drawing = true;
+    // Save snapshot for undo
+    snapshots.push(ctx.getImageData(0,0,canvas.width,canvas.height));
+    if(snapshots.length > 30) snapshots.shift();
+    const pos = getPos(e);
+    lastX = pos.x; lastY = pos.y;
+  }
+
+  function doDraw(e){
+    if(!drawing || !drawMode) return;
+    e.preventDefault();
+    const pos = getPos(e);
+    // Simulate pressure via speed
+    const dist = Math.hypot(pos.x - lastX, pos.y - lastY);
+    const speedPressure = Math.max(0.3, 1 - dist/80);
+    const size = parseFloat(brushSize.value) * speedPressure;
+    const opacity = 1.0;
+
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.lineWidth = size;
+    ctx.strokeStyle = '#ffffff';
+    // Slightly textured via shadowBlur
+    ctx.shadowColor = 'rgba(255,255,255,0.6)';
+    ctx.shadowBlur = size * 0.6;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    lastX = pos.x; lastY = pos.y;
+  }
+
+  function endDraw(){ drawing = false; }
+
+  canvas.addEventListener('mousedown', startDraw);
+  canvas.addEventListener('mousemove', doDraw);
+  canvas.addEventListener('mouseup', endDraw);
+  canvas.addEventListener('mouseleave', endDraw);
+  canvas.addEventListener('touchstart', startDraw, {passive:false});
+  canvas.addEventListener('touchmove', doDraw, {passive:false});
+  canvas.addEventListener('touchend', endDraw);
+
+  undoBtn.addEventListener('click', ()=>{
+    if(snapshots.length) ctx.putImageData(snapshots.pop(), 0, 0);
+  });
+
+  clearBtn.addEventListener('click', ()=>{
+    snapshots.push(ctx.getImageData(0,0,canvas.width,canvas.height));
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+  });
+
+  function getCompositeImage(cb){
+    // Capture gradient background + drawing together
+    const bg = document.createElement('canvas');
+    bg.width = canvas.width;
+    bg.height = canvas.height;
+    const bgCtx = bg.getContext('2d');
+    // Render gradient
+    const totalH = document.documentElement.scrollHeight;
+    const scrollY = window.scrollY;
+    const stops = [
+      [0,'#ffe34d'],[.14,'#aaee55'],[.26,'#22ddaa'],[.38,'#11bbff'],
+      [.50,'#44aaff'],[.62,'#ff7722'],[.74,'#ff3388'],[.86,'#cc44ff'],[1,'#7722ee']
+    ];
+    const grad = bgCtx.createLinearGradient(0,0,0,bg.height);
+    stops.forEach(([pos, col])=>{
+      const shifted = (pos * totalH - scrollY) / bg.height;
+      const clamped = Math.max(0, Math.min(1, shifted));
+      grad.addColorStop(clamped, col);
+    });
+    bgCtx.fillStyle = grad;
+    bgCtx.fillRect(0,0,bg.width,bg.height);
+    bgCtx.drawImage(canvas,0,0);
+    cb(bg.toDataURL('image/png'));
+  }
+
+  printBtn.addEventListener('click', ()=>{
+    getCompositeImage(dataUrl=>{
+      // Download as PNG directly — most reliable cross-browser
+      const a = document.createElement('a');
+      a.download = 'amstelpark-drawing.png';
+      a.href = dataUrl;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  });
+
+  emailBtn.addEventListener('click', ()=>{
+    getCompositeImage(dataUrl=>{
+      // Step 1: download the image
+      const a = document.createElement('a');
+      a.download = 'amstelpark-drawing.png';
+      a.href = dataUrl;
+      a.click();
+      // Step 2: open mail with instructions (browsers cannot auto-attach files)
+      setTimeout(()=>{
+        const body = encodeURIComponent('Hi!\n\nI made a drawing on amstelparkatelier.nl.\nFind it in your Downloads as amstelpark-drawing.png — just attach it to this email!');
+        window.location.href = 'mailto:?subject=My drawing from Amstelpark Atelier&body=' + body;
+      }, 1000);
+    });
+  });
+})();
+</script>
+</div><!-- /.site-content --></body>
+</html>

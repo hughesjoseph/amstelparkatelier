@@ -124,7 +124,15 @@ footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);ga
 .radio-group{flex-direction:column;gap:12px}
 }
 
+
+.stadspas-card{
+background:rgba(255,255,255,.55);
+border:2px solid rgba(255,255,255,.8);
+}
+.stadspas-card h3{min-height:auto}
+.stadspas-card .price{font-size:18px;line-height:1.4}
 </style>
+
 </head>
 <body>
 <canvas id="drawCanvas" class="draw-canvas"></canvas>
@@ -191,6 +199,15 @@ footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);ga
 <h2><span class="en">Programme</span><span class="nl">Programma</span></h2>
 
 <div class="cards">
+
+<article class="card stadspas-card">
+<div class="card-day"><span class="en">ACCESSIBILITY</span><span class="nl">TOEGANKELIJKHEID</span></div>
+<div class="card-age"><span class="en">STADSPAS</span><span class="nl">STADSPAS</span></div>
+<h3><span class="en">We accept Stadspas</span><span class="nl">Wij accepteren Stadspas</span></h3>
+<p class="card-desc"><span class="en">Children with a valid Amsterdam Stadspas may be eligible for financial support to participate in our programmes.</span><span class="nl">Kinderen met een geldige Amsterdam Stadspas kunnen mogelijk gebruikmaken van financiële ondersteuning voor deelname aan onze programma’s.</span></p>
+<div class="price"><span class="en">Contact us for details</span><span class="nl">Neem contact op voor meer informatie</span></div>
+<a href="#signup" class="btn"><span class="en">Ask a question</span><span class="nl">Meer informatie</span></a>
+</article>
 
 <article class="card">
 <div class="card-day"><span class="en">TUESDAY</span><span class="nl">DINSDAG</span></div>
@@ -341,6 +358,14 @@ footer{padding:75px 7vw 70px;display:grid;grid-template-columns:repeat(3,1fr);ga
 <div class="radio-group">
 <label><input type="radio" name="booking_type" value="4-week programme (€94,60)"> <span class="en">4 weeks · €94,60</span><span class="nl">4 weken · €94,60</span></label>
 <label><input type="radio" name="booking_type" value="Single lesson (€26,50)"> <span class="en">Single lesson · €26,50</span><span class="nl">Losse les · €26,50</span></label>
+</div>
+</div>
+
+
+<div class="field full">
+<label>Stadspas</label>
+<div class="radio-group">
+<label><input type="checkbox" name="stadspas" value="Yes"> <span class="en">I have a Stadspas</span><span class="nl">Ik heb een Stadspas</span></label>
 </div>
 </div>
 

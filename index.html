@@ -303,6 +303,27 @@ flex-shrink:0;
   .programme-subhead{margin-top:75px;}
 }
 
+
+/* Mobile QA refinements */
+.programme-price-line{display:block;margin-top:12px;font-weight:700;line-height:1.45}
+.draw-back-btn{font-family:inherit!important;font-size:14px!important;font-weight:700!important;white-space:nowrap}
+@media(max-width:900px){
+  .card h3{font-size:clamp(28px,9vw,34px)!important;line-height:.98!important;min-height:auto!important;overflow-wrap:anywhere}
+  .card .card-desc + .card-meta{display:none}
+  .card{padding:24px!important}
+  .card-day{margin-bottom:8px}
+  .card-time{margin:6px 0 16px}
+  .card-age{margin-bottom:14px}
+  .card-desc{margin-bottom:14px}
+  .more-toggle{margin-top:4px}
+  .draw-toolbar.active{display:flex!important;left:12px!important;right:12px!important;bottom:14px!important;transform:none!important;justify-content:center!important;gap:8px!important;padding:10px 12px!important;border-radius:28px!important;max-width:calc(100vw - 24px)!important}
+  .draw-toolbar.active span{display:none}
+  .draw-toolbar.active input[type=range]{width:70px!important}
+  .draw-toolbar.active button{font-size:16px!important;padding:5px!important}
+  .draw-back-btn{font-size:13px!important}
+  .pencil-btn.active{display:none!important}
+}
+
 </style>
 
 </head>
@@ -310,6 +331,7 @@ flex-shrink:0;
 <canvas id="drawCanvas" class="draw-canvas"></canvas>
 <button class="pencil-btn" id="pencilBtn" title="Draw mode">✏️</button>
 <div class="draw-toolbar" id="drawToolbar">
+  <button id="backDrawBtn" class="draw-back-btn" title="Back">← Back</button>
   <span style="font-size:13px;font-weight:600;opacity:.6">size</span>
   <input type="range" id="brushSize" min="8" max="80" value="28">
   <button id="undoBtn" title="Undo">↩</button>
@@ -377,7 +399,7 @@ flex-shrink:0;
         <p class="en">The atelier is located in the middle of the Amstelpark, making it easy to combine your celebration with outdoor activities and exploration of the park.</p>
         <p class="nl">Het atelier ligt midden in het Amstelpark, waardoor een viering gemakkelijk kan worden gecombineerd met buitenactiviteiten en het ontdekken van het park.</p>
       </div>
-      <a href="#signup" class="btn preselect-programme" data-programme="Birthday bookings / Space for hire"><span class="en">Enquire / Book</span><span class="nl">Informeer / Boek</span></a>
+      <a href="#signup" class="btn preselect-programme" data-programme="Birthday bookings / Space for hire"><span class="en">Reserve your date</span><span class="nl">Reserveer je datum</span></a>
     </div>
   </div>
 </section>
@@ -405,7 +427,7 @@ flex-shrink:0;
 <article class="card">
 <div class="card-day"><span class="en">TUESDAY</span><span class="nl">DINSDAG</span></div>
 <div class="card-time">15:30–17:00</div>
-<div class="card-age"><span class="en">AGE 5–9</span><span class="nl">5–9 JAAR</span></div>
+<div class="card-age"><span class="en">AGES 5–9</span><span class="nl">5–9 JAAR</span></div>
 <h3><span class="en">KIDS ATELIER</span><span class="nl">KINDERATELIER</span></h3>
 <p class="card-desc"><span class="en">Drawing, painting and sculpting through observation, materials and nature.</span><span class="nl">Tekenen, schilderen en boetseren vanuit observatie, materialen en natuur.</span></p>
 <p class="card-meta"><span class="en">Explore the park through drawing and sketching on location, and learn to observe your surroundings through different artistic techniques and materials.</span><span class="nl">Ontdek het park door op locatie te tekenen en schetsen en leer je omgeving observeren met verschillende artistieke technieken en materialen.</span></p>
@@ -413,12 +435,12 @@ flex-shrink:0;
 <p class="card-meta"><span class="en">Class will run with a minimum of 5 participants.</span><span class="nl">De les gaat door bij minimaal 5 deelnemers.</span></p>
 <button class="more-toggle" type="button" data-target="more-tuesday"><span class="en">More info</span><span class="nl">Meer info</span></button>
 <div class="card-more" id="more-tuesday"><p class="en">A weekly creative atelier where children explore the Amstelpark through art and making. We use the park as our studio and source of inspiration: drawing and sketching on location, observing plants and animals, collecting natural materials, and looking closely at colours, shapes, textures and seasonal changes.<br><br>Children are introduced to a variety of artistic techniques and materials, including drawing, painting, clay, collage, printmaking, natural pigments and found materials.<br><br>Through playful assignments, they learn to observe more closely, experiment with materials and develop their own ideas and visual language.<br><br>Each session offers space to explore, experiment and make something of their own, while developing confidence and new artistic skills.</p><p class="nl">Een wekelijks creatief atelier waarin kinderen het Amstelpark ontdekken door kunst en maken. We gebruiken het park als atelier en inspiratiebron: tekenen en schetsen op locatie, planten en dieren observeren, natuurlijke materialen verzamelen en aandachtig kijken naar kleuren, vormen, texturen en veranderingen door de seizoenen.<br><br>Kinderen maken kennis met verschillende artistieke technieken en materialen, waaronder tekenen, schilderen, klei, collage, druktechnieken, natuurlijke pigmenten en gevonden materialen.<br><br>Via speelse opdrachten leren ze beter observeren, experimenteren met materialen en hun eigen ideeën en beeldtaal ontwikkelen.<br><br>Elke les biedt ruimte om te onderzoeken, experimenteren en iets eigens te maken, terwijl kinderen zelfvertrouwen en nieuwe artistieke vaardigheden ontwikkelen.</p></div>
-<a href="#signup" class="btn preselect-programme" data-programme="TUESDAY · Age 5–9 · Kids Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+<a href="#signup" class="btn preselect-programme" data-programme="TUESDAY · Ages 5–9 · Kids Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
 </article>
 <article class="card">
 <div class="card-day"><span class="en">WEDNESDAY</span><span class="nl">WOENSDAG</span></div>
 <div class="card-time">14:00–15:30</div>
-<div class="card-age"><span class="en">AGE 5–9</span><span class="nl">5–9 JAAR</span></div>
+<div class="card-age"><span class="en">AGES 5–9</span><span class="nl">5–9 JAAR</span></div>
 <h3><span class="en">KIDS ATELIER</span><span class="nl">KINDERATELIER</span></h3>
 <p class="card-desc"><span class="en">Drawing, painting and sculpting through observation, materials and nature.</span><span class="nl">Tekenen, schilderen en boetseren vanuit observatie, materialen en natuur.</span></p>
 <p class="card-meta"><span class="en">Explore the park through drawing and sketching on location, and learn to observe your surroundings through different artistic techniques and materials.</span><span class="nl">Ontdek het park door op locatie te tekenen en schetsen en leer je omgeving observeren met verschillende artistieke technieken en materialen.</span></p>
@@ -426,24 +448,24 @@ flex-shrink:0;
 <p class="card-meta"><span class="en">Class will run with a minimum of 5 participants.</span><span class="nl">De les gaat door bij minimaal 5 deelnemers.</span></p>
 <button class="more-toggle" type="button" data-target="more-wednesday"><span class="en">More info</span><span class="nl">Meer info</span></button>
 <div class="card-more" id="more-wednesday"><p class="en">A weekly creative atelier where children explore the Amstelpark through art and making. We use the park as our studio and source of inspiration: drawing and sketching on location, observing plants and animals, collecting natural materials, and looking closely at colours, shapes, textures and seasonal changes.<br><br>Children are introduced to a variety of artistic techniques and materials, including drawing, painting, clay, collage, printmaking, natural pigments and found materials.<br><br>Through playful assignments, they learn to observe more closely, experiment with materials and develop their own ideas and visual language.<br><br>Each session offers space to explore, experiment and make something of their own, while developing confidence and new artistic skills.</p><p class="nl">Een wekelijks creatief atelier waarin kinderen het Amstelpark ontdekken door kunst en maken. We gebruiken het park als atelier en inspiratiebron: tekenen en schetsen op locatie, planten en dieren observeren, natuurlijke materialen verzamelen en aandachtig kijken naar kleuren, vormen, texturen en veranderingen door de seizoenen.<br><br>Kinderen maken kennis met verschillende artistieke technieken en materialen, waaronder tekenen, schilderen, klei, collage, druktechnieken, natuurlijke pigmenten en gevonden materialen.<br><br>Via speelse opdrachten leren ze beter observeren, experimenteren met materialen en hun eigen ideeën en beeldtaal ontwikkelen.<br><br>Elke les biedt ruimte om te onderzoeken, experimenteren en iets eigens te maken, terwijl kinderen zelfvertrouwen en nieuwe artistieke vaardigheden ontwikkelen.</p></div>
-<a href="#signup" class="btn preselect-programme" data-programme="WEDNESDAY · Age 5–9 · Kids Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+<a href="#signup" class="btn preselect-programme" data-programme="WEDNESDAY · Ages 5–9 · Kids Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
 </article>
 <article class="card">
 <div class="card-day"><span class="en">FRIDAY</span><span class="nl">VRIJDAG</span></div>
 <div class="card-time">10:00–12:00</div>
-<div class="card-age"><span class="en">AGE 0–4</span><span class="nl">0–4 JAAR</span></div>
+<div class="card-age"><span class="en">AGES 0–4</span><span class="nl">0–4 JAAR</span></div>
 <h3><span class="en">BABY & TODDLER ATELIER</span><span class="nl">BABY & PEUTER ATELIER</span></h3>
 <p class="card-desc"><span class="en">A relaxed sensory and creative play session for babies, toddlers and their parents or caregivers, surrounded by the nature of the Amstelpark.</span><span class="nl">Een ontspannen zintuiglijke en creatieve speelsessie voor baby's, peuters en hun ouders of verzorgers, midden in de natuur van het Amstelpark.</span></p>
 <div class="price"><span class="en">4 weeks · €60<br>Single session · €15</span><span class="nl">4 weken · €60<br>Losse sessie · €15</span></div>
 <p class="card-meta"><span class="en">Class will run with a minimum of 5 participants.</span><span class="nl">De les gaat door bij minimaal 5 deelnemers.</span></p>
 <button class="more-toggle" type="button" data-target="more-baby"><span class="en">More info</span><span class="nl">Meer info</span></button>
 <div class="card-more" id="more-baby"><p class="en">Children are invited to explore at their own pace through touching, looking, listening, moving and making.<br><br>Activities are inspired by the park and the changing seasons and may include natural materials, clay, water, colour, painting, drawing and sensory play.<br><br>The focus is on curiosity, experimentation and the experience of making together rather than on a finished result.<br><br>Parents and caregivers stay and take part alongside their child, making the atelier a welcoming space to slow down, explore and create together.</p><p class="nl">Kinderen worden uitgenodigd om in hun eigen tempo te ontdekken door te voelen, kijken, luisteren, bewegen en maken.<br><br>De activiteiten zijn geïnspireerd op het park en de seizoenen en kunnen bestaan uit natuurlijke materialen, klei, water, kleur, schilderen, tekenen en zintuiglijk spel.<br><br>De nadruk ligt op nieuwsgierigheid, experimenteren en de ervaring van samen maken, niet op een eindresultaat.<br><br>Ouders en verzorgers blijven erbij en doen samen met hun kind mee, waardoor het atelier een fijne plek is om te vertragen, ontdekken en samen te creëren.</p></div>
-<a href="#signup" class="btn preselect-programme" data-programme="Friday · Age 0–4 · Baby & Toddler Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+<a href="#signup" class="btn preselect-programme" data-programme="Friday · Ages 0–4 · Baby & Toddler Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
 </article>
 <article class="card">
 <div class="card-day"><span class="en">SATURDAY</span><span class="nl">ZATERDAG</span></div>
 <div class="card-time">10:00–11:30</div>
-<div class="card-age"><span class="en">AGE 5–9</span><span class="nl">5–9 JAAR</span></div>
+<div class="card-age"><span class="en">AGES 5–9</span><span class="nl">5–9 JAAR</span></div>
 <h3><span class="en">KIDS ATELIER</span><span class="nl">KINDERATELIER</span></h3>
 <p class="card-desc"><span class="en">Drawing, painting and sculpting through observation, materials and nature.</span><span class="nl">Tekenen, schilderen en boetseren vanuit observatie, materialen en natuur.</span></p>
 <p class="card-meta"><span class="en">Explore the park through drawing and sketching on location, and learn to observe your surroundings through different artistic techniques and materials.</span><span class="nl">Ontdek het park door op locatie te tekenen en schetsen en leer je omgeving observeren met verschillende artistieke technieken en materialen.</span></p>
@@ -451,7 +473,7 @@ flex-shrink:0;
 <p class="card-meta"><span class="en">Class will run with a minimum of 5 participants.</span><span class="nl">De les gaat door bij minimaal 5 deelnemers.</span></p>
 <button class="more-toggle" type="button" data-target="more-saturday"><span class="en">More info</span><span class="nl">Meer info</span></button>
 <div class="card-more" id="more-saturday"><p class="en">A weekly creative atelier where children explore the Amstelpark through art and making. We use the park as our studio and source of inspiration: drawing and sketching on location, observing plants and animals, collecting natural materials, and looking closely at colours, shapes, textures and seasonal changes.<br><br>Children are introduced to a variety of artistic techniques and materials, including drawing, painting, clay, collage, printmaking, natural pigments and found materials.<br><br>Through playful assignments, they learn to observe more closely, experiment with materials and develop their own ideas and visual language.<br><br>Each session offers space to explore, experiment and make something of their own, while developing confidence and new artistic skills.</p><p class="nl">Een wekelijks creatief atelier waarin kinderen het Amstelpark ontdekken door kunst en maken. We gebruiken het park als atelier en inspiratiebron: tekenen en schetsen op locatie, planten en dieren observeren, natuurlijke materialen verzamelen en aandachtig kijken naar kleuren, vormen, texturen en veranderingen door de seizoenen.<br><br>Kinderen maken kennis met verschillende artistieke technieken en materialen, waaronder tekenen, schilderen, klei, collage, druktechnieken, natuurlijke pigmenten en gevonden materialen.<br><br>Via speelse opdrachten leren ze beter observeren, experimenteren met materialen en hun eigen ideeën en beeldtaal ontwikkelen.<br><br>Elke les biedt ruimte om te onderzoeken, experimenteren en iets eigens te maken, terwijl kinderen zelfvertrouwen en nieuwe artistieke vaardigheden ontwikkelen.</p></div>
-<a href="#signup" class="btn preselect-programme" data-programme="SATURDAY · Age 5–9 · Kids Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
+<a href="#signup" class="btn preselect-programme" data-programme="SATURDAY · Ages 5–9 · Kids Atelier"><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></a>
 </article>
 <article class="card">
 <div class="card-day"><span class="en">SUNDAY</span><span class="nl">ZONDAG</span></div>
@@ -479,12 +501,12 @@ flex-shrink:0;
 <div class="programme-subhead">
 <div class="kicker"><span class="en">On request</span><span class="nl">Op aanvraag</span></div>
 <h2><span class="en">Courses on Request</span><span class="nl">Cursussen op aanvraag</span></h2>
-<p class="programme-note"><span class="en">Courses below can be organised on request and will run with a minimum of 7 participants.<br>4 weeks · €94,60 &nbsp;·&nbsp; Single lesson · €26,50</span><span class="nl">Onderstaande cursussen kunnen op aanvraag worden georganiseerd en gaan door bij minimaal 7 deelnemers.<br>4 weken · €94,60 &nbsp;·&nbsp; Losse les · €26,50</span></p>
+<p class="programme-note"><span class="en">Courses below can be organised on request and will run with a minimum of 7 participants.</span><span class="programme-price-line en">4 weeks · €94,60<br>Single lesson · €26,50</span><span class="nl">Onderstaande cursussen kunnen op aanvraag worden georganiseerd en gaan door bij minimaal 7 deelnemers.</span><span class="programme-price-line nl">4 weken · €94,60<br>Losse les · €26,50</span></p>
 </div>
 <div class="cards request-grid">
 <article class="card request-card"><h3><span class="en">MAKE YOUR OWN MATERIALS</span><span class="nl">MAAK JE EIGEN MATERIALEN</span></h3><p class="card-desc"><span class="en">Discover how art materials can be made from nature.</span><span class="nl">Ontdek hoe kunstmaterialen uit de natuur kunnen worden gemaakt.</span></p><button class="more-toggle" type="button" data-target="more-materials"><span class="en">More info</span><span class="nl">Meer info</span></button><div class="card-more" id="more-materials"><p class="en">Experiment with making your own paper, brushes, pigments, inks and paints using plants and other natural materials collected from the park.<br><br>Learn about the origins of artists’ materials while developing your own colours, textures and tools.</p><p class="nl">Experimenteer met het maken van je eigen papier, penselen, pigmenten, inkten en verf met planten en andere natuurlijke materialen die in het park zijn verzameld.<br><br>Leer waar kunstenaarsmaterialen vandaan komen terwijl je je eigen kleuren, texturen en gereedschappen ontwikkelt.</p></div><a href="#signup" class="btn preselect-programme" data-programme="On request · Make Your Own Materials"><span class="en">Enquire</span><span class="nl">Informeer</span></a></article>
 <article class="card request-card"><h3><span class="en">CERAMICS</span><span class="nl">KERAMIEK</span></h3><p class="card-desc"><span class="en">Explore the possibilities of clay through hand-building techniques.</span><span class="nl">Ontdek de mogelijkheden van klei met handopbouwtechnieken.</span></p><button class="more-toggle" type="button" data-target="more-ceramics"><span class="en">More info</span><span class="nl">Meer info</span></button><div class="card-more" id="more-ceramics"><p class="en">Explore the possibilities of clay through hand-building techniques such as pinching, coiling and slab building.<br><br>Create your own functional or sculptural objects, experiment with texture and form, and finish your pieces with slips and glazes.</p><p class="nl">Ontdek de mogelijkheden van klei met handopbouwtechnieken zoals duimpotjes, rollen en platenbouw.<br><br>Maak je eigen functionele of sculpturale objecten, experimenteer met textuur en vorm en werk je stukken af met engobes en glazuren.</p></div><a href="#signup" class="btn preselect-programme" data-programme="On request · Ceramics"><span class="en">Enquire</span><span class="nl">Informeer</span></a></article>
-<article class="card request-card"><h3><span class="en">AQUARELLE PAINTING</span><span class="nl">AQUAREL SCHILDEREN</span></h3><p class="card-desc"><span class="en">Learn the fundamentals of watercolour painting through observation of the park.</span><span class="nl">Leer de basis van aquarel door het park aandachtig te observeren.</span></p><button class="more-toggle" type="button" data-target="more-aquarelle"><span class="en">More info</span><span class="nl">Meer info</span></button><div class="card-more" id="more-aquarelle"><p class="en">Learn the fundamentals of aquarelle (watercolour) painting through observation of the park’s plants, flowers and changing landscape.<br><br>Experiment with colour mixing, transparency, layering, wet-on-wet and wet-on-dry techniques while developing your own way of translating nature into paint.</p><p class="nl">Leer de basis van aquarel door de planten, bloemen en het veranderende landschap van het park te observeren.<br><br>Experimenteer met kleurmenging, transparantie, gelaagdheid, nat-in-nat en nat-op-droog terwijl je je eigen manier ontwikkelt om natuur in verf te vertalen.</p></div><a href="#signup" class="btn preselect-programme" data-programme="On request · Aquarelle Painting"><span class="en">Enquire</span><span class="nl">Informeer</span></a></article>
+<article class="card request-card"><h3><span class="en">AQUARELLE PAINTING</span><span class="nl">AQUAREL</span></h3><p class="card-desc"><span class="en">Learn the fundamentals of watercolour painting through observation of the park.</span><span class="nl">Leer de basis van aquarel door het park aandachtig te observeren.</span></p><button class="more-toggle" type="button" data-target="more-aquarelle"><span class="en">More info</span><span class="nl">Meer info</span></button><div class="card-more" id="more-aquarelle"><p class="en">Learn the fundamentals of aquarelle (watercolour) painting through observation of the park’s plants, flowers and changing landscape.<br><br>Experiment with colour mixing, transparency, layering, wet-on-wet and wet-on-dry techniques while developing your own way of translating nature into paint.</p><p class="nl">Leer de basis van aquarel door de planten, bloemen en het veranderende landschap van het park te observeren.<br><br>Experimenteer met kleurmenging, transparantie, gelaagdheid, nat-in-nat en nat-op-droog terwijl je je eigen manier ontwikkelt om natuur in verf te vertalen.</p></div><a href="#signup" class="btn preselect-programme" data-programme="On request · Aquarelle Painting"><span class="en">Enquire</span><span class="nl">Informeer</span></a></article>
 </div>
 </section>
 <section class="gallery-section" id="gallery"><div class="kicker"><span class="en">Gallery</span><span class="nl">Galerij</span></div><h2><span class="en">Process</span><span class="nl">Proces</span></h2><div class="gallery"><img src="images/4.jpg" alt=""><img src="images/5.jpg" alt=""><img src="images/6.jpg" alt=""><img src="images/7.jpg" alt=""><img src="images/8.jpg" alt=""><img src="images/9.jpg" alt=""></div></section>
@@ -494,17 +516,17 @@ flex-shrink:0;
 <input type="hidden" name="_subject" value="New Amstelpark Atelier Signup"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input type="hidden" name="_next" value="https://amstelparkatelier.nl"><input type="hidden" name="_autoresponse" value="Thank you for your signup. We received your message and will get back to you shortly.">
 <div class="form-grid"><div class="field"><label><span class="en">Name</span><span class="nl">Naam</span></label><input type="text" name="name" required></div><div class="field"><label>Email</label><input type="email" name="email" required></div><div class="field"><label><span class="en">Programme</span><span class="nl">Programma</span></label><select name="course" required id="programme-select">
 <optgroup label="Weekly Programme">
-<option value="Tuesday · Age 5–9 · Kids Atelier" data-booking="kids-choice" data-en="Tuesday · Age 5–9 · Kids Atelier" data-nl="Dinsdag · 5–9 jaar · Kinderatelier">Tuesday · Age 5–9 · Kids Atelier</option>
-<option value="Wednesday · Age 5–9 · Kids Atelier" data-booking="kids-choice" data-en="Wednesday · Age 5–9 · Kids Atelier" data-nl="Woensdag · 5–9 jaar · Kinderatelier">Wednesday · Age 5–9 · Kids Atelier</option>
-<option value="Friday · Age 0–4 · Baby & Toddler Atelier" data-booking="baby-choice" data-en="Friday · Age 0–4 · Baby & Toddler Atelier" data-nl="Vrijdag · 0–4 jaar · Baby & Peuter Atelier">Friday · Age 0–4 · Baby & Toddler Atelier</option>
-<option value="Saturday · Age 5–9 · Kids Atelier" data-booking="kids-choice" data-en="Saturday · Age 5–9 · Kids Atelier" data-nl="Zaterdag · 5–9 jaar · Kinderatelier">Saturday · Age 5–9 · Kids Atelier</option>
+<option value="Tuesday · Ages 5–9 · Kids Atelier" data-booking="kids-choice" data-en="Tuesday · Ages 5–9 · Kids Atelier" data-nl="Dinsdag · 5–9 jaar · Kinderatelier">Tuesday · Ages 5–9 · Kids Atelier</option>
+<option value="Wednesday · Ages 5–9 · Kids Atelier" data-booking="kids-choice" data-en="Wednesday · Ages 5–9 · Kids Atelier" data-nl="Woensdag · 5–9 jaar · Kinderatelier">Wednesday · Ages 5–9 · Kids Atelier</option>
+<option value="Friday · Ages 0–4 · Baby & Toddler Atelier" data-booking="baby-choice" data-en="Friday · Ages 0–4 · Baby & Toddler Atelier" data-nl="Vrijdag · 0–4 jaar · Baby & Peuter Atelier">Friday · Ages 0–4 · Baby & Toddler Atelier</option>
+<option value="Saturday · Ages 5–9 · Kids Atelier" data-booking="kids-choice" data-en="Saturday · Ages 5–9 · Kids Atelier" data-nl="Zaterdag · 5–9 jaar · Kinderatelier">Saturday · Ages 5–9 · Kids Atelier</option>
 <option value="Sunday · Adults · Oil Painting 10:00–12:30" data-en="Sunday · Adults · Oil Painting 10:00–12:30" data-nl="Zondag · Volwassenen · Schilderen met olieverf 10:00–12:30">Sunday · Adults · Oil Painting 10:00–12:30</option>
 <option value="Sunday · Adults · Oil Painting 14:00–16:30" data-en="Sunday · Adults · Oil Painting 14:00–16:30" data-nl="Zondag · Volwassenen · Schilderen met olieverf 14:00–16:30">Sunday · Adults · Oil Painting 14:00–16:30</option>
 </optgroup>
 <optgroup label="Courses on Request">
 <option value="On request · Make Your Own Materials" data-en="On request · Make Your Own Materials" data-nl="Op aanvraag · Maak je eigen materialen">On request · Make Your Own Materials</option>
 <option value="On request · Ceramics" data-en="On request · Ceramics" data-nl="Op aanvraag · Keramiek">On request · Ceramics</option>
-<option value="On request · Aquarelle Painting" data-en="On request · Aquarelle Painting" data-nl="Op aanvraag · Aquarel schilderen">On request · Aquarelle Painting</option>
+<option value="On request · Aquarelle Painting" data-en="On request · Aquarelle Painting" data-nl="Op aanvraag · Aquarel">On request · Aquarelle Painting</option>
 </optgroup>
 <option value="Birthday bookings / Space for hire" data-en="Birthday bookings / Space for hire" data-nl="Verjaardagen / Ruimte huren">Birthday bookings / Space for hire</option>
 <option value="Private workshops / Schools / BSO" data-en="Private workshops / Schools / BSO" data-nl="Privéworkshops / Scholen / BSO">Private workshops / Schools / BSO</option>
@@ -523,11 +545,11 @@ flex-shrink:0;
 </div>
 </div>
 
-<div class="field full"><label><span class="en">Message</span><span class="nl">Bericht</span></label><textarea name="message"></textarea></div><div class="form-actions"><button type="submit" class="btn" id="submit-btn"><span class="en">Sign up today</span><span class="nl">Meld je vandaag aan</span></button><div class="form-message" id="form-message"></div></div>
+<div class="field full"><label><span class="en">Message</span><span class="nl">Bericht</span></label><textarea name="message"></textarea></div><div class="form-actions"><button type="submit" class="btn" id="submit-btn"><span class="en">Send request</span><span class="nl">Verstuur aanvraag</span></button><div class="form-message" id="form-message"></div></div>
 </form></section>
 </main>
 
-<footer id="contact"><div><div class="footer-heading"><span class="en">The Atelier</span><span class="nl">Het Atelier</span></div><strong>Amstelpark Atelier</strong><p><span class="en">Botanical-inspired art courses<br>in Amstelpark, Amsterdam.</span><span class="nl">Botanisch geïnspireerde kunstcursussen<br>in Amstelpark, Amsterdam.</span></p></div><div><div class="footer-heading"><span class="en">Location</span><span class="nl">Locatie</span></div><strong>Amstelpark Atelier</strong><p>Amstelpark<br>Amsterdam</p><p><a href="https://www.google.com/maps/place/Amstelpark+atelier/@52.3317515,4.8964245,18.62z/data=!4m6!3m5!1s0x47c60b002088f81b:0x9231289efd141281!8m2!3d52.3310471!4d4.895784!16s%2Fg%2F11nc5nsbs2?entry=ttu" target="_blank" rel="noopener">◎ <span class="en">Open in Maps</span><span class="nl">Open in Maps</span></a></p></div><div><div class="footer-heading">Contact</div><strong><a href="mailto:studio16.1xb@gmail.com">studio16.1xb@gmail.com</a></strong><p><a href="tel:+31647194490">06 47194490</a></p><p><a href="https://wa.me/31647194490" target="_blank" rel="noopener">WhatsApp</a></p></div></footer>
+<footer id="contact"><div><div class="footer-heading"><span class="en">The Atelier</span><span class="nl">Het Atelier</span></div><strong>Amstelpark Atelier</strong><p><span class="en">Art, making and creative workshops<br>in Amstelpark, Amsterdam.</span><span class="nl">Kunst, maken en creatieve workshops<br>in Amstelpark, Amsterdam.</span></p></div><div><div class="footer-heading"><span class="en">Location</span><span class="nl">Locatie</span></div><strong>Amstelpark Atelier</strong><p>Amstelpark<br>Amsterdam</p><p><a href="https://www.google.com/maps/place/Amstelpark+atelier/@52.3317515,4.8964245,18.62z/data=!4m6!3m5!1s0x47c60b002088f81b:0x9231289efd141281!8m2!3d52.3310471!4d4.895784!16s%2Fg%2F11nc5nsbs2?entry=ttu" target="_blank" rel="noopener">◎ <span class="en">Open in Maps</span><span class="nl">Open in Maps</span></a></p></div><div><div class="footer-heading">Contact</div><strong><a href="mailto:studio16.1xb@gmail.com">studio16.1xb@gmail.com</a></strong><p><a href="tel:+31647194490">06 47194490</a></p><p><a href="https://wa.me/31647194490" target="_blank" rel="noopener">WhatsApp</a></p></div></footer>
 
 <script>
 const langButton=document.getElementById('lang-switch'),menuButton=document.getElementById('menu-toggle'),menuOverlay=document.getElementById('menu-overlay'),header=document.getElementById('site-header'),logo=document.getElementById('logo'),popup1=document.getElementById('popup1'),popup2=document.getElementById('popup2'),form=document.getElementById('signup-form'),submitBtn=document.getElementById('submit-btn'),formMessage=document.getElementById('form-message');let currentLang='en';
@@ -580,8 +602,8 @@ programmeSelect.addEventListener('change',toggleBookingType);
 }
 
 form.addEventListener('submit',async event=>{event.preventDefault();const formData=new FormData(form);submitBtn.disabled=true;submitBtn.innerHTML=currentLang==='en'?'Sending...':'Versturen...';formMessage.textContent='';try{const response=await fetch(form.action,{method:'POST',body:formData,headers:{Accept:'application/json'}});if(response.ok){form.reset();submitBtn.classList.add('submit-success');submitBtn.innerHTML=currentLang==='en'?'<span class="smiley">☺</span> Received':'<span class="smiley">☺</span> Ontvangen';formMessage.textContent=currentLang==='en'?'Your signup has been received.':'Je aanmelding is ontvangen.'}else{throw new Error('Form submission failed')}}catch(error){submitBtn.innerHTML=currentLang==='en'?'Email us directly':'Mail ons direct';formMessage.innerHTML=currentLang==='en'?'Something went wrong. Please email studio16.1xb@gmail.com.':'Er ging iets mis. Mail naar studio16.1xb@gmail.com.'}setTimeout(()=>{submitBtn.disabled=false;submitBtn.classList.remove('submit-success');submitBtn.innerHTML=`
-<span class="en">Sign up today</span>
-<span class="nl">Meld je vandaag aan</span>
+<span class="en">Send request</span>
+<span class="nl">Verstuur aanvraag</span>
 `;
 setLanguage(currentLang)},4200)});
 
@@ -660,6 +682,7 @@ document.querySelectorAll('.accordion-child').forEach(btn=>{
   const clearBtn = document.getElementById('clearBtn');
   const printBtn = document.getElementById('printBtn');
   const emailBtn = document.getElementById('emailBtn');
+  const backDrawBtn = document.getElementById('backDrawBtn');
 
   let drawing = false;
   let drawMode = false;
@@ -684,8 +707,8 @@ document.querySelectorAll('.accordion-child').forEach(btn=>{
   const siteContent = document.querySelector('.site-content');
   let hiddenContent = null;
 
-  pencilBtn.addEventListener('click', ()=>{
-    drawMode = !drawMode;
+  function setDrawMode(next){
+    drawMode = next;
     pencilBtn.classList.toggle('active', drawMode);
     canvas.classList.toggle('active', drawMode);
     toolbar.classList.toggle('active', drawMode);
@@ -697,7 +720,10 @@ document.querySelectorAll('.accordion-child').forEach(btn=>{
       if(hiddenContent) siteContent.innerHTML = hiddenContent;
       hiddenContent = null;
     }
-  });
+  }
+
+  pencilBtn.addEventListener('click', ()=> setDrawMode(!drawMode));
+  backDrawBtn.addEventListener('click', ()=> setDrawMode(false));
 
   function getPos(e){
     const r = canvas.getBoundingClientRect();
@@ -799,17 +825,33 @@ document.querySelectorAll('.accordion-child').forEach(btn=>{
   });
 
   emailBtn.addEventListener('click', ()=>{
-    getCompositeImage(dataUrl=>{
-      // Step 1: download the image
+    getCompositeImage(async dataUrl=>{
+      const blob = await (await fetch(dataUrl)).blob();
+      const file = new File([blob], 'amstelpark-drawing.png', {type:'image/png'});
+      // On supported mobile browsers this opens the native share sheet with the PNG attached.
+      if(navigator.share && (!navigator.canShare || navigator.canShare({files:[file]}))){
+        try{
+          await navigator.share({
+            title:'My drawing from Amstelpark Atelier',
+            text:'I made this drawing on amstelparkatelier.nl',
+            files:[file]
+          });
+          return;
+        }catch(err){
+          if(err && err.name === 'AbortError') return;
+        }
+      }
+      // Desktop/fallback: save the PNG, then open an email draft. Browsers cannot attach files to mailto links.
       const a = document.createElement('a');
       a.download = 'amstelpark-drawing.png';
       a.href = dataUrl;
+      document.body.appendChild(a);
       a.click();
-      // Step 2: open mail with instructions (browsers cannot auto-attach files)
+      document.body.removeChild(a);
       setTimeout(()=>{
-        const body = encodeURIComponent('Hi!\n\nI made a drawing on amstelparkatelier.nl.\nFind it in your Downloads as amstelpark-drawing.png — just attach it to this email!');
+        const body = encodeURIComponent('Hi!\n\nI made a drawing on amstelparkatelier.nl. The PNG has been saved as amstelpark-drawing.png — please attach it here.');
         window.location.href = 'mailto:?subject=My drawing from Amstelpark Atelier&body=' + body;
-      }, 1000);
+      }, 500);
     });
   });
 })();

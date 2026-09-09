@@ -324,6 +324,15 @@ flex-shrink:0;
   .pencil-btn.active{display:none!important}
 }
 
+
+/* QA FIX: robust language display + clean scrolled header */
+.nl{display:none;}
+.popup{display:none !important;}
+.site-header.scrolled .logo-svg{width:min(360px,36vw);top:18px;}
+@media(max-width:900px){
+  .site-header.scrolled .logo-svg{width:min(230px,54vw);top:25px;}
+}
+
 </style>
 
 </head>
@@ -509,7 +518,7 @@ flex-shrink:0;
 <article class="card request-card"><h3><span class="en">AQUARELLE PAINTING</span><span class="nl">AQUAREL</span></h3><p class="card-desc"><span class="en">Learn the fundamentals of watercolour painting through observation of the park.</span><span class="nl">Leer de basis van aquarel door het park aandachtig te observeren.</span></p><div class="price request-price"><span class="en">4 weeks · €94,60<br>Single lesson · €26,50<br>Stadspas · 4 weeks · €10</span><span class="nl">4 weken · €94,60<br>Losse les · €26,50<br>Stadspas · 4 weken · €10</span></div><button class="more-toggle" type="button" data-target="more-aquarelle"><span class="en">More info</span><span class="nl">Meer info</span></button><div class="card-more" id="more-aquarelle"><p class="en">Learn the fundamentals of aquarelle (watercolour) painting through observation of the park’s plants, flowers and changing landscape.<br><br>Experiment with colour mixing, transparency, layering, wet-on-wet and wet-on-dry techniques while developing your own way of translating nature into paint.</p><p class="nl">Leer de basis van aquarel door de planten, bloemen en het veranderende landschap van het park te observeren.<br><br>Experimenteer met kleurmenging, transparantie, gelaagdheid, nat-in-nat en nat-op-droog terwijl je je eigen manier ontwikkelt om natuur in verf te vertalen.</p></div><a href="#signup" class="btn preselect-programme" data-programme="On request · Aquarelle Painting"><span class="en">Enquire</span><span class="nl">Informeer</span></a></article>
 </div>
 </section>
-<section class="gallery-section" id="gallery"><div class="kicker"><span class="en">Gallery</span><span class="nl">Galerij</span></div><h2><span class="en">Process</span><span class="nl">Proces</span></h2><div class="gallery"><img src="images/4.jpg" alt=""><img src="images/5.jpg" alt=""><img src="images/6.jpg" alt=""><img src="images/8.jpg" alt="Children taking part in an Amstelpark Atelier creative workshop"><img src="images/8.jpg" alt=""><img src="images/9.jpg" alt=""></div></section>
+<section class="gallery-section" id="gallery"><div class="kicker"><span class="en">Gallery</span><span class="nl">Galerij</span></div><h2><span class="en">Process</span><span class="nl">Proces</span></h2><div class="gallery"><img src="images/4.jpg" alt=""><img src="images/5.jpg" alt=""><img src="images/6.jpg" alt=""><img src="images/7.jpg" alt=""><img src="images/8.jpg" alt="Children taking part in an Amstelpark Atelier creative workshop"><img src="images/9.jpg" alt=""></div></section>
 
 <section class="signup" id="signup"><div class="signup-intro"><div class="kicker"><span class="en">Signup</span><span class="nl">Aanmelden</span></div><h2><span class="en">Reserve your place</span><span class="nl">Reserveer je plek</span></h2><p><span class="en">Fill in the form and we will confirm your place or answer your question personally.</span><span class="nl">Vul het formulier in en we bevestigen je plek of beantwoorden je vraag persoonlijk.</span></p></div>
 <form action="https://formsubmit.co/studio16.1xb@gmail.com" method="POST" class="form" id="signup-form">
@@ -559,10 +568,10 @@ menuButton.addEventListener('click',()=>{menuButton.classList.toggle('open');men
 document.querySelectorAll('.menu-overlay a').forEach(link=>{link.addEventListener('click',()=>{menuButton.classList.remove('open');menuOverlay.classList.remove('open');document.body.classList.remove('menu-open')})});
 menuOverlay.addEventListener('click',event=>{if(event.target===menuOverlay){menuButton.classList.remove('open');menuOverlay.classList.remove('open');document.body.classList.remove('menu-open')}});
 let slideIndex=0;const slides=document.querySelectorAll('.slide');function showNextSlide(){slides[slideIndex].classList.remove('active');slideIndex=(slideIndex+1)%slides.length;slides[slideIndex].classList.add('active')}setInterval(showNextSlide,4200);
-setTimeout(()=>popup1.classList.add('show'),2500);
-function updateScrollState(){const y=window.scrollY,h=document.body.scrollHeight-window.innerHeight,p=h>0?y/h:0;if(y>18){header.classList.add('scrolled')}else{header.classList.remove('scrolled')}if(y>window.innerHeight*.35){popup2.classList.add('show')}logo.classList.remove('logo-green','logo-cyan','logo-orange','logo-pink','logo-yellow');if(y<50){return}if(p<.25){logo.classList.add('logo-green')}else if(p<.45){logo.classList.add('logo-cyan')}else if(p<.65){logo.classList.add('logo-orange')}else if(p<.85){logo.classList.add('logo-pink')}else{logo.classList.add('logo-yellow')}}
+/* popup disabled: birthday/private hire now has a dedicated section */
+function updateScrollState(){const y=window.scrollY,h=document.body.scrollHeight-window.innerHeight,p=h>0?y/h:0;if(y>18){header.classList.add('scrolled')}else{header.classList.remove('scrolled')}logo.classList.remove('logo-green','logo-cyan','logo-orange','logo-pink','logo-yellow');if(y<50){return}if(p<.25){logo.classList.add('logo-green')}else if(p<.45){logo.classList.add('logo-cyan')}else if(p<.65){logo.classList.add('logo-orange')}else if(p<.85){logo.classList.add('logo-pink')}else{logo.classList.add('logo-yellow')}}
 window.addEventListener('scroll',updateScrollState);window.addEventListener('load',()=>{setLanguage('en');toggleBookingType();updateScrollState()});
-document.addEventListener('click',event=>{if(!event.target.closest('.popup')){popup1.classList.remove('show');popup2.classList.remove('show')}});
+
 
 document.querySelectorAll('.preselect-programme').forEach(button=>{
 button.addEventListener('click',()=>{
